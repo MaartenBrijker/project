@@ -1,5 +1,4 @@
-# DEVORM RECORDS presents: an 
-# user-interactive music release
+# DEVORM RECORDS presents: 'an user-interactive music release'
 
 For the record label DEVORM records, I am building an app that generates music on the basis of user made choices. 
 Hereby DEVORM makes it possible for fans and consumers to not only purchase/listen to the music we put out, but now also to be part of the label. 
