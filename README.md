@@ -40,6 +40,8 @@ I will make use of a splitview. Were the main view is a table displaying all the
 
 ![alt-tag](https://github.com/MaartenBrijker/project/blob/master/doc/sketch.png)
 
+Ideally there will also be another screen where users could control a mixer to control overall volumes and panning of each track.
+
 # sound reference
 
 Ideally the sonic aesthetics users are able to generate with this app would be in line of this song: https://www.youtube.com/watch?v=ZMTT1Pnfuzw
