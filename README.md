@@ -1,4 +1,5 @@
-# DEVORM RECORDS presents an user-interactive music release
+# DEVORM RECORDS presents: an 
+# user-interactive music release
 
 For the record label DEVORM records, I am building an app that generates music on the basis of user made choices. 
 Hereby DEVORM makes it possible for fans and consumers to not only purchase/listen to the music we put out, but now also to be part of the label. 
@@ -50,10 +51,8 @@ I mostly foresee technical limitations in the audio input and output parts. Howe
 With respect to the time and my personal skill level I don't foresee myself hardcoding processing functions. So in the audio processing part of the app technical limitations would be based on the audio processing functions provided by the Audio Unit API. I will have to be creative to use these processing tools in a way that approaches the functions and aesthetics I have in mind and that will be satisfactionary to the user of the app.
 Especially the part where user's are for example to place samples in a time based grid of automate effects over time will be hard to implement.
 
-# Similar applications
+# What does this app to the world of apps?
 
 There are several music generating and processing applications around. However non of them is aesthetically limited by a record label and does provide the direct possibility of being part of a collective group of artists without having any necessary musical skills.
 
-# Problem solving? (what problem? with which features?)
-
-This app will enable music fans that are not capable of composing music from scratch, to still have a music based output. A creative outlet that evens transcends the fan to the level of being part of a music label, to enter a creative dialogue, and to build a sense of sonic community. 
+This app will enable music fans that are not capable of composing music from scratch, to still have a music based output. A creative outlet that evens transcends the fan to the level of being part of a music label, to enter a creative dialogue, and to build a sense of sonic community (if I would implement audio exporting features to a shared soundcloud for example). 
