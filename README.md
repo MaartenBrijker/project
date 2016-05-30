@@ -61,3 +61,9 @@ Especially the part where I would provide users the possibility to for example p
 There are several music generating and processing applications around (e.g. Multitrack, Garageband, Figure to name a few). However non of them is aesthetically limited by a record label and does provide the direct possibility of being part of a collective group of artists without having any necessary musical skills.
 
 This app will enable music fans that are not capable of composing music from scratch, to still have a music based output. A creative outlet that even transcends the fan to the level of being part of a music label, to enter a creative dialogue, and to build a sense of sonic community (if I would implement audio exporting features to a shared soundcloud for example). 
+
+# information
+Maarten Brijker
+10440682
+iOS app
+programmeerproject
