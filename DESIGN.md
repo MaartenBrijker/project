@@ -9,7 +9,7 @@ and two screens (classes):
  - AudioViewController
  - ProcessingViewController
 
-Next to this I will make use of the AudioUnit API and an SQLite Database.
+Next to this I will make use of the Audio KIt API and an SQLite Database.
 I will now explain all of this more detailed.
 
 # input
@@ -21,7 +21,7 @@ The app is able to take input from several sources:
 
 # audio processing
 
-For this part of the app I will use the Audio Unit API. This API makes use of the Core Audio build in to swift, but is more accessable and easier to work with. Audio Unit provides several samplers, effects and sequencers to manipulate audio. Also a graphical tool of Audio Unit will be used.
+For this part of the app I will use the Audio Kit API. This API makes use of the Core Audio build in to swift, but is more accessable and easier to work with. Audio Kit provides several samplers, effects and sequencers to manipulate audio. Also a graphical tool of Audio Kit will be used.
 
 # output
 
@@ -48,7 +48,7 @@ This class will exist of:
 
 This class will exist of:
  - several sliders controlling effects (filter / reverb / pitch)
- - a graphical interface displaying the wave form (audio unit has modules for this)
+ - a graphical interface displaying the wave form (Audio Kit has modules for this)
  - a bar like visual representation to automate an effect over the sample time (in order to provide more dynamics)
 
 # SQLite database
