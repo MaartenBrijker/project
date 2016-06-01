@@ -55,6 +55,8 @@ This class will exist of:
 
 SQL will be used to store each sound and its values. Each sound will have a seperate row. And each effect on a seperate column with its value for the specific sound.
 
+![alt-tag](https://github.com/MaartenBrijker/project/blob/master/doc/table%20example.png)
+
 # information
 Maarten Brijker |
 10440682 |
