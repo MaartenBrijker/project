@@ -5,35 +5,55 @@ The app will exist of three parts:
  - audio processing
  - output
 
-Most of the focus in these four weeks will be on the audio processing part. The input and output parts will have some amount of implementation levels that could possibly be skipped during these four weeks and left for further work.
+and two screens (classes):
+ - AudioViewController
+ - ProcessingViewController
 
-I will now explain each part of the app more detailed.
+Next to this I will make use of the AudioUnit API and an SQLite Database.
+I will now explain all of this more detailed.
 
 # input
 
 The app is able to take input from several sources:
- - web (download music from youtube or soundcloud for example)
+ - web (download music from youtube) Youtube API
  - database (a set of sounds provided by me, stored in the app)
  - record audio (recording audio with the device's mic)
 
-I will start building the app with only the database source of audio. I have done this before (the API assignment last block), and that will be an easy start for focussing on the most important part of the app, namely the audio processing
-
 # audio processing
 
-For this part of the app I will use the Audio Unit API. This API makes use of the Core Audio build in to swift, but is more accessable and easier to work with. Audio Unit provides several samplers, effects and sequencers to manipulate audio. Also it has some graphical tools I am planning on using. 
+For this part of the app I will use the Audio Unit API. This API makes use of the Core Audio build in to swift, but is more accessable and easier to work with. Audio Unit provides several samplers, effects and sequencers to manipulate audio. Also a graphical tool of Audio Unit will be used.
 
 # output
 
-In the most narrowed down version of my app, sound will only be 'outputted' in terms of playing the audio real time. So when the user kills the app, the audio will be gone. However, in a more extended version of this app I would like the audio to be exported as a single audio file, so the music can be stored and shared by the user. The AVAssetExportSession function of iOS would be able to do this. Even more fancy would be if the user could have the audio send to him via mail (with a cc to me, so DEVORM could display all the generated audio in some online environment) or streamed on Soundcloud. 
-However I don't expect to be able to get to this part in this four weeks course. So all of this is optional and I will work foremostly with just playing back the audio real time.
+For the MVP version of my app there will only be audio played back in real time. If there is time left in this coursee, I will focus on implementing an export function. This could be done via a record function or by automating the samples
 
-# multiple screens
+# UI Vieuws
 
-I will make use of a splitview. Were the main view is a table displaying all the audio sources, and the detailview is filled with several audio processors (sliders, buttons), a visual representation of the audio and a function to select playbacking modes (single sound vs overall sound)
+I will make use of a splitview. Were the main view is a table displaying all the audio sources, and the detailview is filled with several audio processors (sliders, buttons), a visual representation of the audio and a function to select playbacking modes (single sound vs overall sound).
 
 ![alt-tag](https://github.com/MaartenBrijker/project/blob/master/doc/sketch.png)
 
-Ideally there will also be another screen where users could control a mixer to control overall volumes and panning of each track.
+Optionally there will also be another screen where users could control a mixer to control overall volumes and panning of each track.
+
+# AudioViewController
+
+This class will exist of:
+ - table view displaying the sound
+ - button for adding a sound via mic recording
+ - button for adding a youtube sourced audio
+ - button for exporting a track
+ - when a row is selected in the table, it gets either marked and it sound will be turned on, or demarked and silenced
+
+# ProcessingViewController
+
+This class will exist of:
+ - several sliders controlling effects (filter / reverb / pitch)
+ - a graphical interface displaying the wave form (audio unit has modules for this)
+ - a bar like visual representation to automate an effect over the sample time (in order to provide more dynamics)
+
+# SQLite database
+
+SQL will be used to store each sound and its values. Each sound will have a seperate row. And each effect on a seperate column with its value for the specific sound.
 
 # information
 Maarten Brijker
