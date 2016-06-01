@@ -1,4 +1,4 @@
-# How does it work
+# Overview
 
 The app will exist of three parts:
  - input
@@ -56,7 +56,7 @@ This class will exist of:
 SQL will be used to store each sound and its values. Each sound will have a seperate row. And each effect on a seperate column with its value for the specific sound.
 
 # information
-Maarten Brijker
-10440682
-iOS app
-programmeerproject
+Maarten Brijker/
+10440682\
+iOS app\
+programmeerproject\
