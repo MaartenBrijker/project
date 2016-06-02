@@ -22,8 +22,9 @@
 		A5FBDB921D004EF7006962EA /* isinkcomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */; };
 		A5FBDB931D004EF7006962EA /* isinkvoices.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */; };
 		A5FBDB941D004EF7006962EA /* kialabells.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB8F1D004EF7006962EA /* kialabells.wav */; };
-		A5FBDB951D004EF7006962EA /* NASA.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB901D004EF7006962EA /* NASA.wav */; };
 		A5FBDB961D004EF7006962EA /* TonalBell.aiff in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB911D004EF7006962EA /* TonalBell.aiff */; };
+		A5FBDB991D007A49006962EA /* bolololo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB981D007A49006962EA /* bolololo.wav */; };
+		A5FBDB9B1D007AB4006962EA /* NASA.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB9A1D007AB4006962EA /* NASA.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,8 +149,9 @@
 		A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkcomb.wav; sourceTree = "<group>"; };
 		A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkvoices.wav; sourceTree = "<group>"; };
 		A5FBDB8F1D004EF7006962EA /* kialabells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kialabells.wav; sourceTree = "<group>"; };
-		A5FBDB901D004EF7006962EA /* NASA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NASA.wav; sourceTree = "<group>"; };
 		A5FBDB911D004EF7006962EA /* TonalBell.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = TonalBell.aiff; sourceTree = "<group>"; };
+		A5FBDB981D007A49006962EA /* bolololo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bolololo.wav; sourceTree = "<group>"; };
+		A5FBDB9A1D007AB4006962EA /* NASA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NASA.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +298,8 @@
 				A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */,
 				A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */,
 				A5FBDB8F1D004EF7006962EA /* kialabells.wav */,
-				A5FBDB901D004EF7006962EA /* NASA.wav */,
+				A5FBDB9A1D007AB4006962EA /* NASA.wav */,
+				A5FBDB981D007A49006962EA /* bolololo.wav */,
 				A5FBDB911D004EF7006962EA /* TonalBell.aiff */,
 			);
 			name = sounds;
@@ -492,8 +495,9 @@
 				A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */,
 				A5FBDB941D004EF7006962EA /* kialabells.wav in Resources */,
 				A5FBDB931D004EF7006962EA /* isinkvoices.wav in Resources */,
+				A5FBDB9B1D007AB4006962EA /* NASA.wav in Resources */,
 				A5FBDB2A1D003202006962EA /* Assets.xcassets in Resources */,
-				A5FBDB951D004EF7006962EA /* NASA.wav in Resources */,
+				A5FBDB991D007A49006962EA /* bolololo.wav in Resources */,
 				A5FBDB281D003202006962EA /* Main.storyboard in Resources */,
 				A5FBDB961D004EF7006962EA /* TonalBell.aiff in Resources */,
 			);
