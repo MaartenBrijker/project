@@ -15,6 +15,9 @@
 		A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB2B1D003202006962EA /* LaunchScreen.storyboard */; };
 		A5FBDB381D003202006962EA /* projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB371D003202006962EA /* projectTests.swift */; };
 		A5FBDB431D003202006962EA /* projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB421D003202006962EA /* projectUITests.swift */; };
+		A5FBDB681D003376006962EA /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB5B1D0032E0006962EA /* SQLite.framework */; };
+		A5FBDB721D0035B2006962EA /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; };
+		A5FBDB731D0035B2006962EA /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +35,91 @@
 			remoteGlobalIDString = A5FBDB1C1D003202006962EA;
 			remoteInfo = project;
 		};
+		A5FBDB5A1D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
+			remoteInfo = "SQLite iOS";
+		};
+		A5FBDB5C1D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
+			remoteInfo = "SQLiteTests iOS";
+		};
+		A5FBDB5E1D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
+			remoteInfo = "SQLite Mac";
+		};
+		A5FBDB601D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
+			remoteInfo = "SQLiteTests Mac";
+		};
+		A5FBDB621D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
+			remoteInfo = "SQLite tvOS";
+		};
+		A5FBDB641D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
+			remoteInfo = "SQLiteTests tvOS";
+		};
+		A5FBDB661D0032E0006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A121AC451CA35C79005A31D1;
+			remoteInfo = "SQLite watchOS";
+		};
+		A5FBDB6E1D003579006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42F35001C057E03000E937C;
+			remoteInfo = AudioKit;
+		};
+		A5FBDB701D003579006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C43792781C0CE2E0001E9160;
+			remoteInfo = AudioKitTests;
+		};
+		A5FBDB741D0035B2006962EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C42F34FF1C057E03000E937C;
+			remoteInfo = AudioKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5FBDB761D0035B2006962EA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A5FBDB731D0035B2006962EA /* AudioKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A5FBDB1D1D003202006962EA /* project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +136,8 @@
 		A5FBDB3E1D003202006962EA /* projectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = projectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBDB421D003202006962EA /* projectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectUITests.swift; sourceTree = "<group>"; };
 		A5FBDB441D003202006962EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "External/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For iOS.xcodeproj"; path = "External/AudioKit-master/AudioKit/iOS/AudioKit For iOS.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +145,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FBDB721D0035B2006962EA /* AudioKit.framework in Frameworks */,
+				A5FBDB681D003376006962EA /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +174,8 @@
 				A5FBDB361D003202006962EA /* projectTests */,
 				A5FBDB411D003202006962EA /* projectUITests */,
 				A5FBDB1E1D003202006962EA /* Products */,
+				A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */,
+				A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +192,10 @@
 		A5FBDB1F1D003202006962EA /* project */ = {
 			isa = PBXGroup;
 			children = (
-				A5FBDB201D003202006962EA /* AppDelegate.swift */,
-				A5FBDB221D003202006962EA /* MasterViewController.swift */,
-				A5FBDB241D003202006962EA /* DetailViewController.swift */,
-				A5FBDB261D003202006962EA /* Main.storyboard */,
-				A5FBDB291D003202006962EA /* Assets.xcassets */,
-				A5FBDB2B1D003202006962EA /* LaunchScreen.storyboard */,
-				A5FBDB2E1D003202006962EA /* Info.plist */,
+				A5FBDB771D0038AC006962EA /* Controller */,
+				A5FBDB781D0038BD006962EA /* View */,
+				A5FBDB791D0038C3006962EA /* Model */,
+				A5FBDB7A1D003907006962EA /* other */,
 			);
 			path = project;
 			sourceTree = "<group>";
@@ -128,6 +218,64 @@
 			path = projectUITests;
 			sourceTree = "<group>";
 		};
+		A5FBDB511D0032E0006962EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBDB5B1D0032E0006962EA /* SQLite.framework */,
+				A5FBDB5D1D0032E0006962EA /* SQLiteTests iOS.xctest */,
+				A5FBDB5F1D0032E0006962EA /* SQLite.framework */,
+				A5FBDB611D0032E0006962EA /* SQLiteTests Mac.xctest */,
+				A5FBDB631D0032E0006962EA /* SQLite.framework */,
+				A5FBDB651D0032E0006962EA /* SQLiteTests tvOS.xctest */,
+				A5FBDB671D0032E0006962EA /* SQLite.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5FBDB6A1D003579006962EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBDB6F1D003579006962EA /* AudioKit.framework */,
+				A5FBDB711D003579006962EA /* AudioKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5FBDB771D0038AC006962EA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBDB221D003202006962EA /* MasterViewController.swift */,
+				A5FBDB241D003202006962EA /* DetailViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A5FBDB781D0038BD006962EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBDB261D003202006962EA /* Main.storyboard */,
+				A5FBDB2B1D003202006962EA /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A5FBDB791D0038C3006962EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A5FBDB7A1D003907006962EA /* other */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBDB201D003202006962EA /* AppDelegate.swift */,
+				A5FBDB291D003202006962EA /* Assets.xcassets */,
+				A5FBDB2E1D003202006962EA /* Info.plist */,
+			);
+			name = other;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,10 +286,12 @@
 				A5FBDB191D003202006962EA /* Sources */,
 				A5FBDB1A1D003202006962EA /* Frameworks */,
 				A5FBDB1B1D003202006962EA /* Resources */,
+				A5FBDB761D0035B2006962EA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A5FBDB751D0035B2006962EA /* PBXTargetDependency */,
 			);
 			name = project;
 			productName = project;
@@ -221,6 +371,16 @@
 			mainGroup = A5FBDB141D003202006962EA;
 			productRefGroup = A5FBDB1E1D003202006962EA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A5FBDB6A1D003579006962EA /* Products */;
+					ProjectRef = A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */;
+				},
+				{
+					ProductGroup = A5FBDB511D0032E0006962EA /* Products */;
+					ProjectRef = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A5FBDB1C1D003202006962EA /* project */,
@@ -229,6 +389,72 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A5FBDB5B1D0032E0006962EA /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = A5FBDB5A1D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB5D1D0032E0006962EA /* SQLiteTests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests iOS.xctest";
+			remoteRef = A5FBDB5C1D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB5F1D0032E0006962EA /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = A5FBDB5E1D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB611D0032E0006962EA /* SQLiteTests Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests Mac.xctest";
+			remoteRef = A5FBDB601D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB631D0032E0006962EA /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = A5FBDB621D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB651D0032E0006962EA /* SQLiteTests tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLiteTests tvOS.xctest";
+			remoteRef = A5FBDB641D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB671D0032E0006962EA /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = A5FBDB661D0032E0006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB6F1D003579006962EA /* AudioKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AudioKit.framework;
+			remoteRef = A5FBDB6E1D003579006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5FBDB711D003579006962EA /* AudioKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AudioKitTests.xctest;
+			remoteRef = A5FBDB701D003579006962EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A5FBDB1B1D003202006962EA /* Resources */ = {
@@ -296,6 +522,11 @@
 			isa = PBXTargetDependency;
 			target = A5FBDB1C1D003202006962EA /* project */;
 			targetProxy = A5FBDB3F1D003202006962EA /* PBXContainerItemProxy */;
+		};
+		A5FBDB751D0035B2006962EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKit;
+			targetProxy = A5FBDB741D0035B2006962EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -408,6 +639,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Maarten-Brijker.project";
@@ -419,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Maarten-Brijker.project";
