@@ -18,6 +18,12 @@
 		A5FBDB681D003376006962EA /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB5B1D0032E0006962EA /* SQLite.framework */; };
 		A5FBDB721D0035B2006962EA /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; };
 		A5FBDB731D0035B2006962EA /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5FBDB7F1D003F72006962EA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB7E1D003F72006962EA /* AudioManager.swift */; };
+		A5FBDB871D003FFB006962EA /* isinkcomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB811D003FFB006962EA /* isinkcomb.wav */; };
+		A5FBDB881D003FFB006962EA /* isinkvoices.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB821D003FFB006962EA /* isinkvoices.wav */; };
+		A5FBDB891D003FFB006962EA /* kialabells.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB831D003FFB006962EA /* kialabells.wav */; };
+		A5FBDB8A1D003FFB006962EA /* NASA.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB841D003FFB006962EA /* NASA.wav */; };
+		A5FBDB8B1D003FFB006962EA /* TonalBell.aiff in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB851D003FFB006962EA /* TonalBell.aiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +144,12 @@
 		A5FBDB441D003202006962EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "External/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For iOS.xcodeproj"; path = "External/AudioKit-master/AudioKit/iOS/AudioKit For iOS.xcodeproj"; sourceTree = "<group>"; };
+		A5FBDB7E1D003F72006962EA /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		A5FBDB811D003FFB006962EA /* isinkcomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkcomb.wav; sourceTree = "<group>"; };
+		A5FBDB821D003FFB006962EA /* isinkvoices.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkvoices.wav; sourceTree = "<group>"; };
+		A5FBDB831D003FFB006962EA /* kialabells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kialabells.wav; sourceTree = "<group>"; };
+		A5FBDB841D003FFB006962EA /* NASA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NASA.wav; sourceTree = "<group>"; };
+		A5FBDB851D003FFB006962EA /* TonalBell.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = TonalBell.aiff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,10 +204,11 @@
 		A5FBDB1F1D003202006962EA /* project */ = {
 			isa = PBXGroup;
 			children = (
-				A5FBDB771D0038AC006962EA /* Controller */,
-				A5FBDB781D0038BD006962EA /* View */,
-				A5FBDB791D0038C3006962EA /* Model */,
+				A5FBDB771D0038AC006962EA /* controller */,
+				A5FBDB781D0038BD006962EA /* view */,
+				A5FBDB791D0038C3006962EA /* model */,
 				A5FBDB7A1D003907006962EA /* other */,
+				A5FBDB7B1D003965006962EA /* sounds */,
 			);
 			path = project;
 			sourceTree = "<group>";
@@ -241,29 +254,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A5FBDB771D0038AC006962EA /* Controller */ = {
+		A5FBDB771D0038AC006962EA /* controller */ = {
 			isa = PBXGroup;
 			children = (
 				A5FBDB221D003202006962EA /* MasterViewController.swift */,
 				A5FBDB241D003202006962EA /* DetailViewController.swift */,
 			);
-			name = Controller;
+			name = controller;
 			sourceTree = "<group>";
 		};
-		A5FBDB781D0038BD006962EA /* View */ = {
+		A5FBDB781D0038BD006962EA /* view */ = {
 			isa = PBXGroup;
 			children = (
 				A5FBDB261D003202006962EA /* Main.storyboard */,
 				A5FBDB2B1D003202006962EA /* LaunchScreen.storyboard */,
 			);
-			name = View;
+			name = view;
 			sourceTree = "<group>";
 		};
-		A5FBDB791D0038C3006962EA /* Model */ = {
+		A5FBDB791D0038C3006962EA /* model */ = {
 			isa = PBXGroup;
 			children = (
+				A5FBDB7E1D003F72006962EA /* AudioManager.swift */,
 			);
-			name = Model;
+			name = model;
 			sourceTree = "<group>";
 		};
 		A5FBDB7A1D003907006962EA /* other */ = {
@@ -274,6 +288,18 @@
 				A5FBDB2E1D003202006962EA /* Info.plist */,
 			);
 			name = other;
+			sourceTree = "<group>";
+		};
+		A5FBDB7B1D003965006962EA /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBDB811D003FFB006962EA /* isinkcomb.wav */,
+				A5FBDB821D003FFB006962EA /* isinkvoices.wav */,
+				A5FBDB831D003FFB006962EA /* kialabells.wav */,
+				A5FBDB841D003FFB006962EA /* NASA.wav */,
+				A5FBDB851D003FFB006962EA /* TonalBell.aiff */,
+			);
+			name = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,9 +487,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FBDB881D003FFB006962EA /* isinkvoices.wav in Resources */,
 				A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */,
+				A5FBDB871D003FFB006962EA /* isinkcomb.wav in Resources */,
+				A5FBDB891D003FFB006962EA /* kialabells.wav in Resources */,
 				A5FBDB2A1D003202006962EA /* Assets.xcassets in Resources */,
 				A5FBDB281D003202006962EA /* Main.storyboard in Resources */,
+				A5FBDB8A1D003FFB006962EA /* NASA.wav in Resources */,
+				A5FBDB8B1D003FFB006962EA /* TonalBell.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +521,7 @@
 			files = (
 				A5FBDB251D003202006962EA /* DetailViewController.swift in Sources */,
 				A5FBDB231D003202006962EA /* MasterViewController.swift in Sources */,
+				A5FBDB7F1D003F72006962EA /* AudioManager.swift in Sources */,
 				A5FBDB211D003202006962EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

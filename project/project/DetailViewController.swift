@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
         didSet {
             // Update the view.
             self.configureView()
+            AudioManager.sharedInstance.playAudio(detailItem as! String)
         }
     }
 
