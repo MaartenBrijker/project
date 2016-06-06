@@ -11,9 +11,12 @@ import AudioKit
 import SQLite
 
 class DetailViewController: UIViewController {
+    var timer: NSTimer!
 
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
 
+    var starter = false
+    
     var detailItem: AnyObject? {
         didSet {
         }
@@ -79,6 +82,39 @@ class DetailViewController: UIViewController {
         }
     }
     
-   
-}
+    
+    func delaying() {
+//        let value = arc4random_uniform(UInt32(self.filterLevel.maximumValue))
+//        AudioManager.sharedInstance.changeFilter(self.detailItem! as! String, level: Float(value))
+//        self.filterLevel.setValue(Float(value), animated: true)
+        
+//        let value = arc4random_uniform(UInt32(self.pitchLevel.maximumValue))
+//        AudioManager.sharedInstance.changePitch(self.detailItem! as! String, level: Float(value))
+//        self.pitchLevel.setValue(Float(value), animated: true)
 
+        let value = arc4random_uniform(UInt32(100))
+        let secondval = Float(Float(value) * 0.01)
+        AudioManager.sharedInstance.changeReverb(self.detailItem! as! String, level: secondval)
+        self.reverbLevel.setValue(secondval, animated: true)
+
+        
+        print("value = ", secondval)
+
+        
+    }
+
+    func stopTimer () {
+      self.timer.invalidate()
+    }
+    
+    @IBAction func automateEffect(sender: AnyObject) {
+        if detailItem != nil {
+            
+            var stopTimer: NSTimer
+
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: #selector(DetailViewController.delaying), userInfo: nil, repeats: true)
+            
+            stopTimer = NSTimer.scheduledTimerWithTimeInterval (3, target: self, selector: #selector(DetailViewController.stopTimer), userInfo: nil, repeats: false)
+        }
+    }
+}
