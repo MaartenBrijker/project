@@ -9,6 +9,7 @@
 import Foundation
 import SQLite
 import AudioKit
+import AVFoundation
 
 class AudioManager {
    
@@ -27,6 +28,13 @@ class AudioManager {
     private init() { }
     
     var soundlink: [String: Array<AKNode>] = [:]
+    
+    
+    // rec rec ay ay
+    var recording = false
+    var recorderAV: AVAudioRecorder?
+//    var audioFile: AVAudioFile?
+
     
     func setUpMixerChannels(sounds: Array<String>?) {
         
@@ -90,7 +98,50 @@ class AudioManager {
             player!.volume = Double(level)
         }
     }
+    
+    func setUpRecorder() {
+        
+        // Set recorder paths etc.
+//        let documentDirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+//        let recordingAudioFilePath = NSURL(string: documentDirPath)!.URLByAppendingPathComponent("recording.caf").path!
+//        let recordingAudioFileURL = NSURL(fileURLWithPath: recordingAudioFilePath)
+//        print(recordingAudioFileURL)
+        
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+        let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
+        let soundFileURL = NSURL(string: String(soundFilePath))
 
+        let recordSettings =
+            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
+             AVEncoderBitRateKey: 16,
+             AVNumberOfChannelsKey: 2,
+             AVSampleRateKey: 44100.0]
+        
+        do {
+            recorderAV = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings as! [String : AnyObject])
+        } catch {
+            print("error")
+        }
+        if recorderAV!.prepareToRecord() == true {
+            print("prepared")
+        }
+        print(recorderAV!.url)
+        
+    }
+    
+    func record() {
+        
+        if recording == true {
+            print("Recording stopped")
+            recording = false
+            recorderAV!.stop()
 
-
+        } else {
+            recording = true
+            if recorderAV!.record() == true {
+                print("really recording")
+            }
+        }
+    }
 }

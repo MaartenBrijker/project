@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
 
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
 
-    var starter = false
+    var starter = true
     
     var detailItem: AnyObject? {
         didSet {
@@ -40,12 +40,16 @@ class DetailViewController: UIViewController {
             
             let reverb = AudioManager.sharedInstance.soundlink[detailItem! as! String]![3] as? AKReverb
             reverbLevel.value = Float(reverb!.dryWetMix)
+            
+            if player!.isStarted {
+                
+            }
+            
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
    
     @IBOutlet weak var pitchLevel: UISlider!
@@ -79,28 +83,29 @@ class DetailViewController: UIViewController {
     @IBAction func startStopButton(sender: AnyObject) {
         if detailItem != nil {
             AudioManager.sharedInstance.playAudio(detailItem as! String)
+            if sender.currentTitle == "start playing" {
+                sender.setTitle("stop playing", forState: .Normal)
+            } else {
+                sender.setTitle("start playing", forState: .Normal)
+            }
         }
     }
     
-    
     func delaying() {
-//        let value = arc4random_uniform(UInt32(self.filterLevel.maximumValue))
-//        AudioManager.sharedInstance.changeFilter(self.detailItem! as! String, level: Float(value))
-//        self.filterLevel.setValue(Float(value), animated: true)
+        let value = arc4random_uniform(UInt32(self.filterLevel.maximumValue))
+        AudioManager.sharedInstance.changeFilter(self.detailItem! as! String, level: Float(value))
+        self.filterLevel.setValue(Float(value), animated: true)
         
 //        let value = arc4random_uniform(UInt32(self.pitchLevel.maximumValue))
 //        AudioManager.sharedInstance.changePitch(self.detailItem! as! String, level: Float(value))
 //        self.pitchLevel.setValue(Float(value), animated: true)
 
-        let value = arc4random_uniform(UInt32(100))
-        let secondval = Float(Float(value) * 0.01)
-        AudioManager.sharedInstance.changeReverb(self.detailItem! as! String, level: secondval)
-        self.reverbLevel.setValue(secondval, animated: true)
+//        let value = arc4random_uniform(UInt32(100))
+//        let secondval = Float(Float(value) * 0.01)
+//        AudioManager.sharedInstance.changeReverb(self.detailItem! as! String, level: secondval)
+//        self.reverbLevel.setValue(secondval, animated: true)
 
-        
-        print("value = ", secondval)
-
-        
+        print("value = ", value)
     }
 
     func stopTimer () {
@@ -117,4 +122,18 @@ class DetailViewController: UIViewController {
             stopTimer = NSTimer.scheduledTimerWithTimeInterval (3, target: self, selector: #selector(DetailViewController.stopTimer), userInfo: nil, repeats: false)
         }
     }
+    
+    @IBAction func recordButton(sender: AnyObject) {
+        if starter == true {
+            AudioManager.sharedInstance.setUpRecorder()
+            AudioManager.sharedInstance.record()
+            sender.setTitle("stop recording", forState: .Normal)
+            starter = false
+        } else {
+            AudioManager.sharedInstance.record()
+            sender.setTitle("start recording", forState: .Normal)
+            starter = true
+        }
+    }
+    
 }
