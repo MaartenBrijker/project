@@ -23,8 +23,12 @@ public class AKAudioRecorder {
     public init(_ file: String, node: AKNode = AudioKit.output!) {
         self.node = node
         let url = NSURL.fileURLWithPath(file, isDirectory: false)
+        
+//        print("file in AKAudiorecorder.swift = ", url)
+        
         do {
-            avAudioFile = try AVAudioFile(forWriting: url, settings: AudioKit.format.settings)
+            avAudioFile = try AVAudioFile(forWriting: url, settings: AudioKit.format.settings) //, commonFormat: AVAudioCommonFormat.PCMFormatFloat32, interleaved: true)
+
         } catch {
             print("Could not open file.")
         }

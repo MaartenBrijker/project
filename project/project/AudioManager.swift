@@ -32,9 +32,10 @@ class AudioManager {
     
     // rec rec ay ay
     var recording = false
-    var recorderAV: AVAudioRecorder?
+//    var recorderAV: AVAudioRecorder?
 //    var audioFile: AVAudioFile?
 
+    var recorderAV: AKAudioRecorder?
     
     func setUpMixerChannels(sounds: Array<String>?) {
         
@@ -102,31 +103,32 @@ class AudioManager {
     func setUpRecorder() {
         
         // Set recorder paths etc.
-//        let documentDirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-//        let recordingAudioFilePath = NSURL(string: documentDirPath)!.URLByAppendingPathComponent("recording.caf").path!
-//        let recordingAudioFileURL = NSURL(fileURLWithPath: recordingAudioFilePath)
-//        print(recordingAudioFileURL)
         
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
         let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
         let soundFileURL = NSURL(string: String(soundFilePath))
 
-        let recordSettings =
-            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
-             AVEncoderBitRateKey: 16,
-             AVNumberOfChannelsKey: 2,
-             AVSampleRateKey: 44100.0]
+//        let recordSettings =
+//            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
+//             AVEncoderBitRateKey: 16,
+//             AVNumberOfChannelsKey: 2,
+//             AVSampleRateKey: 44100.0]
         
-        do {
-            recorderAV = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings as! [String : AnyObject])
-        } catch {
-            print("error")
-        }
-        if recorderAV!.prepareToRecord() == true {
-            print("prepared")
-        }
-        print(recorderAV!.url)
+        recorderAV = AKAudioRecorder(String(soundFileURL!))
+
+//        print(".......... ", String(soundFilePath))
+        
+        
+//        do {
+//            recorderAV = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings as! [String : AnyObject])
+//        } catch {
+//            print("error")
+//        }
+//        if recorderAV!.prepareToRecord() == true {
+//            print("prepared")
+//        }
+//        print(recorderAV!.url)
         
     }
     
@@ -139,9 +141,10 @@ class AudioManager {
 
         } else {
             recording = true
-            if recorderAV!.record() == true {
-                print("really recording")
-            }
+//            if recorderAV!.record() == true {
+//                print("really recording")
+//            }
+            recorderAV!.record()
         }
     }
 }
