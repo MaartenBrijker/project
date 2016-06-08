@@ -10,6 +10,7 @@
 		5251477B1CC4AD7E00421C52 /* AKNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251477A1CC4AD7E00421C52 /* AKNotifications.swift */; };
 		898DED261C6944430026FCC3 /* AKVariSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898DED251C6944430026FCC3 /* AKVariSpeed.swift */; };
 		A575BF6A1CECC79000E7E1DE /* RFX6.WAV in Resources */ = {isa = PBXBuildFile; fileRef = A575BF691CECC79000E7E1DE /* RFX6.WAV */; };
+		A59F538B1D0852D0003B1772 /* AKNodeRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59F538A1D0852D0003B1772 /* AKNodeRecorder.swift */; };
 		C40869AF1C197AF200EF9DED /* biscale.c in Sources */ = {isa = PBXBuildFile; fileRef = C40869AE1C197AF200EF9DED /* biscale.c */; };
 		C40AD69A1C463B2600B638AF /* AKMIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AD6951C463B2600B638AF /* AKMIDIEvent.swift */; };
 		C40AD69B1C463B2600B638AF /* AKMIDIInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AD6961C463B2600B638AF /* AKMIDIInstrument.swift */; };
@@ -561,6 +562,7 @@
 		5251477A1CC4AD7E00421C52 /* AKNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKNotifications.swift; sourceTree = "<group>"; };
 		898DED251C6944430026FCC3 /* AKVariSpeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKVariSpeed.swift; sourceTree = "<group>"; };
 		A575BF691CECC79000E7E1DE /* RFX6.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RFX6.WAV; sourceTree = "<group>"; };
+		A59F538A1D0852D0003B1772 /* AKNodeRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKNodeRecorder.swift; sourceTree = "<group>"; };
 		C40869AE1C197AF200EF9DED /* biscale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = biscale.c; sourceTree = "<group>"; };
 		C40AD6951C463B2600B638AF /* AKMIDIEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMIDIEvent.swift; sourceTree = "<group>"; };
 		C40AD6961C463B2600B638AF /* AKMIDIInstrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMIDIInstrument.swift; sourceTree = "<group>"; };
@@ -1396,6 +1398,7 @@
 				EA6949E11C59A9FC0035B5DF /* AKSettings.swift */,
 				C40C411D1C40E2E1009D870B /* AKTable.swift */,
 				C40C411E1C40E2E1009D870B /* AudioKitHelpers.swift */,
+				A59F538A1D0852D0003B1772 /* AKNodeRecorder.swift */,
 				C40C41221C40E344009D870B /* CoreAudio */,
 				C40C412D1C40E3A5009D870B /* EZAudio */,
 				C42F35131C057F4C000E937C /* Soundpipe */,
@@ -2984,6 +2987,7 @@
 				C46300FB1C20C342009B44D9 /* port.c in Sources */,
 				C40C415F1C40E3A5009D870B /* EZAudioPlot.m in Sources */,
 				C40C412B1C40E344009D870B /* AKGetAUParams.swift in Sources */,
+				A59F538B1D0852D0003B1772 /* AKNodeRecorder.swift in Sources */,
 				C46300F21C20C342009B44D9 /* mode.c in Sources */,
 				C4E958B71C0ADBFD00516A6A /* in.c in Sources */,
 				C46781AE1C1C28DD0000BF29 /* AKOutputWaveformPlot.swift in Sources */,

@@ -35,7 +35,7 @@ class AudioManager {
 //    var recorderAV: AVAudioRecorder?
 //    var audioFile: AVAudioFile?
 
-    var recorderAV: AKAudioRecorder?
+    var recorderAV: AKNodeRecorder?
     
     func setUpMixerChannels(sounds: Array<String>?) {
         
@@ -108,17 +108,18 @@ class AudioManager {
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
         let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
         let soundFileURL = NSURL(string: String(soundFilePath))
-
+        
+        print(soundFileURL)
+        
+        recorderAV = AKNodeRecorder(String(soundFileURL!))
+        
+        
+        
 //        let recordSettings =
 //            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
 //             AVEncoderBitRateKey: 16,
 //             AVNumberOfChannelsKey: 2,
 //             AVSampleRateKey: 44100.0]
-        
-        recorderAV = AKAudioRecorder(String(soundFileURL!))
-
-//        print(".......... ", String(soundFilePath))
-        
         
 //        do {
 //            recorderAV = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings as! [String : AnyObject])
@@ -135,7 +136,6 @@ class AudioManager {
     func record() {
         
         if recording == true {
-            print("Recording stopped")
             recording = false
             recorderAV!.stop()
 
