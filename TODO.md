@@ -7,6 +7,7 @@
  - pitch —> graphical showing this
  - let maintable get titles from audiofiles instead of hardcoded
 
+- how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
 
 
 

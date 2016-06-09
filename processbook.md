@@ -26,6 +26,7 @@ Fucked up, but appearently the AVAudioRecorder can only be used to record the mi
 
 # DAY 2|4
 Magically finally got the AKNodeRecorder working. Recording audio real time to a .caf file. Yaaayyyayyayyayya. Dont know how the problem got fixed though, Dennis made it happen. THANKS! Right now checking into the Dropbox API to upload audio to a shared folder. Also made a todo list with thing planning on implementing next week. And did move the record function to the masterview, instead of the detailview.
+Not sure whether Dropbox is the best thing for uploading files as I want them in a public place (hosted by my account), without users having to log in. Maybe better to check different possibilities before implementing Dropbox. Marijn/Dennis/Julian suggested either Dropbox(filerequest / inlogging in the back.. but not so save maybe), GoogleDrive and iCloud. Checking into these possibilities as we speak.
 
 # DAY 2|5
 # DAY 3|1
