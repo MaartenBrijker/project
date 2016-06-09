@@ -101,21 +101,9 @@ class AudioManager {
     
     //MARK: - Audio recording.
     
-    func setUpRecorder() {
+    func setUpOUTPUTrecorder() {
         
-//        let path = NSFileManager
-//            .defaultManager()
-//            .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-//            .first?
-//            .URLByAppendingPathComponent("sound.caf")
-//            .path
-//        
-//        //        /Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/56E97128-E1C5-42F4-9624-6A0418B65B09/Documents/
-//        //        /Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/CDDCF306-3C64-475F-BB63-92CA8366C1DC/Documents/sound.caf
-//        
-//        print(path!)
-//        
-//        OUTPUTrecorder = AKNodeRecorder(path!)
+        // Set directory
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
         let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
@@ -124,10 +112,9 @@ class AudioManager {
         print(soundFileURL)
         
         OUTPUTrecorder = AKNodeRecorder(soundFileURL)
-//            OUTPUTrecorder = AKNodeRecorder(path!)
     }
     
-    func record() {
+    func recordOUTPUT() {
         
         if recording == true {
             recording = false
@@ -141,7 +128,7 @@ class AudioManager {
     
     //MARK: - MIC recording.
     
-    func micRecorder() {
+    func setUpMICRecorder() {
         
         // Set recorder paths etc. (create different function for this maybe w "micrecording.caf" as input string)
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -166,7 +153,7 @@ class AudioManager {
         print(MICrecorder!.url)
     }
     
-    func recordMic() {
+    func recordMIC() {
         if recording == true {
             recording = false
             MICrecorder!.stop()

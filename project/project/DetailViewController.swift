@@ -124,12 +124,12 @@ class DetailViewController: UIViewController {
     
     @IBAction func recordButton(sender: AnyObject) {
         if starter == true {
-            AudioManager.sharedInstance.setUpRecorder()
-            AudioManager.sharedInstance.record()
+            AudioManager.sharedInstance.setUpOUTPUTrecorder()
+            AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
             starter = false
         } else {
-            AudioManager.sharedInstance.record()
+            AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("start recording", forState: .Normal)
             starter = true
         }

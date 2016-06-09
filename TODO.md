@@ -6,3 +6,20 @@
  - pitch —> only allowed to shift int steps
  - pitch —> graphical showing this
  - let maintable get titles from audiofiles instead of hardcoded
+
+
+
+
+
+
+
+
+# thrash
+
+//        let path = NSFileManager
+//            .defaultManager()
+//            .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+//            .first?
+//            .URLByAppendingPathComponent("sound.caf")
+//            .path
+//        OUTPUTrecorder = AKNodeRecorder(path!)
