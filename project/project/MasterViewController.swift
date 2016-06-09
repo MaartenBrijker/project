@@ -8,7 +8,6 @@
 
 import UIKit
 import AudioKit
-import SQLite
 
 class MasterViewController: UITableViewController {
 

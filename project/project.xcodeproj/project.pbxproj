@@ -15,7 +15,6 @@
 		A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB2B1D003202006962EA /* LaunchScreen.storyboard */; };
 		A5FBDB381D003202006962EA /* projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB371D003202006962EA /* projectTests.swift */; };
 		A5FBDB431D003202006962EA /* projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB421D003202006962EA /* projectUITests.swift */; };
-		A5FBDB681D003376006962EA /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB5B1D0032E0006962EA /* SQLite.framework */; };
 		A5FBDB721D0035B2006962EA /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; };
 		A5FBDB731D0035B2006962EA /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5FBDB7F1D003F72006962EA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB7E1D003F72006962EA /* AudioManager.swift */; };
@@ -41,55 +40,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A5FBDB1C1D003202006962EA;
 			remoteInfo = project;
-		};
-		A5FBDB5A1D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
-			remoteInfo = "SQLite iOS";
-		};
-		A5FBDB5C1D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
-			remoteInfo = "SQLiteTests iOS";
-		};
-		A5FBDB5E1D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
-			remoteInfo = "SQLite Mac";
-		};
-		A5FBDB601D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
-			remoteInfo = "SQLiteTests Mac";
-		};
-		A5FBDB621D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
-			remoteInfo = "SQLite tvOS";
-		};
-		A5FBDB641D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
-			remoteInfo = "SQLiteTests tvOS";
-		};
-		A5FBDB661D0032E0006962EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A121AC451CA35C79005A31D1;
-			remoteInfo = "SQLite watchOS";
 		};
 		A5FBDB6E1D003579006962EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -143,7 +93,6 @@
 		A5FBDB3E1D003202006962EA /* projectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = projectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBDB421D003202006962EA /* projectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectUITests.swift; sourceTree = "<group>"; };
 		A5FBDB441D003202006962EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "External/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For iOS.xcodeproj"; path = "External/AudioKit-master/AudioKit/iOS/AudioKit For iOS.xcodeproj"; sourceTree = "<group>"; };
 		A5FBDB7E1D003F72006962EA /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkcomb.wav; sourceTree = "<group>"; };
@@ -160,7 +109,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FBDB721D0035B2006962EA /* AudioKit.framework in Frameworks */,
-				A5FBDB681D003376006962EA /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +137,6 @@
 				A5FBDB411D003202006962EA /* projectUITests */,
 				A5FBDB1E1D003202006962EA /* Products */,
 				A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */,
-				A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -231,20 +178,6 @@
 				A5FBDB441D003202006962EA /* Info.plist */,
 			);
 			path = projectUITests;
-			sourceTree = "<group>";
-		};
-		A5FBDB511D0032E0006962EA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5FBDB5B1D0032E0006962EA /* SQLite.framework */,
-				A5FBDB5D1D0032E0006962EA /* SQLiteTests iOS.xctest */,
-				A5FBDB5F1D0032E0006962EA /* SQLite.framework */,
-				A5FBDB611D0032E0006962EA /* SQLiteTests Mac.xctest */,
-				A5FBDB631D0032E0006962EA /* SQLite.framework */,
-				A5FBDB651D0032E0006962EA /* SQLiteTests tvOS.xctest */,
-				A5FBDB671D0032E0006962EA /* SQLite.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A5FBDB6A1D003579006962EA /* Products */ = {
@@ -406,10 +339,6 @@
 					ProductGroup = A5FBDB6A1D003579006962EA /* Products */;
 					ProjectRef = A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */;
 				},
-				{
-					ProductGroup = A5FBDB511D0032E0006962EA /* Products */;
-					ProjectRef = A5FBDB501D0032E0006962EA /* SQLite.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -421,55 +350,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A5FBDB5B1D0032E0006962EA /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = A5FBDB5A1D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5FBDB5D1D0032E0006962EA /* SQLiteTests iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SQLiteTests iOS.xctest";
-			remoteRef = A5FBDB5C1D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5FBDB5F1D0032E0006962EA /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = A5FBDB5E1D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5FBDB611D0032E0006962EA /* SQLiteTests Mac.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SQLiteTests Mac.xctest";
-			remoteRef = A5FBDB601D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5FBDB631D0032E0006962EA /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = A5FBDB621D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5FBDB651D0032E0006962EA /* SQLiteTests tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SQLiteTests tvOS.xctest";
-			remoteRef = A5FBDB641D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5FBDB671D0032E0006962EA /* SQLite.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SQLite.framework;
-			remoteRef = A5FBDB661D0032E0006962EA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A5FBDB6F1D003579006962EA /* AudioKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;

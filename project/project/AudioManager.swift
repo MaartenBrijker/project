@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SQLite
 import AudioKit
 import AVFoundation
 
@@ -104,15 +103,28 @@ class AudioManager {
     
     func setUpRecorder() {
         
-        // Set recorder paths etc. (create different function for this maybe w "sound.caf" as input string)
+//        let path = NSFileManager
+//            .defaultManager()
+//            .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+//            .first?
+//            .URLByAppendingPathComponent("sound.caf")
+//            .path
+//        
+//        //        /Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/56E97128-E1C5-42F4-9624-6A0418B65B09/Documents/
+//        //        /Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/CDDCF306-3C64-475F-BB63-92CA8366C1DC/Documents/sound.caf
+//        
+//        print(path!)
+//        
+//        OUTPUTrecorder = AKNodeRecorder(path!)
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
         let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
-        let soundFileURL = NSURL(string: String(soundFilePath))
+        let soundFileURL = soundFilePath.path!
         
         print(soundFileURL)
         
-        OUTPUTrecorder = AKNodeRecorder(String(soundFileURL!))
+        OUTPUTrecorder = AKNodeRecorder(soundFileURL)
+//            OUTPUTrecorder = AKNodeRecorder(path!)
     }
     
     func record() {
