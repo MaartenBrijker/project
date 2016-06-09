@@ -31,3 +31,7 @@ App key     5of5rtye3cyoib0
 App secret  5xfnne8h3rrj8uj
 
 https://www.dropbox.com/developers-v1/core/sdks/ios
+
+# CLOUDKIT
+
+"In development, when you run your app through Xcode on iOS Simulator or an iOS device, you also need to enter iCloud credentials to read records in the public database."
