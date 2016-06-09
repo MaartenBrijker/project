@@ -13,7 +13,7 @@ import AVFoundation
 
 class AudioManager {
    
-// MARK: - initializing the audio processors.
+    // MARK: - initializing the audio processors.
     
     var player: AKAudioPlayer?
     var pitcher: AKTimePitch?
@@ -21,21 +21,19 @@ class AudioManager {
     var reverb: AKReverb?
     var mixer = AKMixer()
     
-// MARK: - Setting up the database.
+    // MARK: - Setting up the database.
     
     static let sharedInstance = AudioManager()
     
     private init() { }
     
+    // Linking & storing all audiofiles with players and effects.
     var soundlink: [String: Array<AKNode>] = [:]
     
-    
-    // rec rec ay ay
+    // Recorders.
     var recording = false
-//    var recorderAV: AVAudioRecorder?
-//    var audioFile: AVAudioFile?
-
-    var recorderAV: AKNodeRecorder?
+    var MICrecorder: AVAudioRecorder?
+    var OUTPUTrecorder: AKNodeRecorder?
     
     func setUpMixerChannels(sounds: Array<String>?) {
         
@@ -54,13 +52,15 @@ class AudioManager {
             mixer.connect(reverb!)
             
             player!.looping = true
-            player!.volume = 0
+            player!.volume = 0.1
             reverb!.dryWetMix = 0
             soundlink[sound] = [player!, pitcher!, filter!, reverb!]
         }
         AudioKit.output = mixer
         AudioKit.start()
     }
+
+    // MARK: - Audio functions.
 
     func playAudio(name: String) {
         print("playing right nowwww: ", name)
@@ -100,10 +100,11 @@ class AudioManager {
         }
     }
     
+    //MARK: - Audio recording.
+    
     func setUpRecorder() {
         
-        // Set recorder paths etc.
-        
+        // Set recorder paths etc. (create different function for this maybe w "sound.caf" as input string)
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
         let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
@@ -111,40 +112,58 @@ class AudioManager {
         
         print(soundFileURL)
         
-        recorderAV = AKNodeRecorder(String(soundFileURL!))
-        
-        
-        
-//        let recordSettings =
-//            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
-//             AVEncoderBitRateKey: 16,
-//             AVNumberOfChannelsKey: 2,
-//             AVSampleRateKey: 44100.0]
-        
-//        do {
-//            recorderAV = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings as! [String : AnyObject])
-//        } catch {
-//            print("error")
-//        }
-//        if recorderAV!.prepareToRecord() == true {
-//            print("prepared")
-//        }
-//        print(recorderAV!.url)
-        
+        OUTPUTrecorder = AKNodeRecorder(String(soundFileURL!))
     }
     
     func record() {
         
         if recording == true {
             recording = false
-            recorderAV!.stop()
+            OUTPUTrecorder!.stop()
 
         } else {
             recording = true
-//            if recorderAV!.record() == true {
-//                print("really recording")
-//            }
-            recorderAV!.record()
+            OUTPUTrecorder!.record()
+        }
+    }
+    
+    //MARK: - MIC recording.
+    
+    func micRecorder() {
+        
+        // Set recorder paths etc. (create different function for this maybe w "micrecording.caf" as input string)
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+        let soundFilePath = docsDir.URLByAppendingPathComponent("micrecording.caf")
+        let soundFileURL = NSURL(string: String(soundFilePath))
+        
+        let recordSettings =
+            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
+             AVEncoderBitRateKey: 16,
+             AVNumberOfChannelsKey: 2,
+             AVSampleRateKey: 44100.0]
+
+        do {
+            MICrecorder = try AVAudioRecorder(URL: soundFileURL!, settings: recordSettings as! [String : AnyObject])
+        } catch {
+            print("error")
+        }
+        if MICrecorder!.prepareToRecord() == true {
+            print("prepared")
+        }
+        print(MICrecorder!.url)
+    }
+    
+    func recordMic() {
+        if recording == true {
+            recording = false
+            MICrecorder!.stop()
+            
+        } else {
+            recording = true
+            if MICrecorder!.record() == true {
+                print("really recording")
+            }
         }
     }
 }
