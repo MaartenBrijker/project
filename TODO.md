@@ -8,6 +8,8 @@
  - store pre-automate value and set to post-automate
  - implement micrecording button, let users play with this recording
  - implement automate button better (+ think of a better name)
+ - get a developer account for releasing the app?
+ - check views on different devices
 
  - how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
 
