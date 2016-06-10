@@ -5,8 +5,11 @@
  - pitch —> only allowed to shift int steps
  - pitch —> graphical showing this
  - let maintable get titles from audiofiles instead of hardcoded
+ - store pre-automate value and set to post-automate
+ - implement micrecording button, let users play with this recording
+ - implement automate button better (+ think of a better name)
 
-- how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
+ - how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
 
 
 

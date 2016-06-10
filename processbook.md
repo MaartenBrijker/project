@@ -29,6 +29,8 @@ Magically finally got the AKNodeRecorder working. Recording audio real time to a
 Not sure whether Dropbox is the best thing for uploading files as I want them in a public place (hosted by my account), without users having to log in. Maybe better to check different possibilities before implementing Dropbox. Marijn/Dennis/Julian suggested either Dropbox(filerequest / inlogging in the back.. but not so save maybe), GoogleDrive and iCloud. Checking into these possibilities as we speak.
 
 # DAY 2|5
+Alpha version is done! User can play with files, record this and has an "automate" button (special filter effect)
+
 # DAY 3|1
 # DAY 3|2
 # DAY 3|3
