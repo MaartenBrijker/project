@@ -13,14 +13,12 @@ class DetailViewController: UIViewController {
     var timer: NSTimer!
 
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
-
-    var starter = true
     
     var detailItem: AnyObject? {
         didSet {
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if detailItem != nil {
@@ -121,18 +119,4 @@ class DetailViewController: UIViewController {
             stopTimer = NSTimer.scheduledTimerWithTimeInterval (3, target: self, selector: #selector(DetailViewController.stopTimer), userInfo: nil, repeats: false)
         }
     }
-    
-    @IBAction func recordButton(sender: AnyObject) {
-        if starter == true {
-            AudioManager.sharedInstance.setUpOUTPUTrecorder()
-            AudioManager.sharedInstance.recordOUTPUT()
-            sender.setTitle("stop recording", forState: .Normal)
-            starter = false
-        } else {
-            AudioManager.sharedInstance.recordOUTPUT()
-            sender.setTitle("start recording", forState: .Normal)
-            starter = true
-        }
-    }
-    
 }

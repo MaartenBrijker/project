@@ -16,6 +16,8 @@ class MasterViewController: UITableViewController {
 
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
     
+    var starter = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -88,5 +90,20 @@ class MasterViewController: UITableViewController {
 //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
 //        }
 //    }
+    
+    // MARK: - Recording button.
+    
+    @IBAction func recordButton(sender: AnyObject) {
+        if starter == true {
+            AudioManager.sharedInstance.setUpOUTPUTrecorder()
+            AudioManager.sharedInstance.recordOUTPUT()
+            sender.setTitle("stop recording", forState: .Normal)
+            starter = false
+        } else {
+            AudioManager.sharedInstance.recordOUTPUT()
+            sender.setTitle("start recording", forState: .Normal)
+            starter = true
+        }
+    }
 }
 

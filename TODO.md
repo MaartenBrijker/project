@@ -1,8 +1,7 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
- - recorder —> switch to mainview
- - implement Dropbox API
- - alert box —> want to upload file?
+ - alert box —> ask user if he want to upload file, let him fill in info?
+ - how to store user info? change audiofile name to --> USERNAME_TRACKTITLE_(USERMAIL).caf
  - pitch —> only allowed to shift int steps
  - pitch —> graphical showing this
  - let maintable get titles from audiofiles instead of hardcoded

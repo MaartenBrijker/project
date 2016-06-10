@@ -88,19 +88,9 @@
                                     <action selector="startStopButton:" destination="JEX-9P-axG" eventType="touchUpInside" id="k5Z-Q2-aBL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEg-MC-nff">
-                                <rect key="frame" x="213" y="385" width="119" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="119" id="e7O-hV-Hek"/>
-                                </constraints>
-                                <state key="normal" title="start recording"/>
-                                <connections>
-                                    <action selector="recordButton:" destination="JEX-9P-axG" eventType="touchUpInside" id="svV-oc-LV6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-fp-ju4">
-                                <rect key="frame" x="125" y="385" width="65" height="30"/>
-                                <state key="normal" title="automate"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-fp-ju4">
+                                <rect key="frame" x="118" y="385" width="80" height="30"/>
+                                <state key="normal" title="space wave"/>
                                 <connections>
                                     <action selector="automateEffect:" destination="JEX-9P-axG" eventType="touchUpInside" id="omK-Wr-CYO"/>
                                 </connections>
@@ -110,7 +100,6 @@
                         <constraints>
                             <constraint firstItem="w62-dx-feZ" firstAttribute="leading" secondItem="sf1-XT-kcs" secondAttribute="leading" id="Gw0-iR-iab"/>
                             <constraint firstItem="yDi-VU-KTy" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="MJI-A4-BjJ"/>
-                            <constraint firstItem="9CE-fp-ju4" firstAttribute="baseline" secondItem="cEg-MC-nff" secondAttribute="baseline" id="OKd-8s-exF"/>
                             <constraint firstItem="NYp-xJ-UTx" firstAttribute="top" secondItem="EGM-BS-oog" secondAttribute="bottom" constant="37" id="Qfb-ep-tJC"/>
                             <constraint firstItem="sf1-XT-kcs" firstAttribute="leading" secondItem="Zxd-nC-WcG" secondAttribute="leading" id="RMb-Mn-M4t"/>
                             <constraint firstItem="hcr-Rm-jHX" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-8" id="TzK-v3-h9h"/>
@@ -123,7 +112,6 @@
                             <constraint firstItem="yDi-VU-KTy" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="82" id="iZC-lM-B6M"/>
                             <constraint firstItem="Zxd-nC-WcG" firstAttribute="trailing" secondItem="a6g-Uk-ZJD" secondAttribute="trailing" id="jib-yb-3Cy"/>
                             <constraint firstItem="9CE-fp-ju4" firstAttribute="leading" secondItem="hcr-Rm-jHX" secondAttribute="trailing" constant="28" id="k2X-JB-tjv"/>
-                            <constraint firstItem="cEg-MC-nff" firstAttribute="leading" secondItem="9CE-fp-ju4" secondAttribute="trailing" constant="23" id="kQ7-9c-6NZ"/>
                             <constraint firstItem="yDi-VU-KTy" firstAttribute="leading" secondItem="EGM-BS-oog" secondAttribute="leading" id="kYj-JM-eGz"/>
                             <constraint firstItem="EGM-BS-oog" firstAttribute="leading" secondItem="NYp-xJ-UTx" secondAttribute="leading" id="kvS-TC-jpF"/>
                             <constraint firstItem="Zxd-nC-WcG" firstAttribute="top" secondItem="sf1-XT-kcs" secondAttribute="bottom" constant="30" id="mP7-OU-Hvg"/>
@@ -200,7 +188,18 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="8ip-yh-yr7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ifh-0V-h1l">
+                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="record"/>
+                                <connections>
+                                    <action selector="recordButton:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="3rH-7Y-Mma"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
