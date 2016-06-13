@@ -12,7 +12,7 @@
  - check views on different devices
 
  - how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
-- hour of code: check firebase (talk to caitlin?)
+ - hour of code: check firebase (talk to caitlin?)
 
 
 

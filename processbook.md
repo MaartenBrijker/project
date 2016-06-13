@@ -32,6 +32,8 @@ Not sure whether Dropbox is the best thing for uploading files as I want them in
 Alpha version is done! User can play with files, record this and has an "automate" button (special filter effect)
 
 # DAY 3|1
+Presentated my code in the Hour of Code. Was in doubt about my use of a Singleton. General view hereon however was positive! Also we talked a bit about databases and the safety of background login in. I decided to use the Dropbox API. Implementing it now.
+
 # DAY 3|2
 # DAY 3|3
 # DAY 3|4

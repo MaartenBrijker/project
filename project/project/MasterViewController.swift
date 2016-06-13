@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioKit
+import SwiftyDropbox
 
 class MasterViewController: UITableViewController {
 
@@ -22,7 +23,10 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
 
         AudioManager.sharedInstance.setUpMixerChannels(sounds)
-
+        
+        // Set up Dropbox App Key.
+        Dropbox.setupWithAppKey("fugkodmn29sklyj")
+        
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -93,6 +97,27 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Recording button.
     
+    @IBAction func uploadButton(sender: AnyObject) {
+        
+//        let dropboxview = DropboxViewController()
+//        
+//        if (Dropbox.authorizedClient == nil) {
+//            Dropbox.authorizeFromController(dropboxview)
+//        } else {
+//            print("User is already authorized!")
+//        }
+        
+        
+        
+//        DropboxManager.sharedInstance.loginToDropbox()
+//        
+//        // get path to file
+//        // pop up screen to change name of file
+//        
+//        DropboxManager.sharedInstance.uploadFile()
+        
+        
+    }
     @IBAction func recordButton(sender: AnyObject) {
         if starter == true {
             AudioManager.sharedInstance.setUpOUTPUTrecorder()
