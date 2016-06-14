@@ -208,7 +208,6 @@
                                     <state key="normal" title="upload"/>
                                     <connections>
                                         <action selector="uploadButton:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="R6U-E3-DZt"/>
-                                        <segue destination="qIm-om-MHq" kind="presentation" id="Vd6-4G-eCd"/>
                                     </connections>
                                 </button>
                             </barButtonItem>

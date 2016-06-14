@@ -7,20 +7,40 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
 
-
+    let appKey = "fugkodmn29sklyj"
+    let appSecret = "14o8b9gp6hyurr5"
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        Dropbox.setupWithAppKey(appKey)
+        
         return true
+    }
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        if let authResult = Dropbox.handleRedirectURL(url) {
+            switch authResult {
+            case .Success(let token):
+                print("Success! User is logged into Dropbox with token: \(token)")
+            case .Error(let error, let description):
+                print("Error \(error): \(description)")
+            }
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {

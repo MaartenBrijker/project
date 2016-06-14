@@ -16,14 +16,19 @@ class DropboxViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (Dropbox.authorizedClient == nil) {
-            Dropbox.authorizeFromController(self)
-        } else {
-            print("User is already authorized!")
-        }
-
+        
+////        let appKey = "fugkodmn29sklyj"
+////        let appSecret = "14o8b9gp6hyurr5"
+//        
+//        // Dropbox authorization.
+//        if (Dropbox.authorizedClient == nil) {
+//            Dropbox.authorizeFromController(self)
+//        } else {
+//            print("User is already authorized!")
+//        }
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

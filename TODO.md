@@ -10,6 +10,8 @@
  - implement automate button better (+ think of a better name)
  - get a developer account for releasing the app?
  - check views on different devices
+ - MAKE SURE RECORDINGS STAY UNDER 150 MB>>>!??
+ - delete recording from phone after it has been uploaded.
 
  - how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
  - hour of code: check firebase (talk to caitlin?)

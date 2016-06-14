@@ -35,6 +35,8 @@ Alpha version is done! User can play with files, record this and has an "automat
 Presentated my code in the Hour of Code. Was in doubt about my use of a Singleton. General view hereon however was positive! Also we talked a bit about databases and the safety of background login in. I decided to use the Dropbox API. Implementing it now.
 
 # DAY 3|2
+Got the Dropbox linking working, and even managed to upload my files. Will need to focus tomorrow on implementing an alert screen asking users to change their filename. Also let add the mic recorder function to the screen and let this file be imported as audio input.
+
 # DAY 3|3
 # DAY 3|4
 # DAY 3|5

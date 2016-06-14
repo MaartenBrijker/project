@@ -22,10 +22,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set up mixer sounds with effects and connect mixer channels.
         AudioManager.sharedInstance.setUpMixerChannels(sounds)
-        
-        // Set up Dropbox App Key.
-        Dropbox.setupWithAppKey("fugkodmn29sklyj")
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         if let split = self.splitViewController {
@@ -85,39 +83,103 @@ class MasterViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            objects.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//        } else if editingStyle == .Insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
-//    }
     
-    // MARK: - Recording button.
+    // MARK: - DROPBOXSTUFF.
     
     @IBAction func uploadButton(sender: AnyObject) {
         
-//        let dropboxview = DropboxViewController()
-//        
-//        if (Dropbox.authorizedClient == nil) {
-//            Dropbox.authorizeFromController(dropboxview)
-//        } else {
-//            print("User is already authorized!")
-//        }
+        // Authorize user.
+        if (Dropbox.authorizedClient == nil) {
+            Dropbox.authorizeFromController(self)
+        } else {
+            print("User is already authorized!")
+        }
+//        Dropbox.authorizeFromController(self)
         
-        
-        
-//        DropboxManager.sharedInstance.loginToDropbox()
-//        
-//        // get path to file
-//        // pop up screen to change name of file
-//        
-//        DropboxManager.sharedInstance.uploadFile()
-        
-        
+        // Uploading a sound file.
+        uploadingFile()
     }
+    
+    func uploadingFile() {
+        
+        // Verify user is logged into Dropbox
+        if let client = Dropbox.authorizedClient {
+            
+            // Get the current user's account info
+            client.users.getCurrentAccount().response { response, error in
+                print("*** Get current account ***")
+                if let account = response {
+                    print("Hello \(account.name.givenName)!")
+                } else {
+                    print(error!)
+                }
+            }
+            
+            // List folder
+            client.files.listFolder(path: "").response { response, error in
+                print("*** List folder ***")
+                if let result = response {
+                    print("Folder contents:")
+                    for entry in result.entries {
+                        print(entry.name)
+                    }
+                } else {
+                    print(error!)
+                }
+            }
+            
+            // The path to the file
+//            let path = "/Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/3090653F-5FB8-43FE-B8F9-577C5EE21C14/Documents/sound.caf"
+//            print(path)
+//            
+            // Set directory
+            let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+            let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+            let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
+            let soundFileURL = soundFilePath.path!
+            
+            
+            let fileManager = NSFileManager.defaultManager()
+            
+            let datadata = fileManager.contentsAtPath(soundFileURL)
+            
+            print("")
+            
+            if datadata != nil {
+                print("lesoooooo")
+                client.files.upload(path: "/testingga.caf", body: datadata!)
+            }
+//            // Upload a file
+////            let fileData = "Hello!".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+//            client.files.upload(path: "/test.caf", body: datadata!).response { response, error in
+//                if let metadata = response {
+//                    print("*** Upload file ****")
+//                    print("Uploaded file name: \(metadata.name)")
+//                    print("Uploaded file revision: \(metadata.rev)")
+//                    
+//                    // Get file (or folder) metadata
+//                    client.files.getMetadata(path: "/test.caf").response { response, error in
+//                        print("*** Get file metadata ***")
+//                        if let metadata = response {
+//                            if let file = metadata as? Files.FileMetadata {
+//                                print("This is a file with path: \(file.pathLower)")
+//                                print("File size: \(file.size)")
+//                            } else if let folder = metadata as? Files.FolderMetadata {
+//                                print("This is a folder with path: \(folder.pathLower)")
+//                            }
+//                        } else {
+//                            print(error!)
+//                        }
+//                    }
+//                } else {
+//                    print(error!)
+//                }
+//            }
+        }
+    }
+    
+    // MARK: - Recording button.
+
     @IBAction func recordButton(sender: AnyObject) {
         if starter == true {
             AudioManager.sharedInstance.setUpOUTPUTrecorder()
