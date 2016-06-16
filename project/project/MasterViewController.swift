@@ -107,6 +107,10 @@ class MasterViewController: UITableViewController {
         uploadingFile()
     }
     
+    func tryout() {
+        print("              block block block              ")
+    }
+    
     func uploadingFile() {
         
         // make alert message if user is not authorized yet
@@ -153,18 +157,20 @@ class MasterViewController: UITableViewController {
             
             let asset = AVAsset(URL: NSURL(fileURLWithPath: soundFileURL))
             let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
-
-            print(asset)
-            print(session)
+            session!.outputURL = NSURL(string: soundFileURL)
+            session!.directoryForTemporaryFiles = session!.outputURL
+            session!.outputFileType = AVFileTypeAppleM4A
+            print(session!.estimatedOutputFileLength)
+            session!.exportAsynchronouslyWithCompletionHandler(self.tryout)
             
-            print("")
-            
-            print(session?.status)
+            print(soundFileURL)
             
             // TODO ---- show alert box, asking user to pick artistname_tracktitel_mail
+
             
+            // UPLOAD FILE
             if datadata != nil {
-                client!.files.upload(path: "/dennissss.caf", body: datadata!)
+                client!.files.upload(path: "/dissssss.m4a", body: datadata!)
             }
             
             

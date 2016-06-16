@@ -41,6 +41,8 @@ Got the Dropbox linking working, and even managed to upload my files. Will need 
 Sometimes its better to clear one's mind by finishing up other projects. Had been shifting between writing my thesis and working on this project for the past weeks and was lacking focus. Decided today to focus fully on finihsing up my thesis and not on the programming. i succeeded in finishing this, and hopefully can work more focussed for the remaining of the programming course.
 
 # DAY 3|4
+Fixed that dropbox doesn't need a login anymore together with Emma. Also looked on conversion methods in order to change the .caf into a more widely used format. Didn't succed fully however...
+
 # DAY 3|5
 # DAY 4|1
 # DAY 4|2
