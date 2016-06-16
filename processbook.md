@@ -38,6 +38,8 @@ Presentated my code in the Hour of Code. Was in doubt about my use of a Singleto
 Got the Dropbox linking working, and even managed to upload my files. Will need to focus tomorrow on implementing an alert screen asking users to change their filename. Also let add the mic recorder function to the screen and let this file be imported as audio input.
 
 # DAY 3|3
+Sometimes its better to clear one's mind by finishing up other projects. Had been shifting between writing my thesis and working on this project for the past weeks and was lacking focus. Decided today to focus fully on finihsing up my thesis and not on the programming. i succeeded in finishing this, and hopefully can work more focussed for the remaining of the programming course.
+
 # DAY 3|4
 # DAY 3|5
 # DAY 4|1

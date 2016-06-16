@@ -12,6 +12,7 @@
  - check views on different devices
  - MAKE SURE RECORDINGS STAY UNDER 150 MB>>>!??
  - delete recording from phone after it has been uploaded.
+ - upload files as .wav / .mp3 ????
 
  - how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
  - hour of code: check firebase (talk to caitlin?)
