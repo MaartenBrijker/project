@@ -30,6 +30,8 @@ public class AKNodeRecorder {
         self.node = node
         url = NSURL.fileURLWithPath(file, isDirectory: false)
         
+        
+        
         format = AudioKit.format
         settings = AudioKit.format.settings
         do {

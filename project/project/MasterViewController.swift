@@ -19,11 +19,18 @@ class MasterViewController: UITableViewController {
     
     var starter = true
     
+    var clienttest: DropboxClient?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set up mixer sounds with effects and connect mixer channels.
         AudioManager.sharedInstance.setUpMixerChannels(sounds)
+        
+        // Accestoken
+        let accessToken = "XPA_hvP23MAAAAAAAAAAFyLTeXC7cSemXHa-Y3chHcV-lP0wiULlKtnqSCZHdKlX"
+        let uid = "DEVXXX"
+        clienttest = DropboxClient(accessToken: DropboxAccessToken(accessToken: accessToken, uid: uid))
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         if let split = self.splitViewController {
@@ -88,12 +95,12 @@ class MasterViewController: UITableViewController {
     
     @IBAction func uploadButton(sender: AnyObject) {
         
-        // Authorize user.
-        if (Dropbox.authorizedClient == nil) {
-            Dropbox.authorizeFromController(self)
-        } else {
-            print("User is already authorized!")
-        }
+//        // Authorize user.
+//        if (Dropbox.authorizedClient == nil) {
+//            Dropbox.authorizeFromController(self)
+//        } else {
+//            print("User is already authorized!")
+//        }
 //        Dropbox.authorizeFromController(self)
         
         // Uploading a sound file.
@@ -102,54 +109,67 @@ class MasterViewController: UITableViewController {
     
     func uploadingFile() {
         
+        // make alert message if user is not authorized yet
+        
         // Verify user is logged into Dropbox
-        if let client = Dropbox.authorizedClient {
-            
-            // Get the current user's account info
-            client.users.getCurrentAccount().response { response, error in
-                print("*** Get current account ***")
-                if let account = response {
-                    print("Hello \(account.name.givenName)!")
-                } else {
-                    print(error!)
-                }
+        let client = clienttest
+        
+        // Get the current user's account info
+        client!.users.getCurrentAccount().response { response, error in
+            print("*** Get current account ***")
+            if let account = response {
+                print("Hello \(account.name.givenName)!")
+            } else {
+                print(error!)
             }
-            
-            // List folder
-            client.files.listFolder(path: "").response { response, error in
-                print("*** List folder ***")
-                if let result = response {
-                    print("Folder contents:")
-                    for entry in result.entries {
-                        print(entry.name)
-                    }
-                } else {
-                    print(error!)
+        
+        
+        // List folder
+        client!.files.listFolder(path: "").response { response, error in
+            print("*** List folder ***")
+            if let result = response {
+                print("Folder contents:")
+                for entry in result.entries {
+                    print(entry.name)
                 }
+            } else {
+                print(error!)
             }
+        }
             
-            // The path to the file
-//            let path = "/Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/3090653F-5FB8-43FE-B8F9-577C5EE21C14/Documents/sound.caf"
-//            print(path)
-//            
             // Set directory
             let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
             let docsDir = NSURL(fileURLWithPath: dirPaths[0])
             let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
             let soundFileURL = soundFilePath.path!
             
-            
             let fileManager = NSFileManager.defaultManager()
             
             let datadata = fileManager.contentsAtPath(soundFileURL)
             
+            // TODO ---- show alert error message if there isn't a recording file
+            
+            // TODO ---- convert file to WAV?
+            
+            let asset = AVAsset(URL: NSURL(fileURLWithPath: soundFileURL))
+            let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
+
+            print(asset)
+            print(session)
+            
             print("")
             
+            print(session?.status)
+            
+            // TODO ---- show alert box, asking user to pick artistname_tracktitel_mail
+            
             if datadata != nil {
-                print("lesoooooo")
-                client.files.upload(path: "/testingga.caf", body: datadata!)
+                client!.files.upload(path: "/dennissss.caf", body: datadata!)
             }
-//            // Upload a file
+            
+            
+            
+//            // Upload a file (dropbox example code adjusted)
 ////            let fileData = "Hello!".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
 //            client.files.upload(path: "/test.caf", body: datadata!).response { response, error in
 //                if let metadata = response {
