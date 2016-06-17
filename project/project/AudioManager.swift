@@ -157,10 +157,9 @@ class AudioManager {
     }
     
     func recordMIC() {
-        if recording == true {
+        if recording {
             recording = false
             MICrecorder!.stop()
-            
         } else {
             recording = true
             if MICrecorder!.record() == true {
