@@ -1,25 +1,29 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
+def:
  - alert box —> ask user if he want to upload file, let him fill in info?
- - how to store user info? change audiofile name to --> USERNAME_TRACKTITLE_(USERMAIL).caf
- - pitch —> only allowed to shift int steps
- - pitch —> graphical showing this
  - let maintable get titles from audiofiles instead of hardcoded
- - store pre-automate value and set to post-automate
  - implement micrecording button, let users play with this recording
+ - mute other sounds when users is recording?
+
+optional:
+ - pitch —> only allowed to shift int steps
+ - pitch —> graphically showing this
+ - fix a launch screen
+
+def (less urgent):
  - implement automate button better (+ think of a better name)
- - get a developer account for releasing the app?
+ - set effect back to pre-automate value after its done
  - check views on different devices
  - MAKE SURE RECORDINGS STAY UNDER 150 MB>>>!??
  - delete recording from phone after it has been uploaded.
- - upload files as .wav / .mp3 ????
+ - update DESIGN.doc + README.md
+ - delete "EDIT" button
+
+optionally optional:
+ - get a developer account for releasing the app?
+ - upload files to m4a ????
  - NSNotification center?
- - how to share files? Dropbox (filerequest / inlog in the back), GoogleDrive, iCloud
- - hour of code: check firebase (talk to caitlin?)
-
-
-
-
 
 
 # thrash
@@ -31,14 +35,3 @@
 //            .URLByAppendingPathComponent("sound.caf")
 //            .path
 //        OUTPUTrecorder = AKNodeRecorder(path!)
-
-# DROPBOX
-
-App key     5of5rtye3cyoib0
-App secret  5xfnne8h3rrj8uj
-
-https://www.dropbox.com/developers-v1/core/sdks/ios
-
-# CLOUDKIT
-
-"In development, when you run your app through Xcode on iOS Simulator or an iOS device, you also need to enter iCloud credentials to read records in the public database."
