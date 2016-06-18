@@ -91,29 +91,46 @@ class MasterViewController: UITableViewController {
         return true
     }
     
-    // MARK: - DROPBOXSTUFF.
+    // MARK: - DROPBOXSTUFF
     
     @IBAction func uploadButton(sender: AnyObject) {
         
-//        // Authorize user.
-//        if (Dropbox.authorizedClient == nil) {
-//            Dropbox.authorizeFromController(self)
-//        } else {
-//            print("User is already authorized!")
-//        }
-//        Dropbox.authorizeFromController(self)
-        
-        // Uploading a sound file.
-        uploadingFile()
+        // Pop up alert message, asking user for input, thereafter move on to upload function.
+        showPopUp()
+
     }
     
     func tryout() {
-        print("              block block block              ")
     }
     
-    func uploadingFile() {
+    func showPopUp() {
         
-        // make alert message if user is not authorized yet
+        
+        // Initiate alert.
+        let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
+
+        // Add text fields and button.
+        getUserInfoAlert.addTextFieldWithConfigurationHandler {(artistName) -> Void in artistName.placeholder = "<artist name>"}
+        getUserInfoAlert.addTextFieldWithConfigurationHandler {(trackTitle) -> Void in trackTitle.placeholder = "<track title>"}
+        getUserInfoAlert.addTextFieldWithConfigurationHandler {(email) -> Void in email.placeholder = "<email (optional)>"}
+        getUserInfoAlert.addAction(UIAlertAction(title: "cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        getUserInfoAlert.addAction(UIAlertAction(title: "upload", style: .Default, handler: { (action: UIAlertAction!) in
+            self.uploadingFile(getUserInfoAlert.textFields!)
+        }))
+        
+        // Present alert.
+        presentViewController(getUserInfoAlert, animated: true, completion: nil)
+    }
+    
+    func uploadingFile(userData: Array<UITextField>) {
+        
+        // Assign submitted values.
+        let artistName = userData[0].text!
+        let trackTitle = userData[1].text!
+        let email = userData[2].text!
+        
+        // TODO ---- make alert message if authorization problems occur
         
         // Verify user is logged into Dropbox
         let client = clienttest
@@ -126,34 +143,17 @@ class MasterViewController: UITableViewController {
             } else {
                 print(error!)
             }
-        
-        
-        // List folder
-        client!.files.listFolder(path: "").response { response, error in
-            print("*** List folder ***")
-            if let result = response {
-                print("Folder contents:")
-                for entry in result.entries {
-                    print(entry.name)
-                }
-            } else {
-                print(error!)
-            }
-        }
             
             // Set directory
-            let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-            let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-            let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
-            let soundFileURL = soundFilePath.path!
+            let soundFileURL = self.setPath()
             
+            // Get contents at path
             let fileManager = NSFileManager.defaultManager()
-            
             let datadata = fileManager.contentsAtPath(soundFileURL)
             
             // TODO ---- show alert error message if there isn't a recording file
             
-            // TODO ---- convert file to WAV?
+            // TODO ---- convert file to m4a?
             
             let asset = AVAsset(URL: NSURL(fileURLWithPath: soundFileURL))
             let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
@@ -163,45 +163,21 @@ class MasterViewController: UITableViewController {
             print(session!.estimatedOutputFileLength)
             session!.exportAsynchronouslyWithCompletionHandler(self.tryout)
             
-            print(soundFileURL)
-            
-            // TODO ---- show alert box, asking user to pick artistname_tracktitel_mail
-
-            
-            // UPLOAD FILE
+            // UPLOAD FILE.
             if datadata != nil {
-                client!.files.upload(path: "/dissssss.m4a", body: datadata!)
+                client!.files.upload(path: "/\(artistName)_\(trackTitle)_\(email).caf", body: datadata!)
+                
+                // TODO ---- Let user know, upload was succesfull, alertmessage.
             }
-            
-            
-            
-//            // Upload a file (dropbox example code adjusted)
-////            let fileData = "Hello!".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-//            client.files.upload(path: "/test.caf", body: datadata!).response { response, error in
-//                if let metadata = response {
-//                    print("*** Upload file ****")
-//                    print("Uploaded file name: \(metadata.name)")
-//                    print("Uploaded file revision: \(metadata.rev)")
-//                    
-//                    // Get file (or folder) metadata
-//                    client.files.getMetadata(path: "/test.caf").response { response, error in
-//                        print("*** Get file metadata ***")
-//                        if let metadata = response {
-//                            if let file = metadata as? Files.FileMetadata {
-//                                print("This is a file with path: \(file.pathLower)")
-//                                print("File size: \(file.size)")
-//                            } else if let folder = metadata as? Files.FolderMetadata {
-//                                print("This is a folder with path: \(folder.pathLower)")
-//                            }
-//                        } else {
-//                            print(error!)
-//                        }
-//                    }
-//                } else {
-//                    print(error!)
-//                }
-//            }
         }
+    }
+    
+    func setPath() -> String {
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+        let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
+        let soundFileURL = soundFilePath.path!
+        return soundFileURL
     }
     
     // MARK: - Recording button.

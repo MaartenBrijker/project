@@ -106,7 +106,7 @@ class AudioManager {
         // Set directory
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
+        let soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
         let soundFileURL = soundFilePath.path!
         
         // Set global path for Dropbox to use.
@@ -136,7 +136,7 @@ class AudioManager {
         // Set recorder paths etc. (create different function for this maybe w "micrecording.caf" as input string)
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        let soundFilePath = docsDir.URLByAppendingPathComponent("micrecording.caf")
+        let soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
         let soundFileURL = NSURL(string: String(soundFilePath))
         
         let recordSettings =

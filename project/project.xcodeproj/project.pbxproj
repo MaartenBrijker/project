@@ -15,7 +15,6 @@
 		A54BF0791D0996AD006330AA /* table example.png in Resources */ = {isa = PBXBuildFile; fileRef = A54BF0741D0996AD006330AA /* table example.png */; };
 		A54BF07A1D0996AD006330AA /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0751D0996AD006330AA /* DESIGN.md */; };
 		A54BF07D1D099B7D006330AA /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF07C1D099B7D006330AA /* TODO.md */; };
-		A5BB6B051D0EF98B00626171 /* DropboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB6B041D0EF98B00626171 /* DropboxViewController.swift */; };
 		A5FBDB211D003202006962EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB201D003202006962EA /* AppDelegate.swift */; };
 		A5FBDB231D003202006962EA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB221D003202006962EA /* MasterViewController.swift */; };
 		A5FBDB251D003202006962EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB241D003202006962EA /* DetailViewController.swift */; };
@@ -107,7 +106,6 @@
 		A54BF0741D0996AD006330AA /* table example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table example.png"; sourceTree = "<group>"; };
 		A54BF0751D0996AD006330AA /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = DESIGN.md; path = ../DESIGN.md; sourceTree = "<group>"; };
 		A54BF07C1D099B7D006330AA /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = TODO.md; path = ../TODO.md; sourceTree = "<group>"; };
-		A5BB6B041D0EF98B00626171 /* DropboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxViewController.swift; sourceTree = "<group>"; };
 		A5FBDB1D1D003202006962EA /* project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBDB201D003202006962EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5FBDB221D003202006962EA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			children = (
 				A5FBDB221D003202006962EA /* MasterViewController.swift */,
 				A5FBDB241D003202006962EA /* DetailViewController.swift */,
-				A5BB6B041D0EF98B00626171 /* DropboxViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -540,7 +537,6 @@
 				A54BF0771D0996AD006330AA /* processbook.md in Sources */,
 				A54BF07D1D099B7D006330AA /* TODO.md in Sources */,
 				A54BF07A1D0996AD006330AA /* DESIGN.md in Sources */,
-				A5BB6B051D0EF98B00626171 /* DropboxViewController.swift in Sources */,
 				A5FBDB7F1D003F72006962EA /* AudioManager.swift in Sources */,
 				A5FBDB211D003202006962EA /* AppDelegate.swift in Sources */,
 			);

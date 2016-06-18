@@ -1,7 +1,7 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
 def:
- - alert box —> ask user if he want to upload file, let him fill in info?
+ - alert box —> ask user if he want to upload file, let her fill in info?
  - let maintable get titles from audiofiles instead of hardcoded
  - implement micrecording button, let users play with this recording
  - mute other sounds when users is recording?
@@ -10,6 +10,8 @@ optional:
  - pitch —> only allowed to shift int steps
  - pitch —> graphically showing this
  - fix a launch screen
+ - make function for directory paths
+ - update audio files
 
 def (less urgent):
  - implement automate button better (+ think of a better name)
@@ -19,6 +21,9 @@ def (less urgent):
  - delete recording from phone after it has been uploaded.
  - update DESIGN.doc + README.md
  - delete "EDIT" button
+ - automate function knob for every button
+ - make sure start/stop button stays specific
+ - make screen red when recording!
 
 optionally optional:
  - get a developer account for releasing the app?
