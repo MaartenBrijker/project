@@ -32,7 +32,6 @@ class AudioManager {
     var recording = false
     var MICrecorder: AVAudioRecorder?
     var OUTPUTrecorder: AKNodeRecorder?
-    var globalPath2SoundFile: String?
     
     func setUpMixerChannels(sounds: Array<String>?) {
         
@@ -101,28 +100,14 @@ class AudioManager {
     
     //MARK: - Audio recording.
     
-    func setUpOUTPUTrecorder() {
-        
-        // Set directory
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        let soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
-        let soundFileURL = soundFilePath.path!
-        
-        // Set global path for Dropbox to use.
-        globalPath2SoundFile = soundFileURL
-        
-        print(soundFileURL)
-        
+    func setUpOUTPUTrecorder(soundFileURL: String) {
         OUTPUTrecorder = AKNodeRecorder(soundFileURL)
     }
     
     func recordOUTPUT() {
-        
         if recording == true {
             recording = false
             OUTPUTrecorder!.stop()
-
         } else {
             recording = true
             OUTPUTrecorder!.record()

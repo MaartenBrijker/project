@@ -201,9 +201,19 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
+                            <barButtonItem style="plain" id="I4K-nN-tyY">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4vS-Dd-9gA">
+                                    <rect key="frame" x="306" y="7" width="133" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="microphone"/>
+                                    <connections>
+                                        <action selector="micRecorder:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="TVC-kZ-L4k"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
                             <barButtonItem style="plain" id="oXz-Er-gTg">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yzn-9V-vu6">
-                                    <rect key="frame" x="306" y="7" width="133" height="30"/>
+                                    <rect key="frame" x="165" y="7" width="133" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="upload"/>
                                     <connections>

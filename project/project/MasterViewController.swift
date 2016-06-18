@@ -18,6 +18,7 @@ class MasterViewController: UITableViewController {
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
     
     var starter = true
+    var blabla = true
     
     var clienttest: DropboxClient?
     
@@ -32,7 +33,6 @@ class MasterViewController: UITableViewController {
         let uid = "DEVXXX"
         clienttest = DropboxClient(accessToken: DropboxAccessToken(accessToken: accessToken, uid: uid))
         
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -46,12 +46,6 @@ class MasterViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
 
     // MARK: - Segues
@@ -80,7 +74,6 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
         let object = sounds[indexPath.row]
         cell.textLabel!.text = object
         return cell
@@ -145,7 +138,7 @@ class MasterViewController: UITableViewController {
             }
             
             // Set directory
-            let soundFileURL = self.setPath()
+            let soundFileURL = self.setPath("OUTPUT")
             
             // Get contents at path
             let fileManager = NSFileManager.defaultManager()
@@ -166,25 +159,35 @@ class MasterViewController: UITableViewController {
             // UPLOAD FILE.
             if datadata != nil {
                 client!.files.upload(path: "/\(artistName)_\(trackTitle)_\(email).caf", body: datadata!)
+                print("N O T   N I L  YA YY")
                 
                 // TODO ---- Let user know, upload was succesfull, alertmessage.
             }
         }
     }
     
-    func setPath() -> String {
+    func setPath(recordingType: String) -> String {
+        
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        let soundFilePath = docsDir.URLByAppendingPathComponent("sound.caf")
+        
+        var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
+        
+        if recordingType == "OUTPUT" {
+            soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
+        }
+        
         let soundFileURL = soundFilePath.path!
         return soundFileURL
     }
     
-    // MARK: - Recording button.
+    // MARK: - Recording button
 
     @IBAction func recordButton(sender: AnyObject) {
+        let soundFileURL = setPath("OUTPUT")
+        
         if starter == true {
-            AudioManager.sharedInstance.setUpOUTPUTrecorder()
+            AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFileURL)
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
             starter = false
@@ -192,6 +195,19 @@ class MasterViewController: UITableViewController {
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("start recording", forState: .Normal)
             starter = true
+        }
+    }
+    
+    // MARK: - Microphone recorder
+    @IBAction func micRecorder(sender: AnyObject) {
+//        let soundFileURL = setPath("MIC")
+        if blabla {
+            AudioManager.sharedInstance.setUpMICRecorder()
+            AudioManager.sharedInstance.recordMIC()
+            blabla = false
+        } else {
+            AudioManager.sharedInstance.recordMIC()
+            blabla = true
         }
     }
 }
