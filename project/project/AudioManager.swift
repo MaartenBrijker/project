@@ -11,6 +11,8 @@ import AVFoundation
 
 class AudioManager {
    
+    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
+    
     // MARK: - initializing the audio processors.
     
     var player: AKAudioPlayer?
@@ -36,10 +38,9 @@ class AudioManager {
     func setUpMixerChannels(sounds: Array<String>?) {
         
         for sound in sounds! {
-            
-            let fullNameArr = sound.componentsSeparatedByString(".")
-            let title: String = fullNameArr[0]
-            let type: String = fullNameArr[1]
+            let soundArr = sound.componentsSeparatedByString(".")
+            let title: String = soundArr[0]
+            let type: String = soundArr[1]
             let file = NSBundle.mainBundle().pathForResource(title, ofType: type)
             
             // player -> pitch -> filter -> reverb -> mixer
@@ -147,10 +148,11 @@ class AudioManager {
         if recording {
             recording = false
             MICrecorder!.stop()
+            print("recording: stopped")
         } else {
             recording = true
             if MICrecorder!.record() == true {
-                print("really recording")
+                print("recording: started")
             }
         }
     }

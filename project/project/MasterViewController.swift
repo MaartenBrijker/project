@@ -15,10 +15,10 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
 
-    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
+    var sounds = AudioManager.sharedInstance.sounds
     
     var starter = true
-    var blabla = true
+    var micIsRecording = true
     
     var clienttest: DropboxClient?
     
@@ -74,7 +74,8 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let object = sounds[indexPath.row]
+        let soundArr = sounds[indexPath.row].componentsSeparatedByString(".")
+        let object = soundArr[0]
         cell.textLabel!.text = object
         return cell
     }
@@ -97,7 +98,6 @@ class MasterViewController: UITableViewController {
     }
     
     func showPopUp() {
-        
         
         // Initiate alert.
         let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
@@ -204,14 +204,31 @@ class MasterViewController: UITableViewController {
     
     @IBAction func micRecorder(sender: AnyObject) {
         let soundFilePath = setPath("MIC")
-        if blabla {
+        if micIsRecording {
             AudioManager.sharedInstance.setUpMICRecorder(soundFilePath)
             AudioManager.sharedInstance.recordMIC()
-            blabla = false
+            micIsRecording = false
         } else {
             AudioManager.sharedInstance.recordMIC()
-            blabla = true
+            micIsRecording = true
+            let soundFileURL = soundFilePath.path!
+
+            // If recording was succesfull: update audio inputs, else: alert user.
+            if contentsOfDirectoryAtPath(soundFileURL) {
+                
+                
+                
+                
+            } else {
+                // TODO ---- alert message
+            }
         }
+    }
+    
+    /// Checks if file exists at specified path.
+    func contentsOfDirectoryAtPath(path: String) -> Bool {
+        let fileManager = NSFileManager.defaultManager()
+        return fileManager.fileExistsAtPath(path)
     }
 }
 

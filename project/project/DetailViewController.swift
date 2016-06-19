@@ -12,7 +12,7 @@ import AudioKit
 class DetailViewController: UIViewController {
     var timer: NSTimer!
 
-    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
+    var sounds = AudioManager.sharedInstance.sounds
 
     var started = false
     var player: AKAudioPlayer?
