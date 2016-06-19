@@ -15,8 +15,7 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
 
-    var sounds = AudioManager.sharedInstance.sounds
-    
+    var sounds: Array<String>?
     var starter = true
     var micIsRecording = true
     
@@ -24,6 +23,9 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        sounds = AudioManager.sharedInstance.sounds
+        print("sounds . . . ", sounds)
 
         // Set up mixer sounds with effects and connect mixer channels.
         AudioManager.sharedInstance.setUpMixerChannels(sounds)
@@ -47,13 +49,18 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        sounds = AudioManager.sharedInstance.sounds
+        tableView.reloadData()
+    }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = sounds[indexPath.row]
+                let object = sounds![indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -69,19 +76,18 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sounds.count
+        return sounds!.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let soundArr = sounds[indexPath.row].componentsSeparatedByString(".")
+        let soundArr = sounds![indexPath.row].componentsSeparatedByString(".")
         let object = soundArr[0]
         cell.textLabel!.text = object
         return cell
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
@@ -106,9 +112,9 @@ class MasterViewController: UITableViewController {
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(artistName) -> Void in artistName.placeholder = "<artist name>"}
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(trackTitle) -> Void in trackTitle.placeholder = "<track title>"}
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(email) -> Void in email.placeholder = "<email (optional)>"}
-        getUserInfoAlert.addAction(UIAlertAction(title: "cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        getUserInfoAlert.addAction(UIAlertAction(title: "🎇", style: .Default, handler: { (action: UIAlertAction!) in
             getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        getUserInfoAlert.addAction(UIAlertAction(title: "upload", style: .Default, handler: { (action: UIAlertAction!) in
+        getUserInfoAlert.addAction(UIAlertAction(title: "🎆🆙🎆", style: .Default, handler: { (action: UIAlertAction!) in
             self.uploadingFile(getUserInfoAlert.textFields!)
         }))
         
@@ -168,18 +174,12 @@ class MasterViewController: UITableViewController {
     }
     
     func setPath(recordingType: String) -> NSURL {
-        
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        
         var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
-        
         if recordingType == "OUTPUT" {
             soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
         }
-        
-//        let soundFileURL = soundFilePath.path!
-//        return soundFileURL
         return soundFilePath
     }
     
@@ -192,12 +192,14 @@ class MasterViewController: UITableViewController {
             AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
+            
             starter = false
         } else {
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("start recording", forState: .Normal)
             starter = true
         }
+        changeColors(starter)
     }
     
     // MARK: - Microphone recorder
@@ -213,22 +215,47 @@ class MasterViewController: UITableViewController {
             micIsRecording = true
             let soundFileURL = soundFilePath.path!
 
+            
             // If recording was succesfull: update audio inputs, else: alert user.
             if contentsOfDirectoryAtPath(soundFileURL) {
-                
-                
-                
-                
+                if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
+                    AudioManager.sharedInstance.sounds.append("MICrecording.caf")
+                    updateTableView()
+                }
+                //update audio players.
             } else {
-                // TODO ---- alert message
+                let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
+                micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
+                    micAlert .dismissViewControllerAnimated(true, completion: nil)}))
+                presentViewController(micAlert, animated: true, completion: nil)
             }
         }
+        changeColors(micIsRecording)
     }
     
     /// Checks if file exists at specified path.
     func contentsOfDirectoryAtPath(path: String) -> Bool {
         let fileManager = NSFileManager.defaultManager()
         return fileManager.fileExistsAtPath(path)
+    }
+    
+    /// Updates the Table View.
+    func updateTableView() {
+        sounds = AudioManager.sharedInstance.sounds
+        self.tableView.reloadData()
+    }
+    
+    /// Changes background color to show a recording is taking place.
+    func changeColors(state: Bool) {
+        if state {
+            UIView.animateWithDuration(0.7, animations: {
+                self.view.backgroundColor = UIColor.whiteColor()
+            })
+        } else {
+            UIView.animateWithDuration(0.7, animations: {
+                self.view.backgroundColor = UIColor.redColor()
+            })
+        }
     }
 }
 

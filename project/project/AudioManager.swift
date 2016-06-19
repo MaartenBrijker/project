@@ -121,9 +121,6 @@ class AudioManager {
     func setUpMICRecorder(soundFilePath: NSURL) {
         
         // Set recorder paths etc. (create different function for this maybe w "micrecording.caf" as input string)
-//        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-//        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-//        let soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
         let soundFileURL = NSURL(string: String(soundFilePath))
         
         print(soundFileURL)

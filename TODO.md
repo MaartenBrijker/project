@@ -3,6 +3,7 @@
 def:
  - let main table get titles from audiofiles instead of hardcoded
  - mute other sounds when users is recording?
+ - set image in cells
 
 optional:
  - pitch —> only allowed to shift int steps
@@ -21,6 +22,8 @@ def (less urgent):
  - delete "EDIT" button
  - automate function knob for every button
  - make screen red when recording!
+ - move upload function to audiomanager
+ - make sure user fills in correct info when uploading!!!!!
 
 optionally optional:
  - get a developer account for releasing the app?
