@@ -28,7 +28,7 @@ class MasterViewController: UITableViewController {
         print("sounds . . . ", sounds)
 
         // Set up mixer sounds with effects and connect mixer channels.
-        AudioManager.sharedInstance.setUpMixerChannels(sounds)
+        AudioManager.sharedInstance.setUpMixerChannels()
         
         // Accestoken
         let accessToken = "XPA_hvP23MAAAAAAAAAAFyLTeXC7cSemXHa-Y3chHcV-lP0wiULlKtnqSCZHdKlX"
@@ -144,7 +144,7 @@ class MasterViewController: UITableViewController {
             }
             
             // Set directory
-            let soundFilePath = self.setPath("OUTPUT")
+            let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
             let soundFileURL = soundFilePath.path!
 
             
@@ -173,20 +173,20 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    func setPath(recordingType: String) -> NSURL {
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
-        if recordingType == "OUTPUT" {
-            soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
-        }
-        return soundFilePath
-    }
+//    func setPath(recordingType: String) -> NSURL {
+//        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+//        var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
+//        if recordingType == "OUTPUT" {
+//            soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
+//        }
+//        return soundFilePath
+//    }
     
     // MARK: - Recording button
 
     @IBAction func recordButton(sender: AnyObject) {
-        let soundFilePath = setPath("OUTPUT")
+        let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
         
         if starter == true {
             AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
@@ -205,7 +205,7 @@ class MasterViewController: UITableViewController {
     // MARK: - Microphone recorder
     
     @IBAction func micRecorder(sender: AnyObject) {
-        let soundFilePath = setPath("MIC")
+        let soundFilePath = AudioManager.sharedInstance.setPath("MIC")
         if micIsRecording {
             AudioManager.sharedInstance.setUpMICRecorder(soundFilePath)
             AudioManager.sharedInstance.recordMIC()
@@ -222,8 +222,8 @@ class MasterViewController: UITableViewController {
                     AudioManager.sharedInstance.sounds.append("MICrecording.caf")
                     updateTableView()
                 }
-                //update audio players.
-            } else {
+                AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
+            } else { // MOVE BELOW TO SEPERATE FUNCTION SO OUTPUTRECORDER CAN ALSO USE IT ... SHARING = CARING
                 let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
                 micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
                     micAlert .dismissViewControllerAnimated(true, completion: nil)}))

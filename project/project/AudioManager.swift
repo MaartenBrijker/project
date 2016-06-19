@@ -13,7 +13,7 @@ class AudioManager {
    
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
     
-    // MARK: - initializing the audio processors.
+    // MARK: - initializing the audio processors
     
     var player: AKAudioPlayer?
     var pitcher: AKTimePitch?
@@ -21,7 +21,7 @@ class AudioManager {
     var reverb: AKReverb?
     var mixer = AKMixer()
     
-    // MARK: - Setting up the database.
+    // MARK: - Setting up the database and paths
     
     static let sharedInstance = AudioManager()
     
@@ -35,13 +35,51 @@ class AudioManager {
     var MICrecorder: AVAudioRecorder?
     var OUTPUTrecorder: AKNodeRecorder?
     
-    func setUpMixerChannels(sounds: Array<String>?) {
+    /// Returns a path for a specified type of file.
+    func setPath(recordingType: String) -> NSURL {
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+        var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
+        if recordingType == "OUTPUT" {
+            soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
+        }
+        return soundFilePath
+    }
+    
+    func setUpMixerChannels() {
         
-        for sound in sounds! {
+        for sound in sounds {
             let soundArr = sound.componentsSeparatedByString(".")
             let title: String = soundArr[0]
             let type: String = soundArr[1]
-            let file = NSBundle.mainBundle().pathForResource(title, ofType: type)
+            var file = NSBundle.mainBundle().pathForResource(title, ofType: type)
+            
+            let afile = NSBundle.mainBundle().pathForResource("RFX6", ofType: ".WAV")
+            
+//            print(file)
+            
+            if sound == "MICrecording.caf" {
+                
+//                let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//                let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+//                let soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
+//                let soundFileURL = NSURL(string: String(soundFilePath))
+
+                let soundFilePath = setPath("MIC")
+                let soundFileURL = NSURL(string: String(soundFilePath))
+                let soundData = NSData(contentsOfURL: soundFileURL!)
+                
+                if soundData != nil {
+                    print("not ni l l l l  l ")
+                    soundData?.writeToFile(afile!, atomically: true)
+                    file = afile
+                    print("              filefile: ", file)
+                }
+                
+//                
+//                file = String(setPath("MIC"))
+//                file = "/Users/maartenbrijker/Library/Developer/CoreSimulator/Devices/742D170F-991C-48B0-BC07-7419C86C4036/data/Containers/Data/Application/16C7FACD-9BDC-4F1E-B3BD-52316A12AA8A/Documents"
+            }
             
             // player -> pitch -> filter -> reverb -> mixer
             player = AKAudioPlayer(file!)
