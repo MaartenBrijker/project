@@ -24,7 +24,7 @@ def (less urgent):
 
 optionally optional:
  - get a developer account for releasing the app?
- - upload files to m4a ????
+ - convert files to m4a ????
  - NSNotification center?
 
 

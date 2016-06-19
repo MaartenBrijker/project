@@ -138,7 +138,9 @@ class MasterViewController: UITableViewController {
             }
             
             // Set directory
-            let soundFileURL = self.setPath("OUTPUT")
+            let soundFilePath = self.setPath("OUTPUT")
+            let soundFileURL = soundFilePath.path!
+
             
             // Get contents at path
             let fileManager = NSFileManager.defaultManager()
@@ -165,7 +167,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    func setPath(recordingType: String) -> String {
+    func setPath(recordingType: String) -> NSURL {
         
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
@@ -176,17 +178,18 @@ class MasterViewController: UITableViewController {
             soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
         }
         
-        let soundFileURL = soundFilePath.path!
-        return soundFileURL
+//        let soundFileURL = soundFilePath.path!
+//        return soundFileURL
+        return soundFilePath
     }
     
     // MARK: - Recording button
 
     @IBAction func recordButton(sender: AnyObject) {
-        let soundFileURL = setPath("OUTPUT")
+        let soundFilePath = setPath("OUTPUT")
         
         if starter == true {
-            AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFileURL)
+            AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
             starter = false
@@ -198,10 +201,11 @@ class MasterViewController: UITableViewController {
     }
     
     // MARK: - Microphone recorder
+    
     @IBAction func micRecorder(sender: AnyObject) {
-//        let soundFileURL = setPath("MIC")
+        let soundFilePath = setPath("MIC")
         if blabla {
-            AudioManager.sharedInstance.setUpMICRecorder()
+            AudioManager.sharedInstance.setUpMICRecorder(soundFilePath)
             AudioManager.sharedInstance.recordMIC()
             blabla = false
         } else {

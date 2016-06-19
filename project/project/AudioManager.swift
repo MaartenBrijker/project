@@ -100,7 +100,8 @@ class AudioManager {
     
     //MARK: - Audio recording.
     
-    func setUpOUTPUTrecorder(soundFileURL: String) {
+    func setUpOUTPUTrecorder(soundFilePath: NSURL) {
+        let soundFileURL = soundFilePath.path!
         OUTPUTrecorder = AKNodeRecorder(soundFileURL)
     }
     
@@ -116,14 +117,16 @@ class AudioManager {
     
     //MARK: - MIC recording.
     
-    func setUpMICRecorder() {
+    func setUpMICRecorder(soundFilePath: NSURL) {
         
         // Set recorder paths etc. (create different function for this maybe w "micrecording.caf" as input string)
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-        let soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
+//        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
+//        let soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
         let soundFileURL = NSURL(string: String(soundFilePath))
         
+        print(soundFileURL)
+
         let recordSettings =
             [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
              AVEncoderBitRateKey: 16,
@@ -136,9 +139,8 @@ class AudioManager {
             print("error")
         }
         if MICrecorder!.prepareToRecord() == true {
-            print("prepared")
+            print("mic = prepared")
         }
-        print(MICrecorder!.url)
     }
     
     func recordMIC() {
