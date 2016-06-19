@@ -15,6 +15,7 @@
 		A54BF0791D0996AD006330AA /* table example.png in Resources */ = {isa = PBXBuildFile; fileRef = A54BF0741D0996AD006330AA /* table example.png */; };
 		A54BF07A1D0996AD006330AA /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0751D0996AD006330AA /* DESIGN.md */; };
 		A54BF07D1D099B7D006330AA /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF07C1D099B7D006330AA /* TODO.md */; };
+		A5DE68811D174C4D00ADB587 /* placeholder.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5DE68801D174C4D00ADB587 /* placeholder.wav */; };
 		A5FBDB211D003202006962EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB201D003202006962EA /* AppDelegate.swift */; };
 		A5FBDB231D003202006962EA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB221D003202006962EA /* MasterViewController.swift */; };
 		A5FBDB251D003202006962EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB241D003202006962EA /* DetailViewController.swift */; };
@@ -106,6 +107,7 @@
 		A54BF0741D0996AD006330AA /* table example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table example.png"; sourceTree = "<group>"; };
 		A54BF0751D0996AD006330AA /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = DESIGN.md; path = ../DESIGN.md; sourceTree = "<group>"; };
 		A54BF07C1D099B7D006330AA /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = TODO.md; path = ../TODO.md; sourceTree = "<group>"; };
+		A5DE68801D174C4D00ADB587 /* placeholder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = placeholder.wav; sourceTree = "<group>"; };
 		A5FBDB1D1D003202006962EA /* project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBDB201D003202006962EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5FBDB221D003202006962EA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				A549F85B1D101EC900029C2A /* RFX6.WAV */,
+				A5DE68801D174C4D00ADB587 /* placeholder.wav */,
 				A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */,
 				A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */,
 				A5FBDB8F1D004EF7006962EA /* kialabells.wav */,
@@ -450,6 +453,7 @@
 				A5FBDB921D004EF7006962EA /* isinkcomb.wav in Resources */,
 				A54BF0781D0996AD006330AA /* sketch.png in Resources */,
 				A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */,
+				A5DE68811D174C4D00ADB587 /* placeholder.wav in Resources */,
 				A5FBDB941D004EF7006962EA /* kialabells.wav in Resources */,
 				A5FBDB931D004EF7006962EA /* isinkvoices.wav in Resources */,
 				A5FBDB9B1D007AB4006962EA /* NASA.wav in Resources */,

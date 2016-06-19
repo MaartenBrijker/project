@@ -215,7 +215,6 @@ class MasterViewController: UITableViewController {
             micIsRecording = true
             let soundFileURL = soundFilePath.path!
 
-            
             // If recording was succesfull: update audio inputs, else: alert user.
             if contentsOfDirectoryAtPath(soundFileURL) {
                 if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
