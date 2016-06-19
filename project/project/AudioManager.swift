@@ -41,10 +41,6 @@ class AudioManager {
         let docsDir = NSURL(fileURLWithPath: dirPaths[0])
         var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
         
-//        print("dirPaths _________", dirPaths)
-//        print("docsDis  _________", docsDir)
-//        print("soundFilePath ____", soundFilePath)
-        
         if recordingType == "OUTPUT" {
             soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
         }
@@ -52,15 +48,27 @@ class AudioManager {
     }
     
     func setUpMixerChannels() {
+        print(sounds)
+        
+        var micNr: Character = "6"
         
         for sound in sounds {
             let soundArr = sound.componentsSeparatedByString(".")
             let title: String = soundArr[0]
             let type: String = soundArr[1]
             var file = NSBundle.mainBundle().pathForResource(title, ofType: type)
+        
+            let micCheck = sound.componentsSeparatedByString("recording")[0]
             
-            if sound == "MICrecording.caf" {
+            if micCheck == "MIC" {
+                let micTwo = sound.componentsSeparatedByString("recording")[1]
+                let index = micTwo.startIndex.advancedBy(0)
+                micNr = micTwo[index]
+            }
+        
+            if micCheck == "MIC"{
                 
+                print(sound)
                 // Get app project folder
                 let filePlaceHolder = NSBundle.mainBundle().pathForResource("placeholder", ofType: ".wav")
                 
@@ -68,11 +76,7 @@ class AudioManager {
                 let withoutPlaceHolder = filePlaceHolder!.stringByReplacingOccurrencesOfString("placeholder.wav", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
                 // Make new path
-                let newFilePath = withoutPlaceHolder + "MICrecording.wav"
-                
-                print("")
-                print(String(newFilePath))
-                print("")
+                let newFilePath = withoutPlaceHolder + "MICrecording\(micNr).wav"
                 
                 // Get Data of Mic recording.
                 let soundFilePath = setPath("MIC")
@@ -80,12 +84,11 @@ class AudioManager {
                 let soundData = NSData(contentsOfURL: soundFileURL!)
                 
                 // Write Data to project folder.
-                if soundData != nil {
-                    print("___________ not nil ____________")
-//                    soundData?.writeToFile(filePlaceHolder!, atomically: true)
+                if soundData != nil && sound == sounds.last! {
                     soundData?.writeToFile(newFilePath, atomically: true)
-                    file = newFilePath
                 }
+                file = newFilePath
+                print(file)
             }
             
             // player -> pitch -> filter -> reverb -> mixer
@@ -107,7 +110,6 @@ class AudioManager {
     // MARK: - Audio functions.
 
     func playAudio(name: String) {
-        print("playing right nowwww: ", name)
         player = soundlink[name]![0] as? AKAudioPlayer
         if player!.isStarted {
             player?.stop()
@@ -179,7 +181,7 @@ class AudioManager {
             print("error")
         }
         if MICrecorder!.prepareToRecord() == true {
-            print("mic = prepared")
+//            print("mic = prepared")
         }
     }
     
@@ -187,11 +189,11 @@ class AudioManager {
         if recording {
             recording = false
             MICrecorder!.stop()
-            print("recording: stopped")
+//            print("recording: stopped")
         } else {
             recording = true
             if MICrecorder!.record() == true {
-                print("recording: started")
+//                print("recording: started")
             }
         }
     }

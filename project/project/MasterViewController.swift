@@ -25,7 +25,6 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
 
         sounds = AudioManager.sharedInstance.sounds
-        print("sounds . . . ", sounds)
 
         // Set up mixer sounds with effects and connect mixer channels.
         AudioManager.sharedInstance.setUpMixerChannels()
@@ -217,10 +216,10 @@ class MasterViewController: UITableViewController {
 
             // If recording was succesfull: update audio inputs, else: alert user.
             if contentsOfDirectoryAtPath(soundFileURL) {
-                if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
-                    AudioManager.sharedInstance.sounds.append("MICrecording.caf")
+//                if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
+                    AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).wav")
                     updateTableView()
-                }
+//                }
                 AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
             } else { // MOVE BELOW TO SEPERATE FUNCTION SO OUTPUTRECORDER CAN ALSO USE IT ... SHARING = CARING
                 let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
