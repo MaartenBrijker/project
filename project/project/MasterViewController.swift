@@ -159,7 +159,6 @@ class MasterViewController: UITableViewController {
             // UPLOAD FILE.
             if datadata != nil {
                 client!.files.upload(path: "/\(artistName)_\(trackTitle)_\(email).caf", body: datadata!)
-                print("N O T   N I L  YA YY")
                 
                 // TODO ---- Let user know, upload was succesfull, alertmessage.
             }

@@ -13,6 +13,9 @@ class DetailViewController: UIViewController {
     var timer: NSTimer!
 
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
+
+    var started = false
+    var player: AKAudioPlayer?
     
     var detailItem: AnyObject? {
         didSet {
@@ -26,7 +29,7 @@ class DetailViewController: UIViewController {
             
             // Set values of sliders.
             
-            let player = AudioManager.sharedInstance.soundlink[detailItem! as! String]![0] as? AKAudioPlayer
+            player = AudioManager.sharedInstance.soundlink[detailItem! as! String]![0] as? AKAudioPlayer
             volumeLevel.value = Float(player!.volume)
 
             let pitcher = AudioManager.sharedInstance.soundlink[detailItem! as! String]![1] as? AKTimePitch
@@ -39,9 +42,9 @@ class DetailViewController: UIViewController {
             reverbLevel.value = Float(reverb!.dryWetMix)
             
             if player!.isStarted {
-                
+                started = true
+                self.starttopButton.setTitle("stop playing", forState: .Normal)
             }
-            
         }
     }
 
@@ -77,14 +80,21 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var starttopButton: UIButton!
     @IBAction func startStopButton(sender: AnyObject) {
         if detailItem != nil {
             AudioManager.sharedInstance.playAudio(detailItem as! String)
-            if sender.currentTitle == "start playing" {
+//            if sender.currentTitle == "start playing" {
+//                sender.setTitle("stop playing", forState: .Normal)
+//            } else {
+//                sender.setTitle("start playing", forState: .Normal)
+//            }
+            if player!.isPlaying {
                 sender.setTitle("stop playing", forState: .Normal)
             } else {
                 sender.setTitle("start playing", forState: .Normal)
             }
+
         }
     }
     

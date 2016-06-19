@@ -131,6 +131,7 @@
                         <outlet property="filterLevel" destination="sf1-XT-kcs" id="IJm-eM-Cg4"/>
                         <outlet property="pitchLevel" destination="w62-dx-feZ" id="UxN-Ow-Tyl"/>
                         <outlet property="reverbLevel" destination="Zxd-nC-WcG" id="HAP-CC-7H3"/>
+                        <outlet property="starttopButton" destination="hcr-Rm-jHX" id="tlP-ck-eNS"/>
                         <outlet property="volumeLevel" destination="a6g-Uk-ZJD" id="0RT-T2-VXO"/>
                     </connections>
                 </viewController>

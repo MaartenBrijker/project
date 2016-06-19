@@ -1,9 +1,7 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
 def:
- - alert box —> ask user if he want to upload file, let her fill in info?
- - let maintable get titles from audiofiles instead of hardcoded
- - implement micrecording button, let users play with this recording
+ - let main table get titles from audiofiles instead of hardcoded
  - mute other sounds when users is recording?
 
 optional:
@@ -22,7 +20,6 @@ def (less urgent):
  - update DESIGN.doc + README.md
  - delete "EDIT" button
  - automate function knob for every button
- - make sure start/stop button stays specific
  - make screen red when recording!
 
 optionally optional:
