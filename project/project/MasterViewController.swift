@@ -161,22 +161,22 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    /// Doesnt work as expected, prob deleting this function
-    func convertFileToExtension(dataURL: String, path: String) -> String{
-        // Conversion path to write to
-        let changedExtension = path.stringByReplacingOccurrencesOfString(".caf", withString: ".wav", options: NSStringCompareOptions.LiteralSearch, range: nil)
-
-        // GET DATA from old .caf file
-        let dataURL = NSURL(fileURLWithPath: dataURL)
-        let soundData = NSData(contentsOfURL: dataURL)
-
-        // Write Data to new .wav file
-        if soundData != nil {
-            soundData?.writeToFile(changedExtension, atomically: true)
-            print("not nil", changedExtension)
-        }
-        return changedExtension
-    }
+//    /// Doesnt work as expected, prob deleting this function
+//    func convertFileToExtension(dataURL: String, path: String) -> String{
+//        // Conversion path to write to
+//        let changedExtension = path.stringByReplacingOccurrencesOfString(".caf", withString: ".wav", options: NSStringCompareOptions.LiteralSearch, range: nil)
+//
+//        // GET DATA from old .caf file
+//        let dataURL = NSURL(fileURLWithPath: dataURL)
+//        let soundData = NSData(contentsOfURL: dataURL)
+//
+//        // Write Data to new .wav file
+//        if soundData != nil {
+//            soundData?.writeToFile(changedExtension, atomically: true)
+//            print("not nil", changedExtension)
+//        }
+//        return changedExtension
+//    }
     
     // MARK: - Recording button
 
@@ -200,40 +200,46 @@ class MasterViewController: UITableViewController {
     @IBAction func micRecorder(sender: AnyObject) {
         let maxAllowedSounds = 10
         if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
-            let soundConstraintAlert = UIAlertController(title: "t o o o o o o o o o o  m u c h", message: "we need to keep the number of mic recordings limited", preferredStyle: UIAlertControllerStyle.Alert)
-            soundConstraintAlert.addAction(UIAlertAction(title: "😮 🚮 😮", style: .Default, handler: { (action: UIAlertAction!) in
-                soundConstraintAlert .dismissViewControllerAnimated(true, completion: nil)}))
-            presentViewController(soundConstraintAlert, animated: true, completion: nil)
+            showSoundConstraintPopUp()
         } else {
             let soundFilePath = AudioManager.sharedInstance.setPath("MIC")
             if micIsRecording {
                 sender.setTitle("stop recording", forState: .Normal)
-                AudioManager.sharedInstance.setUpMICRecorder(soundFilePath)
-                AudioManager.sharedInstance.recordMIC()
-                micIsRecording = false
+                startRecording(soundFilePath)
             } else {
                 sender.setTitle("microphone", forState: .Normal)
-                AudioManager.sharedInstance.recordMIC()
-                micIsRecording = true
-                let soundFileURL = soundFilePath.path!
-
-                // If recording was succesfull: update audio inputs, else: alert user.
-                if contentsOfDirectoryAtPath(soundFileURL) {
-                        AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).caf")
-                        updateTableView()
-                    AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
-                } else {
-                    showMicFailedPopUp()
-                }
+                stopRecording(soundFilePath)
             }
         }
         changeColors(micIsRecording)
     }
     
+    func startRecording(path: NSURL) {
+        AudioManager.sharedInstance.setUpMICRecorder(path)
+        AudioManager.sharedInstance.recordMIC()
+        micIsRecording = false
+
+    }
+    
+    func stopRecording(path: NSURL) {
+        AudioManager.sharedInstance.recordMIC()
+        micIsRecording = true
+        let soundFileURL = path.path!
+        
+        // If recording was succesfull: update audio inputs, else: alert user.
+        if doesFileExist(soundFileURL) {
+            AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).caf")
+            updateTableView()
+            AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
+        } else {
+            showMicFailedPopUp()
+        }
+    }
+    
     // MARK: - Checking/updating/coloring
     
     /// Checks if file exists at specified path.
-    func contentsOfDirectoryAtPath(path: String) -> Bool {
+    func doesFileExist(path: String) -> Bool {
         let fileManager = NSFileManager.defaultManager()
         return fileManager.fileExistsAtPath(path)
     }
@@ -298,6 +304,13 @@ class MasterViewController: UITableViewController {
         micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
             micAlert .dismissViewControllerAnimated(true, completion: nil)}))
         presentViewController(micAlert, animated: true, completion: nil)
+    }
+    
+    func showSoundConstraintPopUp() {
+        let soundConstraintAlert = UIAlertController(title: "t o o o o o o o o o o  m u c h", message: "we need to keep the number of mic recordings limited", preferredStyle: UIAlertControllerStyle.Alert)
+        soundConstraintAlert.addAction(UIAlertAction(title: "😮 🚮 😮", style: .Default, handler: { (action: UIAlertAction!) in
+            soundConstraintAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(soundConstraintAlert, animated: true, completion: nil)
     }
 }
 
