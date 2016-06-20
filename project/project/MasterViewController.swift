@@ -204,28 +204,40 @@ class MasterViewController: UITableViewController {
     // MARK: - Microphone recorder
     
     @IBAction func micRecorder(sender: AnyObject) {
-        let soundFilePath = AudioManager.sharedInstance.setPath("MIC")
-        if micIsRecording {
-            AudioManager.sharedInstance.setUpMICRecorder(soundFilePath)
-            AudioManager.sharedInstance.recordMIC()
-            micIsRecording = false
+        
+        let maxAllowedSounds = 10
+        
+        if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
+            let soundConstraintAlert = UIAlertController(title: "t o o o o o o o o o o  m u c h", message: "we need to keep the number of mic recordings limited", preferredStyle: UIAlertControllerStyle.Alert)
+            soundConstraintAlert.addAction(UIAlertAction(title: "😮 🚮 😮", style: .Default, handler: { (action: UIAlertAction!) in
+                soundConstraintAlert .dismissViewControllerAnimated(true, completion: nil)}))
+            presentViewController(soundConstraintAlert, animated: true, completion: nil)
         } else {
-            AudioManager.sharedInstance.recordMIC()
-            micIsRecording = true
-            let soundFileURL = soundFilePath.path!
+            let soundFilePath = AudioManager.sharedInstance.setPath("MIC")
+            if micIsRecording {
+                sender.setTitle("stop recording", forState: .Normal)
+                AudioManager.sharedInstance.setUpMICRecorder(soundFilePath)
+                AudioManager.sharedInstance.recordMIC()
+                micIsRecording = false
+            } else {
+                sender.setTitle("microphone", forState: .Normal)
+                AudioManager.sharedInstance.recordMIC()
+                micIsRecording = true
+                let soundFileURL = soundFilePath.path!
 
-            // If recording was succesfull: update audio inputs, else: alert user.
-            if contentsOfDirectoryAtPath(soundFileURL) {
-//                if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
-                    AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).wav")
-                    updateTableView()
-//                }
-                AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
-            } else { // MOVE BELOW TO SEPERATE FUNCTION SO OUTPUTRECORDER CAN ALSO USE IT ... SHARING = CARING
-                let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
-                micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
-                    micAlert .dismissViewControllerAnimated(true, completion: nil)}))
-                presentViewController(micAlert, animated: true, completion: nil)
+                // If recording was succesfull: update audio inputs, else: alert user.
+                if contentsOfDirectoryAtPath(soundFileURL) {
+    //                if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
+                        AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).wav")
+                        updateTableView()
+    //                }
+                    AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
+                } else { // MOVE BELOW TO SEPERATE FUNCTION SO OUTPUTRECORDER CAN ALSO USE IT ... SHARING = CARING
+                    let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
+                    micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
+                        micAlert .dismissViewControllerAnimated(true, completion: nil)}))
+                    presentViewController(micAlert, animated: true, completion: nil)
+                }
             }
         }
         changeColors(micIsRecording)

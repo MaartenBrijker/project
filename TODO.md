@@ -24,11 +24,25 @@ def (less urgent):
  - move upload function to audiomanager
  - make sure user fills in correct info when uploading!!!!!
  - move error message to seperate function
+ - make file header / class header / comments
+ - make reference to dropbox for stealing their code
 
 optionally optional:
  - get a developer account for releasing the app?
  - convert files to m4a ????
  - NSNotification center?
+
+# LAST WEEK
+ - fix comments
+ - fix error messages (internet/upload/recording successful (file storage??))
+ - DROPBOX CHECK ON DIFFERENT DEVICE
+ - fix references
+ - update README + DESIGN
+ - fix layout (constraints etc)
+ - move dropbox code to audiomanager ?????
+ - move hardcoded strings to seperate variables !!!! !!!!
+ - check app on device
+ - check whether audio works smoothly when app gets bigger
 
 
 # thrash

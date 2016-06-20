@@ -12,7 +12,8 @@ import AVFoundation
 class AudioManager {
    
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
-    
+    let initialAmountOfSounds = 6
+
     // MARK: - initializing the audio processors
     
     var player: AKAudioPlayer?

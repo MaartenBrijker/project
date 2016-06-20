@@ -44,6 +44,13 @@ Sometimes its better to clear one's mind by finishing up other projects. Had bee
 Fixed that dropbox doesn't need a login anymore together with Emma. Also looked on conversion methods in order to change the .caf into a more widely used format. Didn't succed fully however...
 
 # DAY 3|5
+beta version submitted, but still some stuff need to be implemented. Working on in the weekend.
+
+# DAY 3|6
+
+# DAY 3|7
+
+
 # DAY 4|1
 # DAY 4|2
 # DAY 4|3
