@@ -3,7 +3,8 @@
 def:
  - mute other sounds when user is recording?
  - set image in cells
- - make sure user isn't allowed to press too much on space button
+ - make sure user doesn't use invalid (like "/") characters when uploading!
+ - data handling
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded
@@ -15,18 +16,17 @@ optional:
 
 
 def (less urgent):
- - implement automate button better (+ think of a better name)
- - set effect back to pre-automate value after its done
  - check views on different devices
  - MAKE SURE RECORDINGS STAY UNDER 150 MB>>>!??
  - delete recording from phone after it has been uploaded.
  - update DESIGN.doc + README.md
  - delete "EDIT" button
- - move upload function to audiomanager
+ - move upload function to audiomanager?
  - make sure user fills in correct info when uploading!!!!!
  - move error message to seperate function
  - make file header / class header / comments
  - make reference to dropbox for stealing their code
+ - put alert messages in function
 
 optionally optional:
  - get a developer account for releasing the app?

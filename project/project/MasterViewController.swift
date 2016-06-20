@@ -132,30 +132,53 @@ class MasterViewController: UITableViewController {
         // Verify user is logged into Dropbox
         let client = clienttest
         
-        // Get the current user's account info
-        client!.users.getCurrentAccount().response { response, error in
-            print("*** Get current account ***")
-            if let account = response {
-                print("Hello \(account.name.givenName)!")
+//        // Get the current user's account info
+//        client!.users.getCurrentAccount().response { response, error in
+//            print("*** Get current account ***")
+//            if let account = response {
+//                print("Hello \(account.name.givenName)!")
+//            } else {
+//                print(error!)
+//            }
+//        }
+        
+        // Set directory.
+        let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
+        let soundFileURL = soundFilePath.path!
+        
+        // Get contents at path.
+        let fileManager = NSFileManager.defaultManager()
+        let datadata = fileManager.contentsAtPath(soundFileURL)
+        
+        // UPLOAD FILE.
+        if datadata != nil {
+            let dropBoxpath = "/\(artistName)_\(trackTitle)_\(email).caf"
+            client!.files.upload(path: "/\(artistName)_\(trackTitle)_\(email).caf", body: datadata!)
+            
+            // TODO ---- Let user know, upload was succesfull, alertmessage.
+            print(checkUploadSuccess(client!, uploadedFileName: dropBoxpath))
+        }
+        
+    }
+    
+    func checkUploadSuccess(client: DropboxClient, uploadedFileName: String) -> Bool {
+        // List folder
+        var uploadSuccessful = false
+        client.files.listFolder(path: "").response { response, error in
+            print("*** List folder ***")
+            if let result = response {
+                print("Folder contents:")
+                for entry in result.entries {
+                    print(entry.name)
+                    if entry.name == uploadedFileName {
+                        uploadSuccessful = true
+                    }
+                }
             } else {
                 print(error!)
             }
-            
-            // Set directory
-            let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
-            let soundFileURL = soundFilePath.path!
-            
-            // Get contents at path
-            let fileManager = NSFileManager.defaultManager()
-            let datadata = fileManager.contentsAtPath(soundFileURL)
-            
-            // UPLOAD FILE.
-            if datadata != nil {
-                client!.files.upload(path: "/\(artistName)_\(trackTitle)_\(email).caf", body: datadata!)
-                
-                // TODO ---- Let user know, upload was succesfull, alertmessage.
-            }
         }
+        return uploadSuccessful
     }
     
     // MARK: - Recording button
@@ -309,7 +332,7 @@ class MasterViewController: UITableViewController {
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(artistName) -> Void in artistName.placeholder = "<artist name>"}
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(trackTitle) -> Void in trackTitle.placeholder = "<track title>"}
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(email) -> Void in email.placeholder = "<email (optional)>"}
-        getUserInfoAlert.addAction(UIAlertAction(title: "🎇", style: .Default, handler: { (action: UIAlertAction!) in
+        getUserInfoAlert.addAction(UIAlertAction(title: "⬇⬇⬇", style: .Default, handler: { (action: UIAlertAction!) in
             getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
         getUserInfoAlert.addAction(UIAlertAction(title: "🎆🆙🎆", style: .Default, handler: { (action: UIAlertAction!) in
             self.uploadingFile(getUserInfoAlert.textFields!)

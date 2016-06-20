@@ -88,11 +88,6 @@ class DetailViewController: UIViewController {
     @IBAction func startStopButton(sender: AnyObject) {
         if detailItem != nil {
             AudioManager.sharedInstance.playAudio(detailItem as! String)
-//            if sender.currentTitle == "start playing" {
-//                sender.setTitle("stop playing", forState: .Normal)
-//            } else {
-//                sender.setTitle("start playing", forState: .Normal)
-//            }
             if player!.isPlaying {
                 sender.setTitle("stop playing", forState: .Normal)
                 UIView.animateWithDuration(0.7, animations: {
