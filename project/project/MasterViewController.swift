@@ -161,22 +161,22 @@ class MasterViewController: UITableViewController {
         }
     }
     
-//    /// Doesnt work as expected, prob deleting this function
-//    func convertFileToExtension(dataURL: String, path: String) -> String{
-//        // Conversion path to write to
-//        let changedExtension = path.stringByReplacingOccurrencesOfString(".caf", withString: ".wav", options: NSStringCompareOptions.LiteralSearch, range: nil)
-//
-//        // GET DATA from old .caf file
-//        let dataURL = NSURL(fileURLWithPath: dataURL)
-//        let soundData = NSData(contentsOfURL: dataURL)
-//
-//        // Write Data to new .wav file
-//        if soundData != nil {
-//            soundData?.writeToFile(changedExtension, atomically: true)
-//            print("not nil", changedExtension)
-//        }
-//        return changedExtension
-//    }
+    /// Doesnt work as expected, prob deleting this function
+    func convertFileToExtension(dataURL: String, path: String) -> String{
+        // Conversion path to write to
+        let changedExtension = path.stringByReplacingOccurrencesOfString(".caf", withString: ".wav", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+        // GET DATA from old .caf file
+        let dataURL = NSURL(fileURLWithPath: dataURL)
+        let soundData = NSData(contentsOfURL: dataURL)
+
+        // Write Data to new .wav file
+        if soundData != nil {
+            soundData?.writeToFile(changedExtension, atomically: true)
+            print("not nil", changedExtension)
+        }
+        return changedExtension
+    }
     
     // MARK: - Recording button
 
