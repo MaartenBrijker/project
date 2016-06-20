@@ -18,11 +18,13 @@ class MasterViewController: UITableViewController {
     var starter = true
     var micIsRecording = true
     
+    var progressAlert: UIAlertController?
+    
     var clienttest: DropboxClient?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         sounds = AudioManager.sharedInstance.sounds
 
         // Set up mixer sounds with effects and connect mixer channels.
@@ -132,16 +134,6 @@ class MasterViewController: UITableViewController {
         // Verify user is logged into Dropbox
         let client = clienttest
         
-//        // Get the current user's account info
-//        client!.users.getCurrentAccount().response { response, error in
-//            print("*** Get current account ***")
-//            if let account = response {
-//                print("Hello \(account.name.givenName)!")
-//            } else {
-//                print(error!)
-//            }
-//        }
-        
         // Set directory.
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
         let soundFileURL = soundFilePath.path!
@@ -152,13 +144,31 @@ class MasterViewController: UITableViewController {
         
         // UPLOAD FILE.
         if datadata != nil {
-            let dropBoxpath = "/\(artistName)_\(trackTitle)_\(email).caf"
-            client!.files.upload(path: "/\(artistName)_\(trackTitle)_\(email).caf", body: datadata!)
+            let dropBoxpath = "\(artistName)_\(trackTitle)_\(email).caf"
+            let success = client!.files.upload(path: "/\(dropBoxpath)", body: datadata!)
             
-            // TODO ---- Let user know, upload was succesfull, alertmessage.
-            print(checkUploadSuccess(client!, uploadedFileName: dropBoxpath))
+            // Closure checking uploading progress.
+            success.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            
+                // Displaying percent that has been uploaded.
+                let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
+                self.showProgressPopUp(100.0 * amountDone)
+                
+                // Check whether upload was successful.
+                if totalBytesRead == totalBytesExpectedToRead {
+                    print("")
+                    print(dropBoxpath)
+                    
+//                    print(self.checkUploadSuccess(client!, uploadedFileName: dropBoxPath))
+                    
+                    if !self.checkUploadSuccess(client!, uploadedFileName: dropBoxpath) {
+                        self.showUploadFailedPopUp()
+                    } else {
+                        // show succes pop up
+                    }
+                }
+            }
         }
-        
     }
     
     func checkUploadSuccess(client: DropboxClient, uploadedFileName: String) -> Bool {
@@ -169,8 +179,9 @@ class MasterViewController: UITableViewController {
             if let result = response {
                 print("Folder contents:")
                 for entry in result.entries {
-                    print(entry.name)
+                    print(entry.name, uploadedFileName)
                     if entry.name == uploadedFileName {
+                        print("GOT HIM")
                         uploadSuccessful = true
                     }
                 }
@@ -302,6 +313,20 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Pop Up Screens
     
+    func showProgressPopUp(amountDone: Float) {
+        progressAlert = UIAlertController(title: "uploading...", message: "\(amountDone)%", preferredStyle: UIAlertControllerStyle.Alert)
+        presentViewController(progressAlert!, animated: true, completion: {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
+    
+    func showUploadFailedPopUp() {
+        let failedUploadAlert = UIAlertController(title: "E R R O R", message: "upload was unsuccessful... pls try again, maybe check ur internet connection?", preferredStyle: UIAlertControllerStyle.Alert)
+        failedUploadAlert.addAction(UIAlertAction(title: "🆗", style: .Default, handler: { (action: UIAlertAction!) in
+            failedUploadAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(failedUploadAlert, animated: true, completion: nil)
+    }
+    
     func showStopRecPopUp() {
         let plsStopRecAlert = UIAlertController(title: "E R R O R", message: "pls stop recording before u try to upload something", preferredStyle: UIAlertControllerStyle.Alert)
         plsStopRecAlert.addAction(UIAlertAction(title: "ON IT!", style: .Default, handler: { (action: UIAlertAction!) in
@@ -332,9 +357,9 @@ class MasterViewController: UITableViewController {
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(artistName) -> Void in artistName.placeholder = "<artist name>"}
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(trackTitle) -> Void in trackTitle.placeholder = "<track title>"}
         getUserInfoAlert.addTextFieldWithConfigurationHandler {(email) -> Void in email.placeholder = "<email (optional)>"}
-        getUserInfoAlert.addAction(UIAlertAction(title: "⬇⬇⬇", style: .Default, handler: { (action: UIAlertAction!) in
+        getUserInfoAlert.addAction(UIAlertAction(title: "↩", style: .Default, handler: { (action: UIAlertAction!) in
             getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        getUserInfoAlert.addAction(UIAlertAction(title: "🎆🆙🎆", style: .Default, handler: { (action: UIAlertAction!) in
+        getUserInfoAlert.addAction(UIAlertAction(title: "🆙", style: .Default, handler: { (action: UIAlertAction!) in
             self.uploadingFile(getUserInfoAlert.textFields!)
         }))
         
@@ -351,7 +376,7 @@ class MasterViewController: UITableViewController {
     
     func showSoundConstraintPopUp() {
         let soundConstraintAlert = UIAlertController(title: "t o o o o o o o o o o  m u c h", message: "we need to keep the number of mic recordings limited", preferredStyle: UIAlertControllerStyle.Alert)
-        soundConstraintAlert.addAction(UIAlertAction(title: "😮 🚮 😮", style: .Default, handler: { (action: UIAlertAction!) in
+        soundConstraintAlert.addAction(UIAlertAction(title: "🚮", style: .Default, handler: { (action: UIAlertAction!) in
             soundConstraintAlert .dismissViewControllerAnimated(true, completion: nil)}))
         presentViewController(soundConstraintAlert, animated: true, completion: nil)
     }
