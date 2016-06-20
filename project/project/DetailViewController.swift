@@ -12,6 +12,9 @@ import AudioKit
 class DetailViewController: UIViewController {
     var timer: NSTimer!
 
+    var preValue: Float?
+    var spacingIsOn = false
+    
     var sounds = AudioManager.sharedInstance.sounds
 
     var started = false
@@ -99,7 +102,6 @@ class DetailViewController: UIViewController {
                 sender.setTitle("start playing", forState: .Normal)
                 self.view.backgroundColor = UIColor.whiteColor()
             }
-
         }
     }
     
@@ -116,22 +118,23 @@ class DetailViewController: UIViewController {
 //        let secondval = Float(Float(value) * 0.01)
 //        AudioManager.sharedInstance.changeReverb(self.detailItem! as! String, level: secondval)
 //        self.reverbLevel.setValue(secondval, animated: true)
-
-        print("value = ", value)
     }
 
-    func stopTimer () {
-      self.timer.invalidate()
+    func stopTimer() {
+        self.timer.invalidate()
+        self.filterLevel.setValue(preValue!, animated: true)
+        AudioManager.sharedInstance.changeFilter(self.detailItem! as! String, level: preValue!)
+        spacingIsOn = false
     }
     
     @IBAction func automateEffect(sender: AnyObject) {
-        if detailItem != nil {
-            
+        if detailItem != nil && !spacingIsOn {
+            // Set value of filter before using the space wave.
+            preValue = self.filterLevel.value
             var stopTimer: NSTimer
-
             timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: #selector(DetailViewController.delaying), userInfo: nil, repeats: true)
-            
             stopTimer = NSTimer.scheduledTimerWithTimeInterval (3, target: self, selector: #selector(DetailViewController.stopTimer), userInfo: nil, repeats: false)
+            spacingIsOn = true
         }
     }
 }

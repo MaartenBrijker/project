@@ -1,9 +1,9 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
 def:
- - mute other sounds when users is recording?
+ - mute other sounds when user is recording?
  - set image in cells
-- make sure user isn;t allowed to press too much on space button
+ - make sure user isn't allowed to press too much on space button
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded
