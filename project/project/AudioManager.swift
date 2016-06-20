@@ -12,7 +12,6 @@ import AVFoundation
 class AudioManager {
    
     var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
-    let initialAmountOfSounds = 6
 
     // MARK: - initializing the audio processors
     
@@ -77,7 +76,7 @@ class AudioManager {
                 let withoutPlaceHolder = filePlaceHolder!.stringByReplacingOccurrencesOfString("placeholder.wav", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
                 // Make new path
-                let newFilePath = withoutPlaceHolder + "MICrecording\(micNr).wav"
+                let newFilePath = withoutPlaceHolder + "MICrecording\(micNr).caf"
                 
                 // Get Data of Mic recording.
                 let soundFilePath = setPath("MIC")

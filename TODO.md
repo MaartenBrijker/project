@@ -1,15 +1,18 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
 def:
- - let main table get titles from audiofiles instead of hardcoded
  - mute other sounds when users is recording?
  - set image in cells
+- make sure user isn;t allowed to press too much on space button
 
 optional:
+ - let main table get titles from audiofiles instead of hardcoded
  - pitch —> only allowed to shift int steps
  - pitch —> graphically showing this
  - fix a launch screen
  - update audio files
+ - add two other implement buttons
+
 
 def (less urgent):
  - implement automate button better (+ think of a better name)
@@ -19,8 +22,6 @@ def (less urgent):
  - delete recording from phone after it has been uploaded.
  - update DESIGN.doc + README.md
  - delete "EDIT" button
- - automate function knob for every button
- - make screen red when recording!
  - move upload function to audiomanager
  - make sure user fills in correct info when uploading!!!!!
  - move error message to seperate function

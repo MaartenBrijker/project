@@ -43,7 +43,8 @@ class DetailViewController: UIViewController {
             
             if player!.isStarted {
                 started = true
-                self.starttopButton.setTitle("stop playing", forState: .Normal)
+                self.startStopButton.setTitle("stop playing", forState: .Normal)
+                self.view.backgroundColor = UIColor.cyanColor()
             }
         }
     }
@@ -80,7 +81,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var starttopButton: UIButton!
+    @IBOutlet weak var startStopButton: UIButton!
     @IBAction func startStopButton(sender: AnyObject) {
         if detailItem != nil {
             AudioManager.sharedInstance.playAudio(detailItem as! String)
@@ -91,8 +92,12 @@ class DetailViewController: UIViewController {
 //            }
             if player!.isPlaying {
                 sender.setTitle("stop playing", forState: .Normal)
+                UIView.animateWithDuration(0.7, animations: {
+                    self.view.backgroundColor = UIColor.cyanColor()
+                })
             } else {
                 sender.setTitle("start playing", forState: .Normal)
+                self.view.backgroundColor = UIColor.whiteColor()
             }
 
         }

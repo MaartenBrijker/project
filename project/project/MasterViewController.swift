@@ -94,31 +94,27 @@ class MasterViewController: UITableViewController {
     
     @IBAction func uploadButton(sender: AnyObject) {
         
-        // Pop up alert message, asking user for input, thereafter move on to upload function.
-        showPopUp()
-
+        // Set directory
+        let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
+        let soundFileURL = soundFilePath.path!
+        
+        // Get contents at path
+        let fileManager = NSFileManager.defaultManager()
+        let datadata = fileManager.contentsAtPath(soundFileURL)
+        
+        // TODO ---- show alert error message if there isn't a recording file
+        if datadata == nil {
+            showNoRecPopUp()
+        } else if micIsRecording || starter {
+            showStopRecPopUp()
+        } else {
+            // Pop up alert message, asking user for input, thereafter move on to upload function.
+            showUploadPopUp()
+        }
     }
     
+    /// Required a function for uploadingFile (function), should be able to delete this later. TODO!
     func tryout() {
-    }
-    
-    func showPopUp() {
-        
-        // Initiate alert.
-        let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
-
-        // Add text fields and button.
-        getUserInfoAlert.addTextFieldWithConfigurationHandler {(artistName) -> Void in artistName.placeholder = "<artist name>"}
-        getUserInfoAlert.addTextFieldWithConfigurationHandler {(trackTitle) -> Void in trackTitle.placeholder = "<track title>"}
-        getUserInfoAlert.addTextFieldWithConfigurationHandler {(email) -> Void in email.placeholder = "<email (optional)>"}
-        getUserInfoAlert.addAction(UIAlertAction(title: "🎇", style: .Default, handler: { (action: UIAlertAction!) in
-            getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        getUserInfoAlert.addAction(UIAlertAction(title: "🎆🆙🎆", style: .Default, handler: { (action: UIAlertAction!) in
-            self.uploadingFile(getUserInfoAlert.textFields!)
-        }))
-        
-        // Present alert.
-        presentViewController(getUserInfoAlert, animated: true, completion: nil)
     }
     
     func uploadingFile(userData: Array<UITextField>) {
@@ -146,22 +142,15 @@ class MasterViewController: UITableViewController {
             let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
             let soundFileURL = soundFilePath.path!
 
+            // TODO ---- show alert error message if there isn't a recording file
+            
+            // TODO ---- convert file to WAV
+//            let wavPath = self.convertFileToExtension(soundFileURL, path: String(soundFileURL))
             
             // Get contents at path
             let fileManager = NSFileManager.defaultManager()
             let datadata = fileManager.contentsAtPath(soundFileURL)
-            
-            // TODO ---- show alert error message if there isn't a recording file
-            
-            // TODO ---- convert file to m4a?
-            
-            let asset = AVAsset(URL: NSURL(fileURLWithPath: soundFileURL))
-            let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
-            session!.outputURL = NSURL(string: soundFileURL)
-            session!.directoryForTemporaryFiles = session!.outputURL
-            session!.outputFileType = AVFileTypeAppleM4A
-            print(session!.estimatedOutputFileLength)
-            session!.exportAsynchronouslyWithCompletionHandler(self.tryout)
+//            let datadata = fileManager.contentsAtPath(wavPath)
             
             // UPLOAD FILE.
             if datadata != nil {
@@ -172,26 +161,31 @@ class MasterViewController: UITableViewController {
         }
     }
     
-//    func setPath(recordingType: String) -> NSURL {
-//        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-//        let docsDir = NSURL(fileURLWithPath: dirPaths[0])
-//        var soundFilePath = docsDir.URLByAppendingPathComponent("MICrecording.caf")
-//        if recordingType == "OUTPUT" {
-//            soundFilePath = docsDir.URLByAppendingPathComponent("OUTPUTrecording.caf")
-//        }
-//        return soundFilePath
-//    }
+    /// Doesnt work as expected, prob deleting this function
+    func convertFileToExtension(dataURL: String, path: String) -> String{
+        // Conversion path to write to
+        let changedExtension = path.stringByReplacingOccurrencesOfString(".caf", withString: ".wav", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+        // GET DATA from old .caf file
+        let dataURL = NSURL(fileURLWithPath: dataURL)
+        let soundData = NSData(contentsOfURL: dataURL)
+
+        // Write Data to new .wav file
+        if soundData != nil {
+            soundData?.writeToFile(changedExtension, atomically: true)
+            print("not nil", changedExtension)
+        }
+        return changedExtension
+    }
     
     // MARK: - Recording button
 
     @IBAction func recordButton(sender: AnyObject) {
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
-        
-        if starter == true {
+        if starter {
             AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
-            
             starter = false
         } else {
             AudioManager.sharedInstance.recordOUTPUT()
@@ -204,9 +198,7 @@ class MasterViewController: UITableViewController {
     // MARK: - Microphone recorder
     
     @IBAction func micRecorder(sender: AnyObject) {
-        
         let maxAllowedSounds = 10
-        
         if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
             let soundConstraintAlert = UIAlertController(title: "t o o o o o o o o o o  m u c h", message: "we need to keep the number of mic recordings limited", preferredStyle: UIAlertControllerStyle.Alert)
             soundConstraintAlert.addAction(UIAlertAction(title: "😮 🚮 😮", style: .Default, handler: { (action: UIAlertAction!) in
@@ -227,21 +219,18 @@ class MasterViewController: UITableViewController {
 
                 // If recording was succesfull: update audio inputs, else: alert user.
                 if contentsOfDirectoryAtPath(soundFileURL) {
-    //                if AudioManager.sharedInstance.sounds.last != "MICrecording.caf" {
-                        AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).wav")
+                        AudioManager.sharedInstance.sounds.append("MICrecording\(sounds!.count).caf")
                         updateTableView()
-    //                }
                     AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
-                } else { // MOVE BELOW TO SEPERATE FUNCTION SO OUTPUTRECORDER CAN ALSO USE IT ... SHARING = CARING
-                    let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
-                    micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
-                        micAlert .dismissViewControllerAnimated(true, completion: nil)}))
-                    presentViewController(micAlert, animated: true, completion: nil)
+                } else {
+                    showMicFailedPopUp()
                 }
             }
         }
         changeColors(micIsRecording)
     }
+    
+    // MARK: - Checking/updating/coloring
     
     /// Checks if file exists at specified path.
     func contentsOfDirectoryAtPath(path: String) -> Bool {
@@ -266,6 +255,49 @@ class MasterViewController: UITableViewController {
                 self.view.backgroundColor = UIColor.redColor()
             })
         }
+    }
+    
+    // MARK: - Pop Up Screens
+    
+    func showStopRecPopUp() {
+        let plsStopRecAlert = UIAlertController(title: "E R R O R", message: "pls stop recording before u try to upload something", preferredStyle: UIAlertControllerStyle.Alert)
+        plsStopRecAlert.addAction(UIAlertAction(title: "ON IT!", style: .Default, handler: { (action: UIAlertAction!) in
+            plsStopRecAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(plsStopRecAlert, animated: true, completion: nil)
+        
+    }
+    
+    func showNoRecPopUp() {
+        let noRecFileAlert = UIAlertController(title: "E R R O R", message: "pls make a audiorecording before u try to upload something", preferredStyle: UIAlertControllerStyle.Alert)
+        noRecFileAlert.addAction(UIAlertAction(title: "OK LETS DO THIS!", style: .Default, handler: { (action: UIAlertAction!) in
+            noRecFileAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(noRecFileAlert, animated: true, completion: nil)
+    }
+    
+    func showUploadPopUp() {
+        
+        // Initiate alert.
+        let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        // Add text fields and button.
+        getUserInfoAlert.addTextFieldWithConfigurationHandler {(artistName) -> Void in artistName.placeholder = "<artist name>"}
+        getUserInfoAlert.addTextFieldWithConfigurationHandler {(trackTitle) -> Void in trackTitle.placeholder = "<track title>"}
+        getUserInfoAlert.addTextFieldWithConfigurationHandler {(email) -> Void in email.placeholder = "<email (optional)>"}
+        getUserInfoAlert.addAction(UIAlertAction(title: "🎇", style: .Default, handler: { (action: UIAlertAction!) in
+            getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        getUserInfoAlert.addAction(UIAlertAction(title: "🎆🆙🎆", style: .Default, handler: { (action: UIAlertAction!) in
+            self.uploadingFile(getUserInfoAlert.textFields!)
+        }))
+        
+        // Present alert.
+        presentViewController(getUserInfoAlert, animated: true, completion: nil)
+    }
+    
+    func showMicFailedPopUp() {
+        let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
+        micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
+            micAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(micAlert, animated: true, completion: nil)
     }
 }
 
