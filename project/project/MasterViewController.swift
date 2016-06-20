@@ -4,7 +4,6 @@
 //
 //  Created by Maarten Brijker on 02/06/16.
 //  Copyright © 2016 Maarten_Brijker. All rights reserved.
-//
 
 import UIKit
 import AudioKit
@@ -102,10 +101,24 @@ class MasterViewController: UITableViewController {
         let fileManager = NSFileManager.defaultManager()
         let datadata = fileManager.contentsAtPath(soundFileURL)
         
+        // Get values of recorders states.
+        var micBool = AudioManager.sharedInstance.MICrecorder?.recording
+        var recBool = AudioManager.sharedInstance.OUTPUTrecorder?.isRecording
+        
+        // Check whether they are initialized. If not, set them to false.
+        if micBool == nil {
+            micBool = false
+        }
+        if recBool == nil {
+            print("inhere")
+            recBool = false
+        }
+        
         // TODO ---- show alert error message if there isn't a recording file
         if datadata == nil {
             showNoRecPopUp()
-        } else if micIsRecording || starter {
+        } else if micBool! || recBool! {
+            print(micBool)
             showStopRecPopUp()
         } else {
             // Pop up alert message, asking user for input, thereafter move on to upload function.
@@ -141,16 +154,10 @@ class MasterViewController: UITableViewController {
             // Set directory
             let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
             let soundFileURL = soundFilePath.path!
-
-            // TODO ---- show alert error message if there isn't a recording file
-            
-            // TODO ---- convert file to WAV
-//            let wavPath = self.convertFileToExtension(soundFileURL, path: String(soundFileURL))
             
             // Get contents at path
             let fileManager = NSFileManager.defaultManager()
             let datadata = fileManager.contentsAtPath(soundFileURL)
-//            let datadata = fileManager.contentsAtPath(wavPath)
             
             // UPLOAD FILE.
             if datadata != nil {
@@ -161,28 +168,23 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    /// Doesnt work as expected, prob deleting this function
-    func convertFileToExtension(dataURL: String, path: String) -> String{
-        // Conversion path to write to
-        let changedExtension = path.stringByReplacingOccurrencesOfString(".caf", withString: ".wav", options: NSStringCompareOptions.LiteralSearch, range: nil)
-
-        // GET DATA from old .caf file
-        let dataURL = NSURL(fileURLWithPath: dataURL)
-        let soundData = NSData(contentsOfURL: dataURL)
-
-        // Write Data to new .wav file
-        if soundData != nil {
-            soundData?.writeToFile(changedExtension, atomically: true)
-            print("not nil", changedExtension)
-        }
-        return changedExtension
-    }
-    
     // MARK: - Recording button
 
     @IBAction func recordButton(sender: AnyObject) {
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
-        if starter {
+        
+        // Get values of recorders states.
+        var micBool = AudioManager.sharedInstance.MICrecorder?.recording
+        
+        // Check whether they are initialized. If not, set them to false.
+        if micBool == nil {
+            micBool = false
+        }
+        
+        // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
+        if micBool == true {
+            showMultipleRecPopUp()
+        } else if starter {
             AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
@@ -199,29 +201,40 @@ class MasterViewController: UITableViewController {
     
     @IBAction func micRecorder(sender: AnyObject) {
         let maxAllowedSounds = 10
-        if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
+        
+        // Get values of recorders states.
+        var recBool = AudioManager.sharedInstance.OUTPUTrecorder?.isRecording
+        
+        if recBool == nil {
+            recBool = false
+        }
+        
+        // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
+        if recBool == true {
+            showMultipleRecPopUp()
+        } else if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
             showSoundConstraintPopUp()
         } else {
             let soundFilePath = AudioManager.sharedInstance.setPath("MIC")
             if micIsRecording {
                 sender.setTitle("stop recording", forState: .Normal)
-                startRecording(soundFilePath)
+                startMicRecording(soundFilePath)
             } else {
                 sender.setTitle("microphone", forState: .Normal)
-                stopRecording(soundFilePath)
+                stopMicRecording(soundFilePath)
             }
+            changeColors(micIsRecording)
         }
-        changeColors(micIsRecording)
     }
     
-    func startRecording(path: NSURL) {
+    func startMicRecording(path: NSURL) {
         AudioManager.sharedInstance.setUpMICRecorder(path)
         AudioManager.sharedInstance.recordMIC()
         micIsRecording = false
 
     }
     
-    func stopRecording(path: NSURL) {
+    func stopMicRecording(path: NSURL) {
         AudioManager.sharedInstance.recordMIC()
         micIsRecording = true
         let soundFileURL = path.path!
@@ -237,6 +250,10 @@ class MasterViewController: UITableViewController {
     }
     
     // MARK: - Checking/updating/coloring
+    
+    func checkRecordStatus(typeOfRec: String) {
+        
+    }
     
     /// Checks if file exists at specified path.
     func doesFileExist(path: String) -> Bool {
@@ -270,7 +287,13 @@ class MasterViewController: UITableViewController {
         plsStopRecAlert.addAction(UIAlertAction(title: "ON IT!", style: .Default, handler: { (action: UIAlertAction!) in
             plsStopRecAlert .dismissViewControllerAnimated(true, completion: nil)}))
         presentViewController(plsStopRecAlert, animated: true, completion: nil)
-        
+    }
+    
+    func showMultipleRecPopUp() {
+        let noMultipleRecsAlert = UIAlertController(title: "E R R O R", message: "ur trying to record mic and output at the same time, pls stop one of these", preferredStyle: UIAlertControllerStyle.Alert)
+        noMultipleRecsAlert.addAction(UIAlertAction(title: "ON IT!", style: .Default, handler: { (action: UIAlertAction!) in
+            noMultipleRecsAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(noMultipleRecsAlert, animated: true, completion: nil)
     }
     
     func showNoRecPopUp() {
@@ -300,7 +323,7 @@ class MasterViewController: UITableViewController {
     }
     
     func showMicFailedPopUp() {
-        let micAlert = UIAlertController(title: "error", message: "sorry your mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
+        let micAlert = UIAlertController(title: "error", message: "sorry ur mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
         micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
             micAlert .dismissViewControllerAnimated(true, completion: nil)}))
         presentViewController(micAlert, animated: true, completion: nil)
