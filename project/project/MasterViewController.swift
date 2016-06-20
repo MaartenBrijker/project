@@ -102,23 +102,13 @@ class MasterViewController: UITableViewController {
         let datadata = fileManager.contentsAtPath(soundFileURL)
         
         // Get values of recorders states.
-        var micBool = AudioManager.sharedInstance.MICrecorder?.recording
-        var recBool = AudioManager.sharedInstance.OUTPUTrecorder?.isRecording
+        let micBool = checkRecordStatus("MIC")
+        let outputBool = checkRecordStatus("OUTPUT")
         
-        // Check whether they are initialized. If not, set them to false.
-        if micBool == nil {
-            micBool = false
-        }
-        if recBool == nil {
-            print("inhere")
-            recBool = false
-        }
-        
-        // TODO ---- show alert error message if there isn't a recording file
+        // Show alert error message if there isn't a recording file or users is still recording.
         if datadata == nil {
             showNoRecPopUp()
-        } else if micBool! || recBool! {
-            print(micBool)
+        } else if micBool || outputBool {
             showStopRecPopUp()
         } else {
             // Pop up alert message, asking user for input, thereafter move on to upload function.
@@ -174,12 +164,7 @@ class MasterViewController: UITableViewController {
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
         
         // Get values of recorders states.
-        var micBool = AudioManager.sharedInstance.MICrecorder?.recording
-        
-        // Check whether they are initialized. If not, set them to false.
-        if micBool == nil {
-            micBool = false
-        }
+        let micBool = checkRecordStatus("MIC")
         
         // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
         if micBool == true {
@@ -189,12 +174,13 @@ class MasterViewController: UITableViewController {
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
             starter = false
+            changeColors(starter)
         } else {
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("start recording", forState: .Normal)
             starter = true
+            changeColors(starter)
         }
-        changeColors(starter)
     }
     
     // MARK: - Microphone recorder
@@ -203,14 +189,10 @@ class MasterViewController: UITableViewController {
         let maxAllowedSounds = 10
         
         // Get values of recorders states.
-        var recBool = AudioManager.sharedInstance.OUTPUTrecorder?.isRecording
-        
-        if recBool == nil {
-            recBool = false
-        }
+        let outputBool = checkRecordStatus("OUTPUT")
         
         // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
-        if recBool == true {
+        if outputBool == true {
             showMultipleRecPopUp()
         } else if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
             showSoundConstraintPopUp()
@@ -251,8 +233,23 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Checking/updating/coloring
     
-    func checkRecordStatus(typeOfRec: String) {
-        
+    func checkRecordStatus(typeOfRec: String) -> Bool {
+
+        // Get and return values of recorder state. If not initialized, set to false
+
+        if typeOfRec == "MIC" {
+            var micBool = AudioManager.sharedInstance.MICrecorder?.recording
+            if micBool == nil {
+                micBool = false
+            }
+            return micBool!
+        } else {
+            var outputBool = AudioManager.sharedInstance.OUTPUTrecorder?.isRecording
+            if outputBool == nil {
+                outputBool = false
+            }
+            return outputBool!
+        }
     }
     
     /// Checks if file exists at specified path.
