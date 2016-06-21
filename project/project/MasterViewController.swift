@@ -18,6 +18,10 @@ class MasterViewController: UITableViewController {
     var starter = true
     var micIsRecording = true
     
+    let maxKbPerSec = 1411.20       // bit rate per sec uncompressed
+    let maxBytePerSecond = 187500  // maxKbPerSec * kbps (0.0001333) with a bit of marge
+    
+    
     var progressAlert: UIAlertController?
     
     var clienttest: DropboxClient?
@@ -28,10 +32,6 @@ class MasterViewController: UITableViewController {
         self.title = "SOUNDS"
         
         sounds = AudioManager.sharedInstance.sounds
-        
-        let freeSpace = AudioManager.sharedInstance.deviceRemainingFreeSpaceInBytes()
-
-        print("freeSpace _________ ", freeSpace!)
         
         // Set up mixer sounds with effects and connect mixer channels.
         AudioManager.sharedInstance.setUpMixerChannels()
@@ -183,6 +183,8 @@ class MasterViewController: UITableViewController {
     }
         
     // MARK: - Recording button
+    
+    // TODO ---- move "else if" and "else" statements to seperate function
 
     @IBAction func recordButton(sender: AnyObject) {
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
@@ -194,6 +196,12 @@ class MasterViewController: UITableViewController {
         if micBool == true {
             showMultipleRecPopUp()
         } else if starter {
+            
+            //initiate time check function
+            checkBytesWrite("MIC")
+            
+            
+            // TODO move this to function
             AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
             AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("stop recording", forState: .Normal)
@@ -205,6 +213,14 @@ class MasterViewController: UITableViewController {
             starter = true
             changeColors(starter)
         }
+    }
+    
+    func startOutputRecording() {
+        
+    }
+    
+    func stopOutputRecording() {
+
     }
     
     // MARK: - Microphone recorder
@@ -256,6 +272,31 @@ class MasterViewController: UITableViewController {
     }
     
     // MARK: - Checking/updating/coloring
+    
+    func checkBytesWrite(tyPe: String) {
+        
+        let totalFreeSpaceInBytes = AudioManager.sharedInstance.deviceRemainingFreeSpaceInBytes()
+        print(totalFreeSpaceInBytes)
+        
+        let maxWritingTime = Float(totalFreeSpaceInBytes!) / Float(maxBytePerSecond)
+        print(maxWritingTime)
+        
+        // Stops the recording process if 90% of the free space on the device is taken.
+        NSTimer.scheduledTimerWithTimeInterval(Double(0.9 * maxWritingTime), target: self, selector: #selector(MasterViewController.gettingLowOnFreeSpace), userInfo: nil, repeats: false)
+    }
+    
+    func gettingLowOnFreeSpace(type: String) {
+        
+        print("chabi stopped")
+        
+        if type == "MIC" {
+//            stopMicRecording()
+        } else {
+//            stopOutputRecording()
+        }
+        
+        // TODO ---- alert user
+    }
     
     func checkRecordStatus(typeOfRec: String) -> Bool {
 

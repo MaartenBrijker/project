@@ -5,6 +5,7 @@ def:
  - set image in cells
  - make sure user doesn't use invalid (like "/") characters when uploading!
  - data handling (convert to GB, let recorder only record for pre specified time)
+ - check internet connection
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded
