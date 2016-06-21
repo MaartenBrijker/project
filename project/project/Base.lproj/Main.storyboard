@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -35,94 +34,94 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-2400" maxValue="2400" translatesAutoresizingMaskIntoConstraints="NO" id="w62-dx-feZ">
-                                <rect key="frame" x="-2" y="157" width="604" height="31"/>
+                                <rect key="frame" x="27" y="157" width="547" height="31"/>
                                 <connections>
                                     <action selector="pitchSlider:" destination="JEX-9P-axG" eventType="valueChanged" id="Hhy-Ka-tP0"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pitch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDi-VU-KTy">
-                                <rect key="frame" x="20" y="146" width="39" height="21"/>
+                                <rect key="frame" x="29" y="140" width="39" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1000" minValue="0.0" maxValue="2000" translatesAutoresizingMaskIntoConstraints="NO" id="sf1-XT-kcs">
-                                <rect key="frame" x="-2" y="226" width="604" height="31"/>
+                                <rect key="frame" x="27" y="226" width="547" height="31"/>
                                 <connections>
                                     <action selector="filterSlider:" destination="JEX-9P-axG" eventType="valueChanged" id="Mwn-LX-l8t"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGM-BS-oog">
-                                <rect key="frame" x="20" y="217" width="35" height="21"/>
+                                <rect key="frame" x="29" y="206" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-nC-WcG">
-                                <rect key="frame" x="-2" y="286" width="604" height="31"/>
+                                <rect key="frame" x="27" y="286" width="547" height="31"/>
                                 <connections>
                                     <action selector="reverbSlider:" destination="JEX-9P-axG" eventType="valueChanged" id="okY-NZ-6bk"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="reverb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYp-xJ-UTx">
-                                <rect key="frame" x="20" y="275" width="49" height="21"/>
+                                <rect key="frame" x="30" y="264" width="49" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0n-KG-9nY">
-                                <rect key="frame" x="20" y="335" width="56" height="21"/>
+                                <rect key="frame" x="29" y="329" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="a6g-Uk-ZJD">
-                                <rect key="frame" x="-2" y="347" width="604" height="31"/>
+                                <rect key="frame" x="27" y="347" width="547" height="31"/>
                                 <connections>
                                     <action selector="volumeSlider:" destination="JEX-9P-axG" eventType="valueChanged" id="QDu-JO-OHc"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcr-Rm-jHX">
-                                <rect key="frame" x="12" y="385" width="85" height="30"/>
-                                <state key="normal" title="start playing"/>
-                                <connections>
-                                    <action selector="startStopButton:" destination="JEX-9P-axG" eventType="touchUpInside" id="k5Z-Q2-aBL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-fp-ju4">
-                                <rect key="frame" x="118" y="385" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-fp-ju4">
+                                <rect key="frame" x="492" y="201" width="80" height="30"/>
                                 <state key="normal" title="space wave"/>
                                 <connections>
                                     <action selector="automateEffect:" destination="JEX-9P-axG" eventType="touchUpInside" id="omK-Wr-CYO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcr-Rm-jHX">
+                                <rect key="frame" x="258" y="385" width="85" height="30"/>
+                                <state key="normal" title="start playing"/>
+                                <connections>
+                                    <action selector="startStopButton:" destination="JEX-9P-axG" eventType="touchUpInside" id="k5Z-Q2-aBL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="w62-dx-feZ" firstAttribute="leading" secondItem="sf1-XT-kcs" secondAttribute="leading" id="Gw0-iR-iab"/>
-                            <constraint firstItem="yDi-VU-KTy" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="MJI-A4-BjJ"/>
-                            <constraint firstItem="NYp-xJ-UTx" firstAttribute="top" secondItem="EGM-BS-oog" secondAttribute="bottom" constant="37" id="Qfb-ep-tJC"/>
-                            <constraint firstItem="sf1-XT-kcs" firstAttribute="leading" secondItem="Zxd-nC-WcG" secondAttribute="leading" id="RMb-Mn-M4t"/>
-                            <constraint firstItem="hcr-Rm-jHX" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-8" id="TzK-v3-h9h"/>
-                            <constraint firstItem="J0n-KG-9nY" firstAttribute="top" secondItem="Zxd-nC-WcG" secondAttribute="bottom" constant="19" id="WQS-KJ-rRj"/>
-                            <constraint firstItem="Zxd-nC-WcG" firstAttribute="leading" secondItem="a6g-Uk-ZJD" secondAttribute="leading" id="Yo5-2s-2Gr"/>
-                            <constraint firstItem="NYp-xJ-UTx" firstAttribute="leading" secondItem="J0n-KG-9nY" secondAttribute="leading" id="a40-Sp-3mL"/>
-                            <constraint firstItem="EGM-BS-oog" firstAttribute="top" secondItem="yDi-VU-KTy" secondAttribute="bottom" constant="50" id="bzg-Yl-rg4"/>
-                            <constraint firstAttribute="trailing" secondItem="w62-dx-feZ" secondAttribute="trailing" id="fkz-bb-qRs"/>
-                            <constraint firstItem="hcr-Rm-jHX" firstAttribute="baseline" secondItem="9CE-fp-ju4" secondAttribute="baseline" id="gkb-Kw-bz7"/>
-                            <constraint firstItem="yDi-VU-KTy" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="82" id="iZC-lM-B6M"/>
-                            <constraint firstItem="Zxd-nC-WcG" firstAttribute="trailing" secondItem="a6g-Uk-ZJD" secondAttribute="trailing" id="jib-yb-3Cy"/>
-                            <constraint firstItem="9CE-fp-ju4" firstAttribute="leading" secondItem="hcr-Rm-jHX" secondAttribute="trailing" constant="28" id="k2X-JB-tjv"/>
-                            <constraint firstItem="yDi-VU-KTy" firstAttribute="leading" secondItem="EGM-BS-oog" secondAttribute="leading" id="kYj-JM-eGz"/>
-                            <constraint firstItem="EGM-BS-oog" firstAttribute="leading" secondItem="NYp-xJ-UTx" secondAttribute="leading" id="kvS-TC-jpF"/>
-                            <constraint firstItem="Zxd-nC-WcG" firstAttribute="top" secondItem="sf1-XT-kcs" secondAttribute="bottom" constant="30" id="mP7-OU-Hvg"/>
-                            <constraint firstItem="hcr-Rm-jHX" firstAttribute="top" secondItem="a6g-Uk-ZJD" secondAttribute="bottom" constant="8" symbolic="YES" id="mhU-dK-DOQ"/>
-                            <constraint firstItem="EGM-BS-oog" firstAttribute="top" secondItem="w62-dx-feZ" secondAttribute="bottom" constant="30" id="r24-Id-GHl"/>
-                            <constraint firstItem="NYp-xJ-UTx" firstAttribute="top" secondItem="sf1-XT-kcs" secondAttribute="bottom" constant="19" id="tOn-oN-b4c"/>
-                            <constraint firstItem="w62-dx-feZ" firstAttribute="trailing" secondItem="sf1-XT-kcs" secondAttribute="trailing" id="w3n-Fr-GJx"/>
-                            <constraint firstItem="hcr-Rm-jHX" firstAttribute="top" secondItem="J0n-KG-9nY" secondAttribute="bottom" constant="29" id="xbU-RA-Mcv"/>
-                            <constraint firstItem="sf1-XT-kcs" firstAttribute="trailing" secondItem="Zxd-nC-WcG" secondAttribute="trailing" id="yXU-on-feq"/>
-                            <constraint firstItem="w62-dx-feZ" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="zni-lH-Uom"/>
+                            <constraint firstItem="NYp-xJ-UTx" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="10" id="9XM-BR-ylQ"/>
+                            <constraint firstItem="9CE-fp-ju4" firstAttribute="trailing" secondItem="sf1-XT-kcs" secondAttribute="trailing" id="9yg-ko-cyB"/>
+                            <constraint firstItem="yDi-VU-KTy" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="9" id="Eta-iD-OGa"/>
+                            <constraint firstItem="EGM-BS-oog" firstAttribute="centerY" secondItem="9CE-fp-ju4" secondAttribute="centerY" id="I50-RA-FiS"/>
+                            <constraint firstItem="NYp-xJ-UTx" firstAttribute="top" secondItem="EGM-BS-oog" secondAttribute="bottom" constant="37" id="JCx-5g-htv"/>
+                            <constraint firstItem="J0n-KG-9nY" firstAttribute="top" secondItem="Zxd-nC-WcG" secondAttribute="bottom" constant="13" id="JeE-ix-Bgo"/>
+                            <constraint firstItem="hcr-Rm-jHX" firstAttribute="top" secondItem="a6g-Uk-ZJD" secondAttribute="bottom" constant="8" symbolic="YES" id="Jij-ci-C57"/>
+                            <constraint firstItem="w62-dx-feZ" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="XSd-H7-DDx"/>
+                            <constraint firstItem="yDi-VU-KTy" firstAttribute="leading" secondItem="w62-dx-feZ" secondAttribute="leading" id="Yqs-iF-cnf"/>
+                            <constraint firstItem="w62-dx-feZ" firstAttribute="leading" secondItem="EGM-BS-oog" secondAttribute="leading" id="bG5-jq-TMk"/>
+                            <constraint firstItem="Zxd-nC-WcG" firstAttribute="trailing" secondItem="a6g-Uk-ZJD" secondAttribute="trailing" id="bmg-uy-tjZ"/>
+                            <constraint firstItem="sf1-XT-kcs" firstAttribute="leading" secondItem="Zxd-nC-WcG" secondAttribute="leading" id="buE-AE-zJj"/>
+                            <constraint firstItem="9CE-fp-ju4" firstAttribute="top" secondItem="w62-dx-feZ" secondAttribute="bottom" constant="14" id="gpb-wP-VIm"/>
+                            <constraint firstItem="w62-dx-feZ" firstAttribute="trailing" secondItem="9CE-fp-ju4" secondAttribute="trailing" id="gvx-b3-q9s"/>
+                            <constraint firstItem="Zxd-nC-WcG" firstAttribute="top" secondItem="NYp-xJ-UTx" secondAttribute="bottom" constant="1" id="hLE-XY-BVo"/>
+                            <constraint firstItem="J0n-KG-9nY" firstAttribute="leading" secondItem="a6g-Uk-ZJD" secondAttribute="leading" id="jgK-bp-QZK"/>
+                            <constraint firstItem="EGM-BS-oog" firstAttribute="top" secondItem="yDi-VU-KTy" secondAttribute="bottom" constant="45" id="jtk-aS-dyn"/>
+                            <constraint firstItem="Zxd-nC-WcG" firstAttribute="leading" secondItem="J0n-KG-9nY" secondAttribute="leading" id="kFt-AG-dk5"/>
+                            <constraint firstItem="yDi-VU-KTy" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="76" id="l5x-eb-dzc"/>
+                            <constraint firstItem="a6g-Uk-ZJD" firstAttribute="centerX" secondItem="hcr-Rm-jHX" secondAttribute="centerX" id="qsj-6t-8he"/>
+                            <constraint firstItem="a6g-Uk-ZJD" firstAttribute="top" secondItem="Zxd-nC-WcG" secondAttribute="bottom" constant="31" id="rOf-Oa-vyP"/>
+                            <constraint firstItem="EGM-BS-oog" firstAttribute="leading" secondItem="sf1-XT-kcs" secondAttribute="leading" id="sC1-GI-rbp"/>
+                            <constraint firstItem="sf1-XT-kcs" firstAttribute="trailing" secondItem="Zxd-nC-WcG" secondAttribute="trailing" id="xkd-Y0-WGZ"/>
+                            <constraint firstItem="NYp-xJ-UTx" firstAttribute="top" secondItem="sf1-XT-kcs" secondAttribute="bottom" constant="8" symbolic="YES" id="zMI-Hd-vv7"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -161,6 +160,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dlv-dV-n6s">
+                            <rect key="frame" x="0.0" y="130" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="microphone"/>
+                            <connections>
+                                <action selector="micRecorder:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="G6I-Q3-tMe"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
@@ -169,7 +176,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -191,38 +198,26 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8">
-                        <rightBarButtonItems>
-                            <barButtonItem style="plain" id="8ip-yh-yr7">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ifh-0V-h1l">
-                                    <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="record"/>
-                                    <connections>
-                                        <action selector="recordButton:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="3rH-7Y-Mma"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="I4K-nN-tyY">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4vS-Dd-9gA">
-                                    <rect key="frame" x="306" y="7" width="133" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="microphone"/>
-                                    <connections>
-                                        <action selector="micRecorder:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="TVC-kZ-L4k"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="oXz-Er-gTg">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yzn-9V-vu6">
-                                    <rect key="frame" x="165" y="7" width="133" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="upload"/>
-                                    <connections>
-                                        <action selector="uploadButton:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="R6U-E3-DZt"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="oXz-Er-gTg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yzn-9V-vu6">
+                                <rect key="frame" x="20" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="upload"/>
+                                <connections>
+                                    <action selector="uploadButton:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="93o-S8-Q1T"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="vtz-Vo-0Aq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8dw-Jb-MXL">
+                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="record"/>
+                                <connections>
+                                    <action selector="recordButton:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="YfF-6I-TvU"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>

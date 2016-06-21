@@ -25,6 +25,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "SOUNDS"
+        
         sounds = AudioManager.sharedInstance.sounds
 
         // Set up mixer sounds with effects and connect mixer channels.
@@ -118,10 +120,6 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    /// Required a function for uploadingFile (function), should be able to delete this later. TODO!
-    func tryout() {
-    }
-    
     func uploadingFile(userData: Array<UITextField>) {
         
         // Assign submitted values.
@@ -131,10 +129,10 @@ class MasterViewController: UITableViewController {
         
         // TODO ---- make alert message if authorization problems occur
         
-        // Verify user is logged into Dropbox
+        // Makes a Dropbox client.
         let client = clienttest
         
-        // Set directory.
+        // Set path to file that is about to get uploaded.
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
         let soundFileURL = soundFilePath.path!
         
@@ -145,52 +143,69 @@ class MasterViewController: UITableViewController {
         // UPLOAD FILE.
         if datadata != nil {
             let dropBoxpath = "\(artistName)_\(trackTitle)_\(email).caf"
-            let success = client!.files.upload(path: "/\(dropBoxpath)", body: datadata!)
+            let uploading = client!.files.upload(path: "/\(dropBoxpath)", body: datadata!)
             
             // Closure checking uploading progress.
-            success.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-            
+            uploading.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                
                 // Displaying percent that has been uploaded.
                 let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-                self.showProgressPopUp(100.0 * amountDone)
+//                self.showProgressPopUp(100.0 * amountDone)
                 
-                // Check whether upload was successful.
-                if totalBytesRead == totalBytesExpectedToRead {
-                    print("")
-                    print(dropBoxpath)
-                    
-//                    print(self.checkUploadSuccess(client!, uploadedFileName: dropBoxPath))
-                    
-                    if !self.checkUploadSuccess(client!, uploadedFileName: dropBoxpath) {
-                        self.showUploadFailedPopUp()
-                    } else {
-                        // show succes pop up
-                    }
-                }
+                self.navigationController!.navigationBar.topItem!.title = "\(100.0 * amountDone)%"
+                
+                print(100.0 * amountDone)
+                
+//                // Check whether upload was successful.
+//                if totalBytesRead == totalBytesExpectedToRead {
+//                    print("")
+//                    print("uploaded file name   ", dropBoxpath)
+//                    
+//                    self.checkUploadSuccess(client!, uploadedFileName: dropBoxpath)
+//                }
             }
+            uploading.response({ (response, error) in
+                if let metadata = response {
+                    print("Uploaded file name: \(metadata.name)")
+                    self.showUploadSucceededPopUp(metadata.name)
+                }
+                else{
+                    print(error!)
+                    self.showUploadFailedPopUp()
+                }
+            })
         }
     }
     
-    func checkUploadSuccess(client: DropboxClient, uploadedFileName: String) -> Bool {
-        // List folder
-        var uploadSuccessful = false
-        client.files.listFolder(path: "").response { response, error in
-            print("*** List folder ***")
-            if let result = response {
-                print("Folder contents:")
-                for entry in result.entries {
-                    print(entry.name, uploadedFileName)
-                    if entry.name == uploadedFileName {
-                        print("GOT HIM")
-                        uploadSuccessful = true
-                    }
-                }
-            } else {
-                print(error!)
-            }
-        }
-        return uploadSuccessful
-    }
+//    func checkUploadSuccess(client: DropboxClient, uploadedFileName: String) {
+//
+//        var uploadSuccessful = false
+//        
+//        // List folder
+//        client.files.listFolder(path: "").response { response, error in
+//            print("")
+//            print("*** List folder ***")
+//            if let result = response {
+//                print("Folder contents:")
+//                for entry in result.entries {
+//                    print(entry.name)
+//                    if entry.name == uploadedFileName {
+//                        print("GOT HIM")
+//                        uploadSuccessful = true
+//                    }
+//                }
+//            } else {
+//                print(error!)
+//            }
+//        }
+//        if uploadSuccessful {
+//            // show succes pop up
+//            print("successssss")
+//        } else {
+//            print("failed failed failed")
+//            self.showUploadFailedPopUp()
+//        }
+//    }
     
     // MARK: - Recording button
 
@@ -313,10 +328,17 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Pop Up Screens
     
+    func showUploadSucceededPopUp(name: String) {
+        progressAlert = UIAlertController(title: "u p l o a d i n g", message: "\(name)", preferredStyle: UIAlertControllerStyle.Alert)
+        progressAlert!.addAction(UIAlertAction(title: "was successful", style: .Default, handler: { (action: UIAlertAction!) in
+            self.progressAlert! .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(progressAlert!, animated: false, completion: nil)
+    }
+    
     func showProgressPopUp(amountDone: Float) {
         progressAlert = UIAlertController(title: "uploading...", message: "\(amountDone)%", preferredStyle: UIAlertControllerStyle.Alert)
-        presentViewController(progressAlert!, animated: true, completion: {
-            self.dismissViewControllerAnimated(true, completion: nil)
+        presentViewController(progressAlert!, animated: false, completion: {
+            self.dismissViewControllerAnimated(false, completion: nil)
         })
     }
     
