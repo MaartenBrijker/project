@@ -28,7 +28,11 @@ class MasterViewController: UITableViewController {
         self.title = "SOUNDS"
         
         sounds = AudioManager.sharedInstance.sounds
+        
+        let freeSpace = AudioManager.sharedInstance.deviceRemainingFreeSpaceInBytes()
 
+        print("freeSpace _________ ", freeSpace!)
+        
         // Set up mixer sounds with effects and connect mixer channels.
         AudioManager.sharedInstance.setUpMixerChannels()
         
@@ -116,11 +120,11 @@ class MasterViewController: UITableViewController {
             showStopRecPopUp()
         } else {
             // Pop up alert message, asking user for input, thereafter move on to upload function.
-            showUploadPopUp()
+            showUploadPopUp(sender)
         }
     }
     
-    func uploadingFile(userData: Array<UITextField>) {
+    func uploadingFile(userData: Array<UITextField>, button: AnyObject) {
         
         // Assign submitted values.
         let artistName = userData[0].text!
@@ -152,18 +156,19 @@ class MasterViewController: UITableViewController {
                 let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
 //                self.showProgressPopUp(100.0 * amountDone)
                 
-                self.navigationController!.navigationBar.topItem!.title = "\(100.0 * amountDone)%"
+//                self.navigationController!.navigationBar.topItem!.title = "\(100.0 * amountDone)%"
+
+                button.setTitle("\(100.0 * amountDone)%", forState: .Normal)
                 
                 print(100.0 * amountDone)
                 
-//                // Check whether upload was successful.
-//                if totalBytesRead == totalBytesExpectedToRead {
-//                    print("")
-//                    print("uploaded file name   ", dropBoxpath)
-//                    
-//                    self.checkUploadSuccess(client!, uploadedFileName: dropBoxpath)
+//                if amountDone == 1.0 {
+//                    button.setTitle("upload", forState: .Normal)
+//
 //                }
             }
+            
+            // Check whether upload was successful and alert the user.
             uploading.response({ (response, error) in
                 if let metadata = response {
                     print("Uploaded file name: \(metadata.name)")
@@ -176,37 +181,7 @@ class MasterViewController: UITableViewController {
             })
         }
     }
-    
-//    func checkUploadSuccess(client: DropboxClient, uploadedFileName: String) {
-//
-//        var uploadSuccessful = false
-//        
-//        // List folder
-//        client.files.listFolder(path: "").response { response, error in
-//            print("")
-//            print("*** List folder ***")
-//            if let result = response {
-//                print("Folder contents:")
-//                for entry in result.entries {
-//                    print(entry.name)
-//                    if entry.name == uploadedFileName {
-//                        print("GOT HIM")
-//                        uploadSuccessful = true
-//                    }
-//                }
-//            } else {
-//                print(error!)
-//            }
-//        }
-//        if uploadSuccessful {
-//            // show succes pop up
-//            print("successssss")
-//        } else {
-//            print("failed failed failed")
-//            self.showUploadFailedPopUp()
-//        }
-//    }
-    
+        
     // MARK: - Recording button
 
     @IBAction func recordButton(sender: AnyObject) {
@@ -370,7 +345,7 @@ class MasterViewController: UITableViewController {
         presentViewController(noRecFileAlert, animated: true, completion: nil)
     }
     
-    func showUploadPopUp() {
+    func showUploadPopUp(button: AnyObject) {
         
         // Initiate alert.
         let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
@@ -382,7 +357,7 @@ class MasterViewController: UITableViewController {
         getUserInfoAlert.addAction(UIAlertAction(title: "↩", style: .Default, handler: { (action: UIAlertAction!) in
             getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
         getUserInfoAlert.addAction(UIAlertAction(title: "🆙", style: .Default, handler: { (action: UIAlertAction!) in
-            self.uploadingFile(getUserInfoAlert.textFields!)
+            self.uploadingFile(getUserInfoAlert.textFields!, button: button)
         }))
         
         // Present alert.
