@@ -189,11 +189,9 @@ class AudioManager {
         if recording {
             recording = false
             MICrecorder!.stop()
-//            print("recording: stopped")
         } else {
             recording = true
             if MICrecorder!.record() == true {
-//                print("recording: started")
             }
         }
     }

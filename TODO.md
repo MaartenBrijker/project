@@ -4,7 +4,7 @@ def:
  - mute other sounds when user is recording?
  - set image in cells
  - make sure user doesn't use invalid (like "/") characters when uploading!
- - data handling
+ - data handling (convert to GB, let recorder only record for pre specified time)
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded

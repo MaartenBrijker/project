@@ -153,12 +153,12 @@ class MasterViewController: UITableViewController {
             uploading.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
                 
                 // Displaying percent that has been uploaded.
-                let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-//                self.showProgressPopUp(100.0 * amountDone)
-                
-//                self.navigationController!.navigationBar.topItem!.title = "\(100.0 * amountDone)%"
+                let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)                
 
+                // disable button
+                
                 button.setTitle("\(100.0 * amountDone)%", forState: .Normal)
+                
                 
                 print(100.0 * amountDone)
                 
