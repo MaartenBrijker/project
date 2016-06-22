@@ -11,7 +11,7 @@ import AVFoundation
 
 class AudioManager {
    
-    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NINJASWORDloop.wav", "NASA.wav", "TCFsample.wav", "RFX6.WAV", "bolololo.wav", "TonalBell.aiff"]
+    var sounds = ["isinkvoices.wav", "kialabells.wav", "NINJASWORDloop.wav", "NASA.wav", "TCFsample.wav", "RFX6.WAV", "bolololo.wav", "TonalBell.aiff"]
 
     // MARK: - initializing the audio processors
     
@@ -20,6 +20,8 @@ class AudioManager {
     var filter: AKToneFilter?
     var reverb: AKReverb?
     var mixer = AKMixer()
+    
+    
     
     // MARK: - Setting up the database and paths
     
@@ -50,7 +52,8 @@ class AudioManager {
     func setUpMixerChannels() {
         print(sounds)
         
-        var micNr: Character = "6"
+        var soundNr = 8
+        var micNr = 1
         
         for sound in sounds {
             let soundArr = sound.componentsSeparatedByString(".")
@@ -63,7 +66,10 @@ class AudioManager {
             if micCheck == "MIC" {
                 let micTwo = sound.componentsSeparatedByString("recording")[1]
                 let index = micTwo.startIndex.advancedBy(0)
-                micNr = micTwo[index]
+                micNr = Int(String(micTwo[index]))! - soundNr + 1
+                
+                print("micTwo:", micTwo)
+                print("micNr:", micNr)
             }
         
             if micCheck == "MIC"{
@@ -87,6 +93,7 @@ class AudioManager {
                     soundData?.writeToFile(newFilePath, atomically: true)
                 }
                 file = newFilePath
+                print(file)
             }
             
             // player -> pitch -> filter -> reverb -> mixer

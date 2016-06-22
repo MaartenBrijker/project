@@ -33,7 +33,7 @@ class MasterViewController: UITableViewController {
     let noRecFileMessage = "pls make a audiorecording before u try to upload something"
     let noRecFileAction = "OK LETS DO THIS!"
     let uploadSuccessfulTitle = "C O N G R A T Z"
-    let uploadSuccessfulAction = "is uploaded"
+    let uploadSuccessfulAction = "was uploaded"
     let micFailedMessage = "sorry ur mic recording wasn't saved"
     let micFailedAction = "😥"
     let micConstraintTitle = "t o o o o o o o o o o  m u c h"
@@ -117,76 +117,61 @@ class MasterViewController: UITableViewController {
         
         // Get contents at path
         let fileManager = NSFileManager.defaultManager()
-        let datadata = fileManager.contentsAtPath(soundFileURL)
+        let data = fileManager.contentsAtPath(soundFileURL)
         
         // Get values of recorders states.
         let micBool = checkRecordStatus("MIC")
         let outputBool = checkRecordStatus("OUTPUT")
         
         // Show alert error message if there isn't a recording file or users is still recording.
-        if datadata == nil {
+        if data == nil {
             showSimplePopUp(errorTitle, message: noRecFileMessage, action: noRecFileAction)
         } else if micBool || outputBool {
             showSimplePopUp(errorTitle, message: stopRecMessage, action: onItAction)
         } else {
             // Pop up alert message, asking user for input, thereafter move on to upload function.
-            showUploadPopUp(sender)
+            showUploadPopUp(sender, soundData: data!)
         }
     }
     
-    func uploadingFile(userData: Array<UITextField>, button: AnyObject) {
-        
-        // Assign submitted values.
+    func initiatingUpload(userData: Array<UITextField>, button: AnyObject, soundData: NSData) {
+        // Assign submitted values and remove invalid characters.
         let artistName = userData[0].text!
         let trackTitle = userData[1].text!
         let email = userData[2].text!
         let preName = "\(artistName)_\(trackTitle)_\(email).caf"
-
-        // Remove invalid characters.
         let dropboxPath = removeInvalidCharacters(preName)
-        print(dropboxPath)
         
-        // TODO ---- make alert message if authorization problems occur
-        
-        // Makes a Dropbox client.
+        // Makes a Dropbox client and upload file
         let client = personalClient
-        
-        // Set path to file that is about to get uploaded.
-        let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
-        let soundFileURL = soundFilePath.path!
-        
-        // Get contents at path.
-        let fileManager = NSFileManager.defaultManager()
-        let datadata = fileManager.contentsAtPath(soundFileURL)
-        
-        // UPLOAD FILE.
-        if datadata != nil {
-            let uploading = client!.files.upload(path: "/\(dropboxPath)", body: datadata!)
-            // Closure checking uploading progress.
-            uploading.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-                // Displaying percent that has been uploaded.
-                let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)                
-
-                // TODO ---- disable button
-    
-                button.setTitle("\(100.0 * amountDone)%", forState: .Normal)
-                print(100.0 * amountDone)  // remove later
-                if amountDone == 1.0 {
-                    button.setTitle("upload", forState: .Normal)
-                }
-            }
-            // Check whether upload was successful and alert the user.
-            uploading.response({ (response, error) in
-                if let metadata = response {
-                    self.showSimplePopUp(self.uploadSuccessfulTitle, message: "\(metadata.name)", action: self.uploadSuccessfulAction)
-                }
-                else{
-                    self.showSimplePopUp(self.errorTitle, message: "\(error!) \(self.uploadUnsuccessfulMessage)", action: "🆗")
-                }
-            })
-        }
+        uploadingFile(soundData, path: dropboxPath, client: client!, button: button)
     }
-        
+    
+    func uploadingFile(data: NSData, path: String, client: DropboxClient, button: AnyObject) {
+        let uploading = client.files.upload(path: "/\(path)", body: data)
+        self.showPleaseWaitPopUp(true)
+        // Closure checking uploading progress.
+        uploading.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            // Displaying percent that has been uploaded.
+            let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
+            button.setTitle("\(100.0 * amountDone)%", forState: .Normal)
+            print(100.0 * amountDone)  // remove later
+            if amountDone == 1.0 {
+                button.setTitle("upload", forState: .Normal)
+                self.showPleaseWaitPopUp(false)
+            }
+        }
+        // Check whether upload was successful and alert the user.
+        uploading.response({ (response, error) in
+            if let metadata = response {
+                self.showSimplePopUp(self.uploadSuccessfulTitle, message: "\(metadata.name)", action: self.uploadSuccessfulAction)
+            } else {
+                self.showPleaseWaitPopUp(false) // FIX THIS !!!!!!
+                self.showSimplePopUp(self.errorTitle, message: "\(error!) \(self.uploadUnsuccessfulMessage)", action: "🆗")
+            }
+        })
+    }
+    
     // MARK: - Output recorder
     
     @IBAction func recordButton(sender: AnyObject) {
@@ -346,10 +331,20 @@ class MasterViewController: UITableViewController {
         let theAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         theAlert.addAction(UIAlertAction(title: action, style: .Default, handler: { (action: UIAlertAction!) in
             theAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(theAlert, animated: false, completion: nil)
+        presentViewController(theAlert, animated: true, completion: nil)
     }
     
-    func showUploadPopUp(button: AnyObject) {
+    func showPleaseWaitPopUp(state: Bool) {
+        let theAlert = UIAlertController(title: "U P L O A D I N G", message: "please wait till ur file is uploaded, that could take some time...", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        if state {
+            presentViewController(theAlert, animated: true, completion: nil)
+        } else {
+            dismissViewControllerAnimated(false, completion: nil)
+        }
+    }
+    
+    func showUploadPopUp(button: AnyObject, soundData: NSData) {
         // Initiate alert.
         let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
         // Add text fields and button.
@@ -359,7 +354,7 @@ class MasterViewController: UITableViewController {
         getUserInfoAlert.addAction(UIAlertAction(title: "↩", style: .Default, handler: { (action: UIAlertAction!) in
             getUserInfoAlert .dismissViewControllerAnimated(true, completion: nil)}))
         getUserInfoAlert.addAction(UIAlertAction(title: "🆙", style: .Default, handler: { (action: UIAlertAction!) in
-            self.uploadingFile(getUserInfoAlert.textFields!, button: button)
+            self.initiatingUpload(getUserInfoAlert.textFields!, button: button, soundData: soundData)
         }))
         // Present alert.
         presentViewController(getUserInfoAlert, animated: true, completion: nil)

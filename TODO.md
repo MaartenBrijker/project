@@ -2,7 +2,6 @@
 
 def:
  - test on devices (TODAY!!!!!!!)
- - replace audiofiles with smaller files... could fix the audio fuck ups
  - make file header / class header / comments
  - make a scheme of all classes and functions for doc.
  - update DESIGN.doc + README.md

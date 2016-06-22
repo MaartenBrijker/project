@@ -11,6 +11,8 @@
 		A51983D21D1AD3A000570A1A /* bolololo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D11D1AD3A000570A1A /* bolololo.wav */; };
 		A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D31D1AD5C000570A1A /* TCFsample.wav */; };
 		A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */; };
+		A52966B71D1B37990036D077 /* kialabells.wav in Resources */ = {isa = PBXBuildFile; fileRef = A52966B61D1B37990036D077 /* kialabells.wav */; };
+		A52966B91D1B39200036D077 /* isinkvoices.wav in Resources */ = {isa = PBXBuildFile; fileRef = A52966B81D1B39200036D077 /* isinkvoices.wav */; };
 		A549F85C1D101EC900029C2A /* RFX6.WAV in Resources */ = {isa = PBXBuildFile; fileRef = A549F85B1D101EC900029C2A /* RFX6.WAV */; };
 		A54BF0761D0996AD006330AA /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0701D0996AD006330AA /* README.md */; };
 		A54BF0771D0996AD006330AA /* processbook.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0711D0996AD006330AA /* processbook.md */; };
@@ -30,9 +32,6 @@
 		A5FBDB721D0035B2006962EA /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; };
 		A5FBDB731D0035B2006962EA /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBDB6F1D003579006962EA /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5FBDB7F1D003F72006962EA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FBDB7E1D003F72006962EA /* AudioManager.swift */; };
-		A5FBDB921D004EF7006962EA /* isinkcomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */; };
-		A5FBDB931D004EF7006962EA /* isinkvoices.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */; };
-		A5FBDB941D004EF7006962EA /* kialabells.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB8F1D004EF7006962EA /* kialabells.wav */; };
 		A5FBDB961D004EF7006962EA /* TonalBell.aiff in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB911D004EF7006962EA /* TonalBell.aiff */; };
 		A5FBDB9B1D007AB4006962EA /* NASA.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5FBDB9A1D007AB4006962EA /* NASA.wav */; };
 /* End PBXBuildFile section */
@@ -105,6 +104,8 @@
 		A51983D11D1AD3A000570A1A /* bolololo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bolololo.wav; sourceTree = "<group>"; };
 		A51983D31D1AD5C000570A1A /* TCFsample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TCFsample.wav; sourceTree = "<group>"; };
 		A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NINJASWORDloop.wav; sourceTree = "<group>"; };
+		A52966B61D1B37990036D077 /* kialabells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kialabells.wav; sourceTree = "<group>"; };
+		A52966B81D1B39200036D077 /* isinkvoices.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkvoices.wav; sourceTree = "<group>"; };
 		A549F85B1D101EC900029C2A /* RFX6.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RFX6.WAV; sourceTree = "<group>"; };
 		A54BF0701D0996AD006330AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A54BF0711D0996AD006330AA /* processbook.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = processbook.md; path = ../processbook.md; sourceTree = "<group>"; };
@@ -129,9 +130,6 @@
 		A5FBDB441D003202006962EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5FBDB691D003579006962EA /* AudioKit For iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For iOS.xcodeproj"; path = "External/AudioKit-master/AudioKit/iOS/AudioKit For iOS.xcodeproj"; sourceTree = "<group>"; };
 		A5FBDB7E1D003F72006962EA /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkcomb.wav; sourceTree = "<group>"; };
-		A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = isinkvoices.wav; sourceTree = "<group>"; };
-		A5FBDB8F1D004EF7006962EA /* kialabells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kialabells.wav; sourceTree = "<group>"; };
 		A5FBDB911D004EF7006962EA /* TonalBell.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = TonalBell.aiff; sourceTree = "<group>"; };
 		A5FBDB9A1D007AB4006962EA /* NASA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NASA.wav; sourceTree = "<group>"; };
 		A77C886C4CF839054D5CFEC1 /* Pods-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project.release.xcconfig"; path = "Pods/Target Support Files/Pods-project/Pods-project.release.xcconfig"; sourceTree = "<group>"; };
@@ -310,9 +308,8 @@
 				A51983D31D1AD5C000570A1A /* TCFsample.wav */,
 				A549F85B1D101EC900029C2A /* RFX6.WAV */,
 				A5DE68801D174C4D00ADB587 /* placeholder.wav */,
-				A5FBDB8D1D004EF7006962EA /* isinkcomb.wav */,
-				A5FBDB8E1D004EF7006962EA /* isinkvoices.wav */,
-				A5FBDB8F1D004EF7006962EA /* kialabells.wav */,
+				A52966B81D1B39200036D077 /* isinkvoices.wav */,
+				A52966B61D1B37990036D077 /* kialabells.wav */,
 				A5FBDB9A1D007AB4006962EA /* NASA.wav */,
 				A5FBDB911D004EF7006962EA /* TonalBell.aiff */,
 			);
@@ -456,18 +453,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5FBDB921D004EF7006962EA /* isinkcomb.wav in Resources */,
 				A54BF0781D0996AD006330AA /* sketch.png in Resources */,
 				A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */,
 				A5DE68811D174C4D00ADB587 /* placeholder.wav in Resources */,
-				A5FBDB941D004EF7006962EA /* kialabells.wav in Resources */,
-				A5FBDB931D004EF7006962EA /* isinkvoices.wav in Resources */,
 				A51983D21D1AD3A000570A1A /* bolololo.wav in Resources */,
 				A5FBDB9B1D007AB4006962EA /* NASA.wav in Resources */,
 				A549F85C1D101EC900029C2A /* RFX6.WAV in Resources */,
 				A54BF0791D0996AD006330AA /* table example.png in Resources */,
 				A5FBDB2A1D003202006962EA /* Assets.xcassets in Resources */,
 				A5FBDB281D003202006962EA /* Main.storyboard in Resources */,
+				A52966B71D1B37990036D077 /* kialabells.wav in Resources */,
+				A52966B91D1B39200036D077 /* isinkvoices.wav in Resources */,
 				A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */,
 				A5FBDB961D004EF7006962EA /* TonalBell.aiff in Resources */,
 				A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */,
