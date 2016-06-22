@@ -2,11 +2,9 @@
 
 def:
  - mute other sounds when user is MICrecording?
- - set image in cells
  - make sure user doesn't use invalid (like "/") characters when uploading!
  - data handling (convert to MB, let recorder only record for pre specified time)
- - put alert messages in function
-- fix mechanism for "free space is finished.." #stopper
+ - fix mechanism for "free space is finished.." #stopper
  - test on devices (TODAY!!!!!!!)
 
 
@@ -42,10 +40,8 @@ optionally optional:
  - fix references
  - update README + DESIGN
  - fix layout (constraints etc)
- - move dropbox code to audiomanager ?????
  - move hardcoded strings to seperate variables !!!! !!!!
- - check app on device
- - check whether audio works smoothly when app gets bigger
+ - check whether audio works smoothly when app gets bigger . . . problem . . .
 
 
 # thrash

@@ -197,40 +197,34 @@ class MasterViewController: UITableViewController {
     // TODO ---- move "else if" and "else" statements to seperate function
 
     @IBAction func recordButton(sender: AnyObject) {
+        // Get path to file and values of recorders states.
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
-        
-        // Get values of recorders states.
         let micBool = checkRecordStatus("MIC")
-        
         // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
         if micBool == true {
             showSimplePopUp(errorTitle, message: multipleRecMessage, action: onItAction)
         } else if starter {
-            
-            //initiate time check function
+            // Initiate time check function and start recording.
             checkBytesWrite("MIC")
-            
-            
-            // TODO move this to function
-            AudioManager.sharedInstance.setUpOUTPUTrecorder(soundFilePath)
-            AudioManager.sharedInstance.recordOUTPUT()
+            startOutputRecording(soundFilePath)
             sender.setTitle("stop recording", forState: .Normal)
-            starter = false
-            changeColors(starter)
         } else {
-            AudioManager.sharedInstance.recordOUTPUT()
             sender.setTitle("start recording", forState: .Normal)
-            starter = true
-            changeColors(starter)
+            stopOutputRecording()
         }
     }
     
-    func startOutputRecording() {
-        
+    func startOutputRecording(path: NSURL) {
+        AudioManager.sharedInstance.setUpOUTPUTrecorder(path)
+        AudioManager.sharedInstance.recordOUTPUT()
+        starter = false
+        changeColors(starter)
     }
     
     func stopOutputRecording() {
-
+        AudioManager.sharedInstance.recordOUTPUT()
+        starter = true
+        changeColors(starter)
     }
     
     // MARK: - Microphone recorder
@@ -263,7 +257,6 @@ class MasterViewController: UITableViewController {
         AudioManager.sharedInstance.setUpMICRecorder(path)
         AudioManager.sharedInstance.recordMIC()
         micIsRecording = false
-
     }
     
     func stopMicRecording(path: NSURL) {
@@ -380,4 +373,3 @@ class MasterViewController: UITableViewController {
         presentViewController(getUserInfoAlert, animated: true, completion: nil)
     }
 }
-
