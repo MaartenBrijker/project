@@ -53,9 +53,12 @@ Worked on on my beta version, implemented  my mic recording possibilities + lett
 Made sure my micrecording is playable. Needed to convert this to project folder. Also added some coloring, to indidate to the user he is recording/playing audio.
 
 # DAY 4|1
-Started implementing loads of alert messages, to inform user if he is trying to do something he isn't allowed to do. Like recording mic and output at the same time, uploading a file when still recording and if recordings or uploads were successfull. Need to make a proper function for this tomorrow though. Over time I began noticing loads of the alert messages had the same structure! Also looked into converting a .caf file to .wav, but still not succesfull in this. Decided to leave this feature for the time being! Also moved lots of code to other function, so functionality is more clearer ("seperation of concerns"). 
+Started implementing loads of alert messages, to inform user if he is trying to do something he isn't allowed to do. Like recording mic and output at the same time, uploading a file when still recording and whether recordings or uploads were (un)successfull. Need to make a proper function for this tomorrow though. Over time I began noticing loads of the alert messages had the same structure! Also looked into converting a .caf file to .wav, but still not succesfull in this. Decided to leave this feature for the time being! Also moved lots of code to other function, so functionality is more clearer ("seperation of concerns"). 
 
 # DAY 4|2
+Moves around lots of code to seperate functions (seperation of concerns) to make code more clear and less bulky. Also build in more error checking functions, like for whether upload was succesful, internet connection works etc. Fixed the constraints and layout. Also experienced some glitches in the audio playback.. which is pretty problematic. Hope to solve this tomorrow by testing my app on a different device...
+
 # DAY 4|3
+
 # DAY 4|4
 # DAY 4|5

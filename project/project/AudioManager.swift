@@ -11,7 +11,7 @@ import AVFoundation
 
 class AudioManager {
    
-    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "bolololo.wav", "TonalBell.aiff"]
+    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "TCFsample.wav", "RFX6.WAV", "bolololo.wav", "TonalBell.aiff"]
 
     // MARK: - initializing the audio processors
     
@@ -68,7 +68,6 @@ class AudioManager {
         
             if micCheck == "MIC"{
                 
-                print(sound)
                 // Get app project folder
                 let filePlaceHolder = NSBundle.mainBundle().pathForResource("placeholder", ofType: ".wav")
                 
@@ -88,7 +87,6 @@ class AudioManager {
                     soundData?.writeToFile(newFilePath, atomically: true)
                 }
                 file = newFilePath
-                print(file)
             }
             
             // player -> pitch -> filter -> reverb -> mixer

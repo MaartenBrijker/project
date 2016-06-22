@@ -197,7 +197,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8">
+                    <navigationItem key="navigationItem" title="SOUNDS" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="oXz-Er-gTg">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yzn-9V-vu6">
                                 <rect key="frame" x="20" y="7" width="133" height="30"/>
@@ -243,4 +243,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.24701204223606021" green="0.6276852665003968" blue="0.86355064870982334" alpha="1" colorSpace="calibratedRGB"/>
 </document>
