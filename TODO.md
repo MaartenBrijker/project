@@ -5,8 +5,9 @@ def:
  - set image in cells
  - make sure user doesn't use invalid (like "/") characters when uploading!
  - data handling (convert to MB, let recorder only record for pre specified time)
- - check internet connection
  - put alert messages in function
+- fix mechanism for "free space is finished.." #stopper
+ - test on devices (TODAY!!!!!!!)
 
 
 optional:

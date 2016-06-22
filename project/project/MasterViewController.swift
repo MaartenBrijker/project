@@ -21,8 +21,21 @@ class MasterViewController: UITableViewController {
     let maxKbPerSec = 1411.20       // bit rate per sec uncompressed
     let maxBytePerSecond = 187500  // maxKbPerSec * kbps (0.0001333) with a bit of marge
     
-    
-    var progressAlert: UIAlertController?
+    // Alert texts
+    let errorTitle = "E R R O R"
+    let onItAction = "ON IT"
+    let stopRecMessage = "pls stop recording before u try to upload something"
+    let uploadUnsuccessfulMessage = "upload was unsuccessful... pls try again, maybe check ur internet connection?"
+    let multipleRecMessage = "ur trying to record mic and output at the same time, pls stop one of these"
+    let noRecFileMessage = "pls make a audiorecording before u try to upload something"
+    let noRecFileAction = "OK LETS DO THIS!"
+    let uploadSuccessfulTitle = "C O N G R A T Z"
+    let uploadSuccessfulAction = "was successful"
+    let micFailedMessage = "sorry ur mic recording wasn't saved"
+    let micFailedAction = "😥"
+    let micConstraintTitle = "t o o o o o o o o o o  m u c h"
+    let micConstraintMessage = "we need to keep the number of mic recordings limited"
+    let micConstraintAction = "🚮"
     
     var clienttest: DropboxClient?
     
@@ -115,9 +128,9 @@ class MasterViewController: UITableViewController {
         
         // Show alert error message if there isn't a recording file or users is still recording.
         if datadata == nil {
-            showNoRecPopUp()
+            showSimplePopUp(errorTitle, message: noRecFileMessage, action: noRecFileAction)
         } else if micBool || outputBool {
-            showStopRecPopUp()
+            showSimplePopUp(errorTitle, message: stopRecMessage, action: onItAction)
         } else {
             // Pop up alert message, asking user for input, thereafter move on to upload function.
             showUploadPopUp(sender)
@@ -155,28 +168,25 @@ class MasterViewController: UITableViewController {
                 // Displaying percent that has been uploaded.
                 let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)                
 
-                // disable button
-                
+                // TODO ---- disable button
+    
                 button.setTitle("\(100.0 * amountDone)%", forState: .Normal)
-                
                 
                 print(100.0 * amountDone)
                 
-//                if amountDone == 1.0 {
-//                    button.setTitle("upload", forState: .Normal)
-//
-//                }
+                if amountDone == 1.0 {
+                    button.setTitle("upload", forState: .Normal)
+                }
             }
             
             // Check whether upload was successful and alert the user.
             uploading.response({ (response, error) in
                 if let metadata = response {
-                    print("Uploaded file name: \(metadata.name)")
-                    self.showUploadSucceededPopUp(metadata.name)
+                    self.showSimplePopUp(self.uploadSuccessfulTitle, message: "\(metadata.name)", action: self.uploadSuccessfulAction)
                 }
                 else{
                     print(error!)
-                    self.showUploadFailedPopUp()
+                    self.showSimplePopUp(self.errorTitle, message: "\(error!) \(self.uploadUnsuccessfulMessage)", action: "🆗")
                 }
             })
         }
@@ -194,7 +204,7 @@ class MasterViewController: UITableViewController {
         
         // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
         if micBool == true {
-            showMultipleRecPopUp()
+            showSimplePopUp(errorTitle, message: multipleRecMessage, action: onItAction)
         } else if starter {
             
             //initiate time check function
@@ -233,9 +243,9 @@ class MasterViewController: UITableViewController {
         
         // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
         if outputBool == true {
-            showMultipleRecPopUp()
+            showSimplePopUp(errorTitle, message: multipleRecMessage, action: onItAction)
         } else if AudioManager.sharedInstance.sounds.count >= maxAllowedSounds {
-            showSoundConstraintPopUp()
+            showSimplePopUp(micConstraintTitle, message: micConstraintMessage, action: micConstraintAction)
         } else {
             let soundFilePath = AudioManager.sharedInstance.setPath("MIC")
             if micIsRecording {
@@ -267,7 +277,7 @@ class MasterViewController: UITableViewController {
             updateTableView()
             AudioManager.sharedInstance.setUpMixerChannels() //update mixerchannels with mic
         } else {
-            showMicFailedPopUp()
+            showSimplePopUp(errorTitle, message: micFailedMessage, action: micFailedAction)
         }
     }
     
@@ -344,46 +354,11 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Pop Up Screens
     
-    func showUploadSucceededPopUp(name: String) {
-        progressAlert = UIAlertController(title: "u p l o a d i n g", message: "\(name)", preferredStyle: UIAlertControllerStyle.Alert)
-        progressAlert!.addAction(UIAlertAction(title: "was successful", style: .Default, handler: { (action: UIAlertAction!) in
-            self.progressAlert! .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(progressAlert!, animated: false, completion: nil)
-    }
-    
-    func showProgressPopUp(amountDone: Float) {
-        progressAlert = UIAlertController(title: "uploading...", message: "\(amountDone)%", preferredStyle: UIAlertControllerStyle.Alert)
-        presentViewController(progressAlert!, animated: false, completion: {
-            self.dismissViewControllerAnimated(false, completion: nil)
-        })
-    }
-    
-    func showUploadFailedPopUp() {
-        let failedUploadAlert = UIAlertController(title: "E R R O R", message: "upload was unsuccessful... pls try again, maybe check ur internet connection?", preferredStyle: UIAlertControllerStyle.Alert)
-        failedUploadAlert.addAction(UIAlertAction(title: "🆗", style: .Default, handler: { (action: UIAlertAction!) in
-            failedUploadAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(failedUploadAlert, animated: true, completion: nil)
-    }
-    
-    func showStopRecPopUp() {
-        let plsStopRecAlert = UIAlertController(title: "E R R O R", message: "pls stop recording before u try to upload something", preferredStyle: UIAlertControllerStyle.Alert)
-        plsStopRecAlert.addAction(UIAlertAction(title: "ON IT!", style: .Default, handler: { (action: UIAlertAction!) in
-            plsStopRecAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(plsStopRecAlert, animated: true, completion: nil)
-    }
-    
-    func showMultipleRecPopUp() {
-        let noMultipleRecsAlert = UIAlertController(title: "E R R O R", message: "ur trying to record mic and output at the same time, pls stop one of these", preferredStyle: UIAlertControllerStyle.Alert)
-        noMultipleRecsAlert.addAction(UIAlertAction(title: "ON IT!", style: .Default, handler: { (action: UIAlertAction!) in
-            noMultipleRecsAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(noMultipleRecsAlert, animated: true, completion: nil)
-    }
-    
-    func showNoRecPopUp() {
-        let noRecFileAlert = UIAlertController(title: "E R R O R", message: "pls make a audiorecording before u try to upload something", preferredStyle: UIAlertControllerStyle.Alert)
-        noRecFileAlert.addAction(UIAlertAction(title: "OK LETS DO THIS!", style: .Default, handler: { (action: UIAlertAction!) in
-            noRecFileAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(noRecFileAlert, animated: true, completion: nil)
+    func showSimplePopUp(title: String, message: String, action: String) {
+        let theAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        theAlert.addAction(UIAlertAction(title: action, style: .Default, handler: { (action: UIAlertAction!) in
+            theAlert .dismissViewControllerAnimated(true, completion: nil)}))
+        presentViewController(theAlert, animated: false, completion: nil)
     }
     
     func showUploadPopUp(button: AnyObject) {
@@ -403,20 +378,6 @@ class MasterViewController: UITableViewController {
         
         // Present alert.
         presentViewController(getUserInfoAlert, animated: true, completion: nil)
-    }
-    
-    func showMicFailedPopUp() {
-        let micAlert = UIAlertController(title: "E R R O R", message: "sorry ur mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
-        micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
-            micAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(micAlert, animated: true, completion: nil)
-    }
-    
-    func showSoundConstraintPopUp() {
-        let soundConstraintAlert = UIAlertController(title: "t o o o o o o o o o o  m u c h", message: "we need to keep the number of mic recordings limited", preferredStyle: UIAlertControllerStyle.Alert)
-        soundConstraintAlert.addAction(UIAlertAction(title: "🚮", style: .Default, handler: { (action: UIAlertAction!) in
-            soundConstraintAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(soundConstraintAlert, animated: true, completion: nil)
     }
 }
 
