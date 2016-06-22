@@ -11,7 +11,7 @@ import AVFoundation
 
 class AudioManager {
    
-    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NASA.wav", "TCFsample.wav", "RFX6.WAV", "bolololo.wav", "TonalBell.aiff"]
+    var sounds = ["isinkcomb.wav", "isinkvoices.wav", "kialabells.wav", "NINJASWORDloop.wav", "NASA.wav", "TCFsample.wav", "RFX6.WAV", "bolololo.wav", "TonalBell.aiff"]
 
     // MARK: - initializing the audio processors
     

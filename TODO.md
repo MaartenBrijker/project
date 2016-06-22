@@ -1,7 +1,6 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
 def:
- - mute other sounds when user is MICrecording?
  - test on devices (TODAY!!!!!!!)
  - replace audiofiles with smaller files... could fix the audio fuck ups
  - make file header / class header / comments
@@ -10,7 +9,8 @@ def:
  - make reference to dropbox for their code
  - fix splitview layout
  - set device constraints (iphone 5+)
- - uploadFile function (seperation of converns)
+ - uploadFile function (seperation of concerns)
+ - stop audio when users is recording mic
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded
