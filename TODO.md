@@ -1,11 +1,13 @@
 # STILL NEED TO IMPLEMENT THIS STUFF + NOTES TO SELF
 
 def:
- - mute other sounds when user is recording?
+ - mute other sounds when user is MICrecording?
  - set image in cells
  - make sure user doesn't use invalid (like "/") characters when uploading!
- - data handling (convert to GB, let recorder only record for pre specified time)
+ - data handling (convert to MB, let recorder only record for pre specified time)
  - check internet connection
+ - put alert messages in function
+
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded
@@ -21,13 +23,11 @@ def (less urgent):
  - MAKE SURE RECORDINGS STAY UNDER 150 MB>>>!??
  - delete recording from phone after it has been uploaded.
  - update DESIGN.doc + README.md
- - delete "EDIT" button
  - move upload function to audiomanager?
  - make sure user fills in correct info when uploading!!!!!
  - move error message to seperate function
  - make file header / class header / comments
- - make reference to dropbox for stealing their code
- - put alert messages in function
+ - make reference to dropbox for their code
 
 optionally optional:
  - get a developer account for releasing the app?

@@ -406,7 +406,7 @@ class MasterViewController: UITableViewController {
     }
     
     func showMicFailedPopUp() {
-        let micAlert = UIAlertController(title: "error", message: "sorry ur mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
+        let micAlert = UIAlertController(title: "E R R O R", message: "sorry ur mic recording wasn't saved", preferredStyle: UIAlertControllerStyle.Alert)
         micAlert.addAction(UIAlertAction(title: "😥", style: .Default, handler: { (action: UIAlertAction!) in
             micAlert .dismissViewControllerAnimated(true, completion: nil)}))
         presentViewController(micAlert, animated: true, completion: nil)
