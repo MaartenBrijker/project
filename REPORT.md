@@ -11,7 +11,7 @@ All the uploaded audio files are collected in a public dropbox, for all to enjoy
 The app consists of two screens; a Masterviewcontroller displaying all the sounds a user can select and play with. And a Detailviewcontroller where the user is able to manipulate/controll the selected sound. For playing, manipulating and recording sounds, the AudioKit API is used. AudioKit (http://audiokit.io) is an audio synthesis, processing, and analysis platform for OS X, iOS, and tvOS which makes use of Apple's Core Audio functionality. For uploading sounds to Dropbox I make use of the Swifty Dropbox API (https://www.dropbox.com/developers/documentation/swift). Below are some screenshots of the app and a overview of the relation between functions and buttons.
 
 ![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/overview.png)
-![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/diagram.pdf)
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/diagram.png)
 
 AudioKit API
 - When the app starts all soundfiles are loaded from a list and a path to them is created. Hereafter each of the sounds are connected to a player, filter, reverb, pitcher, and then to a mixer. All of these are stored in a array, so later we are able to connect to them and manipulate their settings. Finally the mixer is set as the Audiokit Output.
