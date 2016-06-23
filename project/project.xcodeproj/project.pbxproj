@@ -14,6 +14,7 @@
 		A50E12351D1C13ED00863DB9 /* masterview.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12301D1C13ED00863DB9 /* masterview.png */; };
 		A50E12361D1C13ED00863DB9 /* sketch.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12311D1C13ED00863DB9 /* sketch.png */; };
 		A50E12371D1C13ED00863DB9 /* table example.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12321D1C13ED00863DB9 /* table example.png */; };
+		A50E12391D1C177400863DB9 /* overview.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12381D1C177400863DB9 /* overview.png */; };
 		A51983D21D1AD3A000570A1A /* bolololo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D11D1AD3A000570A1A /* bolololo.wav */; };
 		A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D31D1AD5C000570A1A /* TCFsample.wav */; };
 		A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */; };
@@ -111,6 +112,7 @@
 		A50E12301D1C13ED00863DB9 /* masterview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masterview.png; sourceTree = "<group>"; };
 		A50E12311D1C13ED00863DB9 /* sketch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sketch.png; sourceTree = "<group>"; };
 		A50E12321D1C13ED00863DB9 /* table example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table example.png"; sourceTree = "<group>"; };
+		A50E12381D1C177400863DB9 /* overview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overview.png; sourceTree = "<group>"; };
 		A51983D11D1AD3A000570A1A /* bolololo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bolololo.wav; sourceTree = "<group>"; };
 		A51983D31D1AD5C000570A1A /* TCFsample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TCFsample.wav; sourceTree = "<group>"; };
 		A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NINJASWORDloop.wav; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				A50E122E1D1C13ED00863DB9 /* detailview.png */,
 				A50E122F1D1C13ED00863DB9 /* diagram.pdf */,
+				A50E12381D1C177400863DB9 /* overview.png */,
 				A50E12301D1C13ED00863DB9 /* masterview.png */,
 				A50E12311D1C13ED00863DB9 /* sketch.png */,
 				A50E12321D1C13ED00863DB9 /* table example.png */,
@@ -481,6 +484,7 @@
 				A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */,
 				A5FBDB961D004EF7006962EA /* TonalBell.aiff in Resources */,
 				A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */,
+				A50E12391D1C177400863DB9 /* overview.png in Resources */,
 				A50E12361D1C13ED00863DB9 /* sketch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
