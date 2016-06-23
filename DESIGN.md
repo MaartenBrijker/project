@@ -31,7 +31,7 @@ For the MVP version of my app there will only be audio played back in real time.
 
 I will make use of a splitview. Were the main view is a table displaying all the audio sources, and the detailview is filled with several audio processors (sliders, buttons), a visual representation of the audio and a function to select playbacking modes (single sound vs overall sound).
 
-![alt-tag](https://github.com/MaartenBrijker/project/blob/master/doc/sketch.png)
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/sketch.png)
 
 Optionally there will also be another screen where users could control a mixer to control overall volumes and panning of each track.
 
@@ -55,10 +55,10 @@ This class will exist of:
 
 SQL will be used to store each sound and its values. Each sound will have a seperate row. And each effect on a seperate column with its value for the specific sound.
 
-![alt-tag](https://github.com/MaartenBrijker/project/blob/master/doc/table%20example.png)
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/table%20example.png)
 
 # information
-Maarten Brijker |
-10440682 |
-iOS app |
-programmeerproject
+- Maarten Brijker
+- 10440682
+- iOS app
+- programmeerproject
