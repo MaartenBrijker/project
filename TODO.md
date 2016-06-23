@@ -8,7 +8,7 @@ def:
  - make reference to dropbox for their code
  - set device constraints (iphone 5+)
  - stop audio when users is recording mic
-///
+
 
 optional:
  - let main table get titles from audiofiles instead of hardcoded
