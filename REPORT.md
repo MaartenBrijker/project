@@ -12,7 +12,7 @@ All the uploaded audio files are collected in a public dropbox, for everyone to 
 
 
 
-![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/masterview.png =30x)
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/masterview.png =30x20)
 ![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/detailview.png =30x)
 
 
