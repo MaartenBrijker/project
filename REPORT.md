@@ -8,6 +8,15 @@ All the uploaded audio files are collected in a public dropbox, for everyone to 
 
 # technical design (DESIGN.md)
 
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/masterview.png)
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/detailview.png)
+
+
+ - AudioKit API
+ - SwiftyDropbox API
+ - MasterViewController
+ - DetailViewController
+ - Audio Manager
 
 # challenges during development &  important changes (PROCESS.md)
 
