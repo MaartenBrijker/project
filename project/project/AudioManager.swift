@@ -11,6 +11,11 @@ import AVFoundation
 
 class AudioManager {
    
+    /**
+     The AudioManager controlls all the sounds specifics and connects with Audio Kit Api.
+     */
+    
+    // Hardcoded all the sounds in the tableview.
     var sounds = ["isinkvoices.wav", "kialabells.wav", "NINJASWORDloop.wav", "NASA.wav", "TCFsample.wav", "RFX6.WAV", "bolololo.wav", "TonalBell.aiff"]
 
     // MARK: - initializing the audio processors
@@ -21,12 +26,9 @@ class AudioManager {
     var reverb: AKReverb?
     var mixer = AKMixer()
     
-    
-    
     // MARK: - Setting up the database and paths
     
     static let sharedInstance = AudioManager()
-    
     private init() { }
     
     // Linking & storing all audiofiles with players and effects.
@@ -49,6 +51,7 @@ class AudioManager {
         return soundFilePath
     }
     
+    /// Iterates over all the sounds and connects them to their AKNodes.
     func setUpMixerChannels() {
         print(sounds)
         
@@ -170,6 +173,7 @@ class AudioManager {
     
     // MARK: - MIC recording.
     
+    /// Initiates the mic recording.
     func setUpMICRecorder(soundFilePath: NSURL) {
         
         let soundFileURL = NSURL(string: String(soundFilePath))
@@ -186,10 +190,11 @@ class AudioManager {
             print("error")
         }
         if MICrecorder!.prepareToRecord() == true {
-//            print("mic = prepared")
+            print("mic = prepared")
         }
     }
     
+    /// Starts and stops the mic recording.
     func recordMIC() {
         if recording {
             recording = false
@@ -203,7 +208,7 @@ class AudioManager {
     
     // MARK: - Free Space manager
     
-    // from: http://stackoverflow.com/questions/5712527/how-to-detect-total-available-free-disk-space-on-the-iphone-ipad-device
+    // Taken from: http://stackoverflow.com/questions/5712527/how-to-detect-total-available-free-disk-space-on-the-iphone-ipad-device
     func deviceRemainingFreeSpaceInBytes() -> Int64? {
         let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         var attributes: [String: AnyObject]

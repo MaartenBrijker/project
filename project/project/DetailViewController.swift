@@ -10,21 +10,28 @@ import UIKit
 import AudioKit
 
 class DetailViewController: UIViewController {
+    
+    /**
+     The DetailViewController storing:
+     
+     - Sliders: controlling effects in audiofiles.
+     - Spacewave: for spacey filter effect.
+     - Start/Stop button: playing the audio file.
+     */
+    
+    // Global variable used to store values and boolians about states.
     var timer: NSTimer!
-
     var preValue: Float?
     var spacingIsOn = false
-    
     var sounds = AudioManager.sharedInstance.sounds
-
     var started = false
     var player: AKAudioPlayer?
-    
     var detailItem: AnyObject? {
         didSet {
         }
     }
     
+    /// Sets the screens title and gets all the audio specific functions.
     override func viewDidLoad() {
         super.viewDidLoad()
         if detailItem != nil {
@@ -104,15 +111,6 @@ class DetailViewController: UIViewController {
         let value = arc4random_uniform(UInt32(self.filterLevel.maximumValue))
         AudioManager.sharedInstance.changeFilter(self.detailItem! as! String, level: Float(value))
         self.filterLevel.setValue(Float(value), animated: true)
-        
-//        let value = arc4random_uniform(UInt32(self.pitchLevel.maximumValue))
-//        AudioManager.sharedInstance.changePitch(self.detailItem! as! String, level: Float(value))
-//        self.pitchLevel.setValue(Float(value), animated: true)
-
-//        let value = arc4random_uniform(UInt32(100))
-//        let secondval = Float(Float(value) * 0.01)
-//        AudioManager.sharedInstance.changeReverb(self.detailItem! as! String, level: secondval)
-//        self.reverbLevel.setValue(secondval, animated: true)
     }
 
     func stopTimer() {

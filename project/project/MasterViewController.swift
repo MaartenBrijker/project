@@ -11,20 +11,30 @@ import SwiftyDropbox
 
 class MasterViewController: UITableViewController {
 
+    /**
+     The masterviewcontroller storing:
+     
+     - Tableview: displaying all the audiofiles.
+     - UploadButton: for uploading to dropbox.
+     - RecordButton: recording audio output in real time.
+     - MicrophoneButton: for recording audio over the mic and storing this in the audiofiles table.
+     */
+
+    // For the next screen.
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
     
-    // Sound stuffs
+    // Sound storing and boolians to check states.
     var sounds: Array<String>?
     var starter = true
     var micIsRecording = true
     var typeOfRecording = "OUTPUT"
     
-    // Byte checks
+    // User for the free space checking.
     let maxKbPerSec = 1411.20       // bit rate per sec uncompressed
     let maxBytePerSecond = 187500   // maxKbPerSec * kbps (0.0001333) with a bit of marge
     
-    // Alert texts
+    // Texts used for the alert action.
     let errorTitle = "E R R O R"
     let onItAction = "ON IT"
     let stopRecMessage = "pls stop recording before u try to upload something"
@@ -41,13 +51,13 @@ class MasterViewController: UITableViewController {
     let micConstraintAction = "🚮"
     let lowFreeSpaceMessage = "ur device is getting low on free space, we need to cancel the recording..."
     
-    // Dropbox stuff
+    // In order to connect to Dropbox properly.
     var personalClient: DropboxClient?
     let accessToken = "XPA_hvP23MAAAAAAAAAAFyLTeXC7cSemXHa-Y3chHcV-lP0wiULlKtnqSCZHdKlX"
     let uid = "DEVXXX"
     var uploadError: String?
     
-    
+    /// Setting up all the sounds in the AudioManager file and initiating a NSNotificationcenter.
     override func viewDidLoad() {
         super.viewDidLoad()
         sounds = AudioManager.sharedInstance.sounds
@@ -74,8 +84,9 @@ class MasterViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    // MARK: - Segues
-
+    // MARK: - Segues.
+    
+    /// Letting the detailview know which sound was selected.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -88,7 +99,7 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View
+    // MARK: - Table View.
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -97,7 +108,8 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sounds!.count
     }
-
+    
+    /// Displaying all the sound names in the table.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         let soundArr = sounds![indexPath.row].componentsSeparatedByString(".")
@@ -110,8 +122,9 @@ class MasterViewController: UITableViewController {
         return true
     }
     
-    // MARK: - DROPBOXSTUFF
+    // MARK: - Dropbox.
     
+    /// Gets the content to upload and checks whether there are no initial error messages.
     @IBAction func uploadButton(sender: AnyObject) {
         
         // Set directory
@@ -137,6 +150,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    /// Gets called after the user fills in his info and connects to Dropbox.
     func initiatingUpload(userData: Array<UITextField>, button: AnyObject, soundData: NSData) {
         // Assign submitted values and remove invalid characters.
         let artistName = userData[0].text!
@@ -178,21 +192,26 @@ class MasterViewController: UITableViewController {
         })
     }
     
-    func showError() {
-        self.showSimplePopUp(self.errorTitle, message: "\(uploadError) \(self.uploadUnsuccessfulMessage)", action: "🆗")
-    }
-    
+    /// Lets the Notification center know it should display the error.
     func postNotification() {
         print("initiate")
         NSNotificationCenter.defaultCenter().postNotificationName("uploadError", object: nil)
     }
+
+    /// Displays the error, if the case, that Dropbox returns in a alert message.
+    func showError() {
+        self.showSimplePopUp(self.errorTitle, message: "\(uploadError) \(self.uploadUnsuccessfulMessage)", action: "🆗")
+    }
     
     // MARK: - Output recorder
     
+    /// Initiates a path to the directory where the file is stored and sets a timer checking for free space.
     @IBAction func recordButton(sender: AnyObject) {
+        
         // Get path to file and values of recorders states.
         let soundFilePath = AudioManager.sharedInstance.setPath("OUTPUT")
         let micBool = checkRecordStatus("MIC")
+        
         // Warn user whether he is trying to rec multiple at the same time or rec limit is neared.
         if micBool == true {
             showSimplePopUp(errorTitle, message: multipleRecMessage, action: onItAction)
@@ -207,6 +226,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    /// Starts the audio recording in the AudioManager class and changes the background color.
     func startOutputRecording(path: NSURL) {
         AudioManager.sharedInstance.setUpOUTPUTrecorder(path)
         AudioManager.sharedInstance.recordOUTPUT()
@@ -214,6 +234,7 @@ class MasterViewController: UITableViewController {
         changeColors(starter)
     }
     
+    /// Stops the audio recording in the AudioManager class and clears the background color.
     func stopOutputRecording() {
         AudioManager.sharedInstance.recordOUTPUT()
         starter = true
@@ -222,6 +243,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Microphone recorder
     
+    /// Initiates a path to the directory where the micrecording is stored and sets a timer checking for free space.
     @IBAction func micRecorder(sender: AnyObject) {
         let maxAllowedSounds = 10
         
@@ -246,12 +268,14 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    /// Starts the mic recording in the AudioManager class and changes the background color.
     func startMicRecording(path: NSURL) {
         AudioManager.sharedInstance.setUpMICRecorder(path)
         AudioManager.sharedInstance.recordMIC()
         micIsRecording = false
     }
     
+    /// Stops the mic recording in the AudioManager class and clears the background color.
     func stopMicRecording(path: NSURL) {
         AudioManager.sharedInstance.recordMIC()
         micIsRecording = true
@@ -259,6 +283,7 @@ class MasterViewController: UITableViewController {
         checkMicSuccess(soundFileURL)
     }
     
+    /// Checks whether the mic file is really there and if so, updates the table view.
     func checkMicSuccess(soundFileURL: String) {
         // If recording was succesfull: update audio inputs, else: alert user.
         if doesFileExist(soundFileURL) {
@@ -272,6 +297,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Checking/updating/coloring
     
+    /// Removes all invalid characters from the filename that is about to be uploaded to Dropbox.
     func removeInvalidCharacters(filename: String) -> String {
         let filename1 = filename.stringByReplacingOccurrencesOfString("/", withString: "")
         let filename2 = filename1.stringByReplacingOccurrencesOfString("\\", withString: "")
@@ -280,6 +306,7 @@ class MasterViewController: UITableViewController {
         return filename4
     }
     
+    /// Checks the amount of free space, converts this to amount of time that can be recorded and initiates a times to take care hereof.
     func checkBytesWrite(theType: String) {
         typeOfRecording = theType
         let totalFreeSpaceInBytes = AudioManager.sharedInstance.deviceRemainingFreeSpaceInBytes()
@@ -288,6 +315,7 @@ class MasterViewController: UITableViewController {
         NSTimer.scheduledTimerWithTimeInterval(Double(0.9 * maxWritingTime), target: self, selector: #selector(MasterViewController.gettingLowOnFreeSpace), userInfo: nil, repeats: false)
     }
     
+    /// Gets called after the times fires when free space is low. Stops the audio recording and alerts the user.
     func gettingLowOnFreeSpace() {
         if typeOfRecording == "MIC" {
             AudioManager.sharedInstance.recordMIC()
@@ -298,6 +326,7 @@ class MasterViewController: UITableViewController {
         showSimplePopUp(errorTitle, message: lowFreeSpaceMessage, action: micFailedAction)
     }
     
+    /// Checks whether mic or output is recording in order to make sure this doesn't happen in the same time.
     func checkRecordStatus(typeOfRec: String) -> Bool {
         // Get and return values of recorder state. If not initialized, set to false
         if typeOfRec == "MIC" {
@@ -321,7 +350,7 @@ class MasterViewController: UITableViewController {
         return fileManager.fileExistsAtPath(path)
     }
     
-    /// Updates the Table View.
+    /// Updates the Table View with new sounds.
     func updateTableView() {
         sounds = AudioManager.sharedInstance.sounds
         self.tableView.reloadData()
@@ -342,6 +371,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Pop Up Screens
     
+    /// Shows a simple alert screen with a title, message and action button.
     func showSimplePopUp(title: String, message: String, action: String) {
         let theAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         theAlert.addAction(UIAlertAction(title: action, style: .Default, handler: { (action: UIAlertAction!) in
@@ -349,6 +379,7 @@ class MasterViewController: UITableViewController {
         presentViewController(theAlert, animated: false, completion: nil)
     }
     
+    /// Shows a simple alert screen asking user to wait while uploading, disabling all app's buttons.
     func showPleaseWaitPopUp(state: Bool) {
         let theAlert = UIAlertController(title: "U P L O A D I N G", message: "please wait till ur file is uploaded, that could take some time...", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -359,6 +390,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    /// Asks user to fill in his title and artist name for uploading the file to Dropbox.
     func showUploadPopUp(button: AnyObject, soundData: NSData) {
         // Initiate alert.
         let getUserInfoAlert = UIAlertController(title: "U P L O A D I N G", message: "state us some info pls", preferredStyle: UIAlertControllerStyle.Alert)
