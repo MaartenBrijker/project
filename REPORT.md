@@ -9,7 +9,11 @@ All the uploaded audio files are collected in a public dropbox, for everyone to 
 # technical design (DESIGN.md)
 
 ![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/masterview.png)
-![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/detailview.png)
+
+
+
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/masterview.png =30x)
+![alt-tag](https://github.com/MaartenBrijker/project/blob/back/doc/detailview.png =30x)
 
 
  - AudioKit API
