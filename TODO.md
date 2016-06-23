@@ -21,13 +21,3 @@ optional:
 optionally optional:
  - get a developer account for releasing the app?
  - convert files to m4a ????
- 
-
-
-# thrash
-
-If you listen carefully iOS very “helpfully” routes the audio to the earpiece (e.g. where you listen when you’re on a call).
-I had the same problem and you can now get around this with:
-AKSettings.defaultToSpeaker  = true
-This will force the audio out of the main speaker. 
-
