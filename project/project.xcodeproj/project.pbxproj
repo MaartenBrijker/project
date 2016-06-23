@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0659DC1C87ED7CDEA01BFBEE /* Pods_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984A5D8BEF3B9D6F102E8731 /* Pods_project.framework */; };
+		A50E12271D1C0B0F00863DB9 /* REPORT.md in Sources */ = {isa = PBXBuildFile; fileRef = A50E12261D1C0B0F00863DB9 /* REPORT.md */; };
 		A51983D21D1AD3A000570A1A /* bolololo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D11D1AD3A000570A1A /* bolololo.wav */; };
 		A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D31D1AD5C000570A1A /* TCFsample.wav */; };
 		A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		129B1648BEDC74E6466E821C /* Pods-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-project/Pods-project.debug.xcconfig"; sourceTree = "<group>"; };
 		984A5D8BEF3B9D6F102E8731 /* Pods_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50E12261D1C0B0F00863DB9 /* REPORT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = REPORT.md; path = ../REPORT.md; sourceTree = "<group>"; };
 		A51983D11D1AD3A000570A1A /* bolololo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bolololo.wav; sourceTree = "<group>"; };
 		A51983D31D1AD5C000570A1A /* TCFsample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TCFsample.wav; sourceTree = "<group>"; };
 		A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NINJASWORDloop.wav; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				A54BF0751D0996AD006330AA /* DESIGN.md */,
 				A54BF07C1D099B7D006330AA /* TODO.md */,
 				A54BF0711D0996AD006330AA /* processbook.md */,
+				A50E12261D1C0B0F00863DB9 /* REPORT.md */,
 			);
 			name = noncode;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				A54BF0771D0996AD006330AA /* processbook.md in Sources */,
 				A54BF07D1D099B7D006330AA /* TODO.md in Sources */,
 				A54BF07A1D0996AD006330AA /* DESIGN.md in Sources */,
+				A50E12271D1C0B0F00863DB9 /* REPORT.md in Sources */,
 				A5FBDB7F1D003F72006962EA /* AudioManager.swift in Sources */,
 				A5FBDB211D003202006962EA /* AppDelegate.swift in Sources */,
 			);

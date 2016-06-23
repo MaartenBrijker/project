@@ -21,5 +21,3 @@ optional:
 optionally optional:
  - get a developer account for releasing the app?
  - convert files to m4a ????
-
-//
