@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0659DC1C87ED7CDEA01BFBEE /* Pods_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984A5D8BEF3B9D6F102E8731 /* Pods_project.framework */; };
 		A50E12271D1C0B0F00863DB9 /* REPORT.md in Sources */ = {isa = PBXBuildFile; fileRef = A50E12261D1C0B0F00863DB9 /* REPORT.md */; };
+		A50E12331D1C13ED00863DB9 /* detailview.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E122E1D1C13ED00863DB9 /* detailview.png */; };
+		A50E12341D1C13ED00863DB9 /* diagram.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A50E122F1D1C13ED00863DB9 /* diagram.pdf */; };
+		A50E12351D1C13ED00863DB9 /* masterview.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12301D1C13ED00863DB9 /* masterview.png */; };
+		A50E12361D1C13ED00863DB9 /* sketch.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12311D1C13ED00863DB9 /* sketch.png */; };
+		A50E12371D1C13ED00863DB9 /* table example.png in Resources */ = {isa = PBXBuildFile; fileRef = A50E12321D1C13ED00863DB9 /* table example.png */; };
 		A51983D21D1AD3A000570A1A /* bolololo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D11D1AD3A000570A1A /* bolololo.wav */; };
 		A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D31D1AD5C000570A1A /* TCFsample.wav */; };
 		A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */; };
@@ -17,8 +22,6 @@
 		A549F85C1D101EC900029C2A /* RFX6.WAV in Resources */ = {isa = PBXBuildFile; fileRef = A549F85B1D101EC900029C2A /* RFX6.WAV */; };
 		A54BF0761D0996AD006330AA /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0701D0996AD006330AA /* README.md */; };
 		A54BF0771D0996AD006330AA /* processbook.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0711D0996AD006330AA /* processbook.md */; };
-		A54BF0781D0996AD006330AA /* sketch.png in Resources */ = {isa = PBXBuildFile; fileRef = A54BF0731D0996AD006330AA /* sketch.png */; };
-		A54BF0791D0996AD006330AA /* table example.png in Resources */ = {isa = PBXBuildFile; fileRef = A54BF0741D0996AD006330AA /* table example.png */; };
 		A54BF07A1D0996AD006330AA /* DESIGN.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF0751D0996AD006330AA /* DESIGN.md */; };
 		A54BF07D1D099B7D006330AA /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = A54BF07C1D099B7D006330AA /* TODO.md */; };
 		A5DE68811D174C4D00ADB587 /* placeholder.wav in Resources */ = {isa = PBXBuildFile; fileRef = A5DE68801D174C4D00ADB587 /* placeholder.wav */; };
@@ -103,6 +106,11 @@
 		129B1648BEDC74E6466E821C /* Pods-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-project/Pods-project.debug.xcconfig"; sourceTree = "<group>"; };
 		984A5D8BEF3B9D6F102E8731 /* Pods_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50E12261D1C0B0F00863DB9 /* REPORT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = REPORT.md; path = ../REPORT.md; sourceTree = "<group>"; };
+		A50E122E1D1C13ED00863DB9 /* detailview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailview.png; sourceTree = "<group>"; };
+		A50E122F1D1C13ED00863DB9 /* diagram.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = diagram.pdf; sourceTree = "<group>"; };
+		A50E12301D1C13ED00863DB9 /* masterview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masterview.png; sourceTree = "<group>"; };
+		A50E12311D1C13ED00863DB9 /* sketch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sketch.png; sourceTree = "<group>"; };
+		A50E12321D1C13ED00863DB9 /* table example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table example.png"; sourceTree = "<group>"; };
 		A51983D11D1AD3A000570A1A /* bolololo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bolololo.wav; sourceTree = "<group>"; };
 		A51983D31D1AD5C000570A1A /* TCFsample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TCFsample.wav; sourceTree = "<group>"; };
 		A51983D51D1AE28D00570A1A /* NINJASWORDloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NINJASWORDloop.wav; sourceTree = "<group>"; };
@@ -111,8 +119,6 @@
 		A549F85B1D101EC900029C2A /* RFX6.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RFX6.WAV; sourceTree = "<group>"; };
 		A54BF0701D0996AD006330AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A54BF0711D0996AD006330AA /* processbook.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = processbook.md; path = ../processbook.md; sourceTree = "<group>"; };
-		A54BF0731D0996AD006330AA /* sketch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sketch.png; sourceTree = "<group>"; };
-		A54BF0741D0996AD006330AA /* table example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table example.png"; sourceTree = "<group>"; };
 		A54BF0751D0996AD006330AA /* DESIGN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = DESIGN.md; path = ../DESIGN.md; sourceTree = "<group>"; };
 		A54BF07C1D099B7D006330AA /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = TODO.md; path = ../TODO.md; sourceTree = "<group>"; };
 		A5DE68801D174C4D00ADB587 /* placeholder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = placeholder.wav; sourceTree = "<group>"; };
@@ -181,11 +187,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A54BF0721D0996AD006330AA /* doc */ = {
+		A50E122D1D1C13ED00863DB9 /* doc */ = {
 			isa = PBXGroup;
 			children = (
-				A54BF0731D0996AD006330AA /* sketch.png */,
-				A54BF0741D0996AD006330AA /* table example.png */,
+				A50E122E1D1C13ED00863DB9 /* detailview.png */,
+				A50E122F1D1C13ED00863DB9 /* diagram.pdf */,
+				A50E12301D1C13ED00863DB9 /* masterview.png */,
+				A50E12311D1C13ED00863DB9 /* sketch.png */,
+				A50E12321D1C13ED00863DB9 /* table example.png */,
 			);
 			name = doc;
 			path = ../doc;
@@ -195,8 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				A54BF0701D0996AD006330AA /* README.md */,
-				A54BF0721D0996AD006330AA /* doc */,
 				A54BF0751D0996AD006330AA /* DESIGN.md */,
+				A50E122D1D1C13ED00863DB9 /* doc */,
 				A54BF07C1D099B7D006330AA /* TODO.md */,
 				A54BF0711D0996AD006330AA /* processbook.md */,
 				A50E12261D1C0B0F00863DB9 /* REPORT.md */,
@@ -456,20 +465,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54BF0781D0996AD006330AA /* sketch.png in Resources */,
+				A50E12341D1C13ED00863DB9 /* diagram.pdf in Resources */,
 				A5FBDB2D1D003202006962EA /* LaunchScreen.storyboard in Resources */,
 				A5DE68811D174C4D00ADB587 /* placeholder.wav in Resources */,
+				A50E12351D1C13ED00863DB9 /* masterview.png in Resources */,
 				A51983D21D1AD3A000570A1A /* bolololo.wav in Resources */,
 				A5FBDB9B1D007AB4006962EA /* NASA.wav in Resources */,
 				A549F85C1D101EC900029C2A /* RFX6.WAV in Resources */,
-				A54BF0791D0996AD006330AA /* table example.png in Resources */,
 				A5FBDB2A1D003202006962EA /* Assets.xcassets in Resources */,
 				A5FBDB281D003202006962EA /* Main.storyboard in Resources */,
+				A50E12331D1C13ED00863DB9 /* detailview.png in Resources */,
 				A52966B71D1B37990036D077 /* kialabells.wav in Resources */,
 				A52966B91D1B39200036D077 /* isinkvoices.wav in Resources */,
+				A50E12371D1C13ED00863DB9 /* table example.png in Resources */,
 				A51983D41D1AD5C000570A1A /* TCFsample.wav in Resources */,
 				A5FBDB961D004EF7006962EA /* TonalBell.aiff in Resources */,
 				A51983D61D1AE28D00570A1A /* NINJASWORDloop.wav in Resources */,
+				A50E12361D1C13ED00863DB9 /* sketch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

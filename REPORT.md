@@ -6,7 +6,6 @@ This release will be part of DEVORM records, a cross-disciplinairy creative plat
 
 All the uploaded audio files are collected in a public dropbox, for everyone to enjoy.
 
-
 # technical design (DESIGN.md)
 
 
