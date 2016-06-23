@@ -45,6 +45,8 @@ class MasterViewController: UITableViewController {
     var personalClient: DropboxClient?
     let accessToken = "XPA_hvP23MAAAAAAAAAAFyLTeXC7cSemXHa-Y3chHcV-lP0wiULlKtnqSCZHdKlX"
     let uid = "DEVXXX"
+    var uploadError: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,7 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showError), name: "uploadError", object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -150,8 +153,10 @@ class MasterViewController: UITableViewController {
     func uploadingFile(data: NSData, path: String, client: DropboxClient, button: AnyObject) {
         let uploading = client.files.upload(path: "/\(path)", body: data)
         self.showPleaseWaitPopUp(true)
+        
         // Closure checking uploading progress.
         uploading.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            
             // Displaying percent that has been uploaded.
             let amountDone = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
             button.setTitle("\(100.0 * amountDone)%", forState: .Normal)
@@ -161,15 +166,25 @@ class MasterViewController: UITableViewController {
                 self.showPleaseWaitPopUp(false)
             }
         }
+        
         // Check whether upload was successful and alert the user.
         uploading.response({ (response, error) in
             if let metadata = response {
                 self.showSimplePopUp(self.uploadSuccessfulTitle, message: "\(metadata.name)", action: self.uploadSuccessfulAction)
             } else {
-                self.showPleaseWaitPopUp(false) // FIX THIS !!!!!!
-                self.showSimplePopUp(self.errorTitle, message: "\(error!) \(self.uploadUnsuccessfulMessage)", action: "🆗")
+                self.uploadError = String(error)
+                self.showPleaseWaitPopUp(false)
             }
         })
+    }
+    
+    func showError() {
+        self.showSimplePopUp(self.errorTitle, message: "\(uploadError) \(self.uploadUnsuccessfulMessage)", action: "🆗")
+    }
+    
+    func postNotification() {
+        print("initiate")
+        NSNotificationCenter.defaultCenter().postNotificationName("uploadError", object: nil)
     }
     
     // MARK: - Output recorder
@@ -331,7 +346,7 @@ class MasterViewController: UITableViewController {
         let theAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         theAlert.addAction(UIAlertAction(title: action, style: .Default, handler: { (action: UIAlertAction!) in
             theAlert .dismissViewControllerAnimated(true, completion: nil)}))
-        presentViewController(theAlert, animated: true, completion: nil)
+        presentViewController(theAlert, animated: false, completion: nil)
     }
     
     func showPleaseWaitPopUp(state: Bool) {
@@ -340,7 +355,7 @@ class MasterViewController: UITableViewController {
         if state {
             presentViewController(theAlert, animated: true, completion: nil)
         } else {
-            dismissViewControllerAnimated(false, completion: nil)
+            dismissViewControllerAnimated(false, completion: postNotification)
         }
     }
     

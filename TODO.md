@@ -6,9 +6,7 @@ def:
  - make a scheme of all classes and functions for doc.
  - update DESIGN.doc + README.md
  - make reference to dropbox for their code
- - fix splitview layout
  - set device constraints (iphone 5+)
- - uploadFile function (seperation of concerns)
  - stop audio when users is recording mic
 
 optional:
@@ -23,15 +21,6 @@ optionally optional:
  - get a developer account for releasing the app?
  - convert files to m4a ????
  
-# LAST WEEK
- - fix comments
- - fix error messages (internet/upload/recording successful (file storage??))
- - DROPBOX CHECK ON DIFFERENT DEVICE
- - fix references
- - update README + DESIGN
- - fix layout (constraints etc)
- - move hardcoded strings to seperate variables !!!! !!!!
- - check whether audio works smoothly when app gets bigger . . . problem . . .
 
 
 # thrash
